@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,59 +27,74 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
         }
-        
+
         .gradient-text {
             background: linear-gradient(90deg, #0072f5 0%, #7828c8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .gradient-bg {
             background: linear-gradient(135deg, #0072f5 0%, #7828c8 100%);
         }
-        
+
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 114, 245, 0.3);
         }
-        
+
         .glow-effect {
             box-shadow: 0 0 20px rgba(0, 114, 245, 0.5);
         }
-        
+
         .hero-gradient {
             background: radial-gradient(circle at 50% 0%, rgba(0, 114, 245, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(120, 40, 200, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 80% 50%, rgba(120, 40, 200, 0.15) 0%, transparent 50%);
         }
-        
+
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
-        
+
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body class="bg-black text-white">
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-dark-border">
@@ -94,10 +110,12 @@
                     <a href="#services" class="hover:text-primary transition">Services</a>
                     <a href="#features" class="hover:text-primary transition">Features</a>
                     <a href="#about" class="hover:text-primary transition">About</a>
-                    <a href="https://rembg.webeazzy.com/platform" class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition">
+                    <a href="https://rembg.webeazzy.com/platform"
+                        class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition">
                         Sign In
                     </a>
-                    <a href="https://rembg.webeazzy.com" class="px-6 py-2 gradient-bg rounded-full hover:opacity-90 transition">
+                    <a href="https://rembg.webeazzy.com"
+                        class="px-6 py-2 gradient-bg rounded-full hover:opacity-90 transition">
                         Try BG Remover
                     </a>
                 </div>
@@ -117,33 +135,38 @@
                     Websites with <span class="gradient-text">AI</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto">
-                    Powerful AI-driven tools to build, optimize, and enhance your web presence. 
+                    Powerful AI-driven tools to build, optimize, and enhance your web presence.
                     From instant background removal to intelligent website building.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#services" class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect">
+                    <a href="#services"
+                        class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect">
                         Explore Services
                     </a>
-                    <a href="#features" class="px-8 py-4 bg-dark-card border border-dark-border rounded-full text-lg font-semibold hover:border-primary transition">
+                    <a href="#features"
+                        class="px-8 py-4 bg-dark-card border border-dark-border rounded-full text-lg font-semibold hover:border-primary transition">
                         Learn More
                     </a>
                 </div>
             </div>
-            
+
             <!-- Floating Elements -->
             <div class="mt-20 relative">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6" style="animation-delay: 0s;">
+                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
+                        style="animation-delay: 0s;">
                         <i class="fas fa-wand-magic-sparkles text-4xl text-primary mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">AI Background Removal</h3>
                         <p class="text-gray-400">Remove backgrounds instantly with precision</p>
                     </div>
-                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6" style="animation-delay: 0.2s;">
+                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
+                        style="animation-delay: 0.2s;">
                         <i class="fas fa-laptop-code text-4xl text-secondary mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">AI Website Builder</h3>
                         <p class="text-gray-400">Create stunning websites in minutes</p>
                     </div>
-                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6" style="animation-delay: 0.4s;">
+                    <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
+                        style="animation-delay: 0.4s;">
                         <i class="fas fa-rocket text-4xl gradient-text mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
                         <p class="text-gray-400">Optimized for speed and performance</p>
@@ -162,7 +185,7 @@
                 </h2>
                 <p class="text-xl text-gray-400">AI-powered tools for modern web creators</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- BG Remover Service -->
                 <div class="bg-dark-card border border-dark-border rounded-3xl p-8 card-hover">
@@ -171,7 +194,7 @@
                     </div>
                     <h3 class="text-3xl font-bold mb-4">AI Background Remover</h3>
                     <p class="text-gray-400 mb-6 text-lg leading-relaxed">
-                        Remove image backgrounds with AI precision in seconds. Perfect for e-commerce, 
+                        Remove image backgrounds with AI precision in seconds. Perfect for e-commerce,
                         marketing materials, and professional photography. Starting at just $0.02 per image.
                     </p>
                     <ul class="space-y-3 mb-8">
@@ -192,19 +215,21 @@
                             High-resolution output
                         </li>
                     </ul>
-                    <a href="https://rembg.webeazzy.com" class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
+                    <a href="https://rembg.webeazzy.com"
+                        class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
                         Try Now <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
-                
+
                 <!-- Website Builder Service -->
                 <div class="bg-dark-card border border-dark-border rounded-3xl p-8 card-hover">
-                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-purple-600 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-globe text-3xl"></i>
                     </div>
                     <h3 class="text-3xl font-bold mb-4">AI Website Builder</h3>
                     <p class="text-gray-400 mb-6 text-lg leading-relaxed">
-                        Build professional websites with AI assistance. No coding required. 
+                        Build professional websites with AI assistance. No coding required.
                         Choose from hundreds of templates or let AI design for you.
                     </p>
                     <ul class="space-y-3 mb-8">
@@ -225,7 +250,8 @@
                             One-click deployment
                         </li>
                     </ul>
-                    <button class="px-8 py-4 bg-secondary/20 border border-secondary rounded-full font-semibold hover:bg-secondary/30 transition">
+                    <button
+                        class="px-8 py-4 bg-secondary/20 border border-secondary rounded-full font-semibold hover:bg-secondary/30 transition">
                         Coming Soon <i class="fas fa-sparkles ml-2"></i>
                     </button>
                 </div>
@@ -242,7 +268,7 @@
                 </h2>
                 <p class="text-xl text-gray-400">Built with cutting-edge technology for the best results</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
@@ -251,7 +277,7 @@
                     <h3 class="text-2xl font-bold mb-4">Lightning Fast</h3>
                     <p class="text-gray-400">Process images in under 3 seconds with our optimized AI engine</p>
                 </div>
-                
+
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-shield-halved text-2xl"></i>
@@ -259,7 +285,7 @@
                     <h3 class="text-2xl font-bold mb-4">Secure & Private</h3>
                     <p class="text-gray-400">Your images are processed securely and never stored on our servers</p>
                 </div>
-                
+
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-code text-2xl"></i>
@@ -267,7 +293,7 @@
                     <h3 class="text-2xl font-bold mb-4">Developer Friendly</h3>
                     <p class="text-gray-400">Easy-to-use API with comprehensive documentation</p>
                 </div>
-                
+
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-layer-group text-2xl"></i>
@@ -275,7 +301,7 @@
                     <h3 class="text-2xl font-bold mb-4">Batch Processing</h3>
                     <p class="text-gray-400">Process hundreds of images at once with bulk packages</p>
                 </div>
-                
+
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-paintbrush text-2xl"></i>
@@ -283,13 +309,56 @@
                     <h3 class="text-2xl font-bold mb-4">High Quality</h3>
                     <p class="text-gray-400">Preserve image quality with edge detection and anti-aliasing</p>
                 </div>
-                
+
                 <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-headset text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">24/7 Support</h3>
                     <p class="text-gray-400">Get help whenever you need it with our dedicated support team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="text-5xl font-bold mb-6">
+                    About <span class="gradient-text">Webeazzy</span>
+                </h2>
+                <p class="text-xl text-gray-400 leading-relaxed mb-6">
+                    Webeazzy is dedicated to simplifying web creation through the power of Artificial Intelligence.
+                    Our mission is to provide accessible, high-performance tools that help creators and businesses
+                    build stunning digital experiences without technical barriers.
+                </p>
+                <p class="text-xl text-gray-400 leading-relaxed">
+                    Started in 2025, we are a team of passionate developers and designers working to bridge the gap
+                    between complex machine learning models and everyday web utility.
+                </p>
+            </div>
+            <div class="flex-1 relative">
+                <div class="absolute -inset-4 gradient-bg rounded-3xl opacity-20 blur-xl"></div>
+                <div class="relative bg-dark-card border border-dark-border p-8 rounded-3xl">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4">
+                            <h4 class="text-4xl font-bold gradient-text mb-2">99%</h4>
+                            <p class="text-gray-400">Uptime</p>
+                        </div>
+                        <div class="text-center p-4">
+                            <h4 class="text-4xl font-bold gradient-text mb-2">50k+</h4>
+                            <p class="text-gray-400">Images Processed</p>
+                        </div>
+                        <div class="text-center p-4">
+                            <h4 class="text-4xl font-bold gradient-text mb-2">24/7</h4>
+                            <p class="text-gray-400">Support</p>
+                        </div>
+                        <div class="text-center p-4">
+                            <h4 class="text-4xl font-bold gradient-text mb-2">100%</h4>
+                            <p class="text-gray-400">Secure</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -305,7 +374,8 @@
                 <p class="text-xl mb-8 opacity-90">
                     Join thousands of creators who trust Webeazzy for their image processing needs.
                 </p>
-                <a href="https://rembg.webeazzy.com" class="inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition">
+                <a href="https://rembg.webeazzy.com"
+                    class="inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition">
                     Get Started Free
                 </a>
             </div>
@@ -316,63 +386,255 @@
     <footer class="py-12 px-6 border-t border-dark-border">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div>
+                <div class="md:col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
                         <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center font-bold">
                             W
                         </div>
                         <span class="text-2xl font-bold">Webeazzy</span>
                     </div>
-                    <p class="text-gray-400">Making the web easier, one tool at a time.</p>
+                    <p class="text-gray-400 max-w-sm">Making the web easier, one tool at a time. Powerful AI solutions
+                        for modern creators.</p>
                 </div>
-                
+
                 <div>
                     <h4 class="font-semibold mb-4">Products</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://rembg.webeazzy.com" class="hover:text-primary transition">BG Remover</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Website Builder</a></li>
-                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
+                        <li><a href="https://rembg.webeazzy.com" class="hover:text-primary transition">BG Remover</a>
+                        </li>
+                        <!-- <li><a href="#" class="hover:text-primary transition">Website Builder</a></li> -->
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="font-semibold mb-4">Company</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#about" class="hover:text-primary transition">About</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Blog</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Careers</a></li>
+                        <li><button onclick="openModal('blog')"
+                                class="hover:text-primary transition text-left">Blog</button></li>
+                        <li><button onclick="openModal('careers')"
+                                class="hover:text-primary transition text-left">Careers</button></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="font-semibold mb-4">Support</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-primary transition">Documentation</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Contact</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Privacy</a></li>
+                        <li><button onclick="openModal('contact')"
+                                class="hover:text-primary transition text-left">Contact</button></li>
+                        <li><button onclick="openModal('privacy')"
+                                class="hover:text-primary transition text-left">Privacy Policy</button></li>
+                        <li><button onclick="openModal('terms')" class="hover:text-primary transition text-left">Terms &
+                                Conditions</button></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="border-t border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 mb-4 md:mb-0">© 2025 Webeazzy. All rights reserved.</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
+                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
                         <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
+                    </button>
+                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
                         <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
+                    </button>
+                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
                         <i class="fab fa-linkedin text-xl"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Generic Modal -->
+    <div id="infoModal" class="fixed inset-0 z-[100] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-6">
+            <div
+                class="bg-dark-card border border-dark-border rounded-3xl p-8 relative shadow-2xl overflow-y-auto max-h-[80vh]">
+                <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <h3 id="modalTitle" class="text-3xl font-bold mb-6 gradient-text"></h3>
+                <div id="modalBody" class="text-gray-300 leading-relaxed space-y-4">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Smooth scroll
+        // Modal Content Data
+        const modalContent = {
+            blog: {
+                title: "Latest Updates",
+                body: `
+                    <div class="space-y-6">
+                        <div class="border-b border-dark-border pb-6">
+                            <span class="text-sm text-primary mb-2 block">March 15, 2025</span>
+                            <h4 class="text-xl font-bold mb-2">Introducing Intelligent Website Builder</h4>
+                            <p class="text-gray-400 mb-4">We are thrilled to announce our upcoming feature that will revolutionize how you build websites...</p>
+                            <button onclick="openModal('blog_post_1')" class="text-primary text-sm font-semibold hover:underline">Read Full Story &rarr;</button>
+                        </div>
+                        <div class="border-b border-dark-border pb-6">
+                            <span class="text-sm text-primary mb-2 block">February 28, 2025</span>
+                            <h4 class="text-xl font-bold mb-2">Background Removal API v2.0</h4>
+                            <p class="text-gray-400 mb-4">Our latest update brings 2x faster processing speeds and improved edge detection for hair and fur.</p>
+                            <button onclick="openModal('blog_post_2')" class="text-primary text-sm font-semibold hover:underline">Read Full Story &rarr;</button>
+                        </div>
+                    </div>
+                `
+            },
+            blog_post_1: {
+                title: "Intelligent Website Builder",
+                body: `
+                    <button onclick="openModal('blog')" class="mb-6 text-sm text-gray-400 hover:text-white flex items-center gap-2 transition">
+                        <i class="fas fa-arrow-left"></i> Back to Updates
+                    </button>
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-lg text-gray-300 mb-4">We are thrilled to announce our upcoming feature that will revolutionize how you build websites: The Intelligent Website Builder.</p>
+                        <p class="mb-4">Gone are the days of dragging and dropping specific elements or fighting with CSS. With our new AI-driven engine, you simply describe the website you want in plain English, and Webeazzy builds it for you.</p>
+                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Key Features:</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Prompt-to-Site:</strong> "Create a portfolio for a photographer with a dark theme."</li>
+                            <li><strong>Auto-Optimization:</strong> Images are automatically compressed and served via CDN.</li>
+                            <li><strong>SEO Built-in:</strong> Meta tags and structure are optimized from day one.</li>
+                        </ul>
+                        <p>We are rolling this out to beta testers next week. Stay tuned!</p>
+                    </div>
+                `
+            },
+            blog_post_2: {
+                title: "API v2.0 Performance",
+                body: `
+                    <button onclick="openModal('blog')" class="mb-6 text-sm text-gray-400 hover:text-white flex items-center gap-2 transition">
+                        <i class="fas fa-arrow-left"></i> Back to Updates
+                    </button>
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-lg text-gray-300 mb-4">Our latest update brings 2x faster processing speeds and improved edge detection for hair and fur.</p>
+                        <p class="mb-4">We've retrained our core background removal models on a dataset 5x larger than before, focusing specifically on difficult edge cases like curly hair, transparent glass, and complex foliage.</p>
+                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Benchmarks:</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-6">
+                            <li><strong>Speed:</strong> Average processing time dropped from 2.5s to 1.2s per image.</li>
+                            <li><strong>Accuracy:</strong> mIoU score increased by 14% on the standard validation set.</li>
+                        </ul>
+                        <p>This update is available immediately to all API users at no extra cost.</p>
+                    </div>
+                `
+            },
+            careers: {
+                title: "Join Our Team",
+                body: `
+                    <p class="mb-4">We are always looking for passionate individuals to join our mission of simplifying web creation.</p>
+                    <div class="bg-black/30 p-6 rounded-xl border border-dark-border mb-4">
+                        <h4 class="font-bold mb-1">Senior AI Engineer</h4>
+                        <p class="text-sm text-gray-400 mb-3">Remote • Full-time</p>
+                        <p class="text-sm text-gray-400 mb-4">Lead the development of our next-gen image processing models.</p>
+                        <button onclick="openModal('contact')" class="text-primary text-sm font-semibold hover:underline">Apply via Contact</button>
+                    </div>
+                    <div class="bg-black/30 p-6 rounded-xl border border-dark-border">
+                        <h4 class="font-bold mb-1">Frontend Developer</h4>
+                        <p class="text-sm text-gray-400 mb-3">Remote • Contract</p>
+                        <p class="text-sm text-gray-400 mb-4">Build beautiful, responsive interfaces for our web tools.</p>
+                        <button onclick="openModal('contact')" class="text-primary text-sm font-semibold hover:underline">Apply via Contact</button>
+                    </div>
+                `
+            },
+            contact: {
+                title: "Contact Support",
+                body: `
+                    <p class="mb-6">Have questions or need assistance? Reach out to our support team.</p>
+                    <form onsubmit="event.preventDefault(); alert('Message sent! We will get back to you soon.'); closeModal();" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Email Address</label>
+                            <input type="email" class="w-full bg-black/50 border border-dark-border rounded-lg px-4 py-3 focus:border-primary focus:outline-none transition" placeholder="you@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Message</label>
+                            <textarea class="w-full bg-black/50 border border-dark-border rounded-lg px-4 py-3 focus:border-primary focus:outline-none transition h-32" placeholder="How can we help?" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full gradient-bg py-3 rounded-lg font-bold hover:opacity-90 transition">Send Message</button>
+                    </form>
+                `
+            },
+            privacy: {
+                title: "Privacy Policy",
+                body: `
+                    <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
+                    <p class="mb-4">At Webeazzy, we take your privacy seriously. This policy describes how we handle your data.</p>
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">1. Image Data</h4>
+                    <p>Images uploaded to our service are processed in memory and are automatically deleted immediately after processing. We do not store, sell, or share your images.</p>
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Data Collection</h4>
+                    <p>We collect minimal usage data (such as API call counts) to improve our service performance. No personally identifiable information is stored without your consent.</p>
+                `
+            },
+            terms: {
+                title: "Terms & Conditions",
+                body: `
+                    <p class="mb-4">By using Webeazzy, you agree to the following terms:</p>
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">Usage License</h4>
+                    <p>We grant you a limited, non-exclusive license to use our tools for both personal and commercial projects.</p>
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">Service Availability</h4>
+                    <p>While we strive for 99.9% uptime, we do not guarantee uninterrupted access to our services. We reserve the right to modify or discontinue features at any time.</p>
+                `
+            },
+            socials: {
+                title: "Connect With Us",
+                body: `
+                    <p class="mb-8 text-center">Follow us on social media for the latest news and updates.</p>
+                    <div class="flex justify-center gap-8">
+                        <a href="https://twitter.com/webeazzy" target="_blank" class="flex flex-col items-center group">
+                            <div class="w-16 h-16 bg-black/50 border border-dark-border rounded-full flex items-center justify-center group-hover:border-primary group-hover:text-primary transition mb-3">
+                                <i class="fab fa-twitter text-3xl"></i>
+                            </div>
+                            <span class="text-sm text-gray-400 group-hover:text-white">Twitter</span>
+                        </a>
+                        <a href="https://github.com/webeazzy" target="_blank" class="flex flex-col items-center group">
+                            <div class="w-16 h-16 bg-black/50 border border-dark-border rounded-full flex items-center justify-center group-hover:border-primary group-hover:text-primary transition mb-3">
+                                <i class="fab fa-github text-3xl"></i>
+                            </div>
+                            <span class="text-sm text-gray-400 group-hover:text-white">GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/company/webeazzy" target="_blank" class="flex flex-col items-center group">
+                            <div class="w-16 h-16 bg-black/50 border border-dark-border rounded-full flex items-center justify-center group-hover:border-primary group-hover:text-primary transition mb-3">
+                                <i class="fab fa-linkedin text-3xl"></i>
+                            </div>
+                            <span class="text-sm text-gray-400 group-hover:text-white">LinkedIn</span>
+                        </a>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(key) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            if (modalContent[key]) {
+                title.textContent = modalContent[key].title;
+                body.innerHTML = modalContent[key].body;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Smooth scroll (existing)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -384,5 +646,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>
