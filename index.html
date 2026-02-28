@@ -634,6 +634,139 @@
             if (e.key === 'Escape') closeModal();
         });
 
+        // ── Demo Section Logic ────────────────────────────────────────────
+        const DEMO_ENDPOINT = 'https://begone-gateway.vercel.app/api/demo/process-image';
+        const REMAINING_ENDPOINT = 'https://begone-gateway.vercel.app/api/demo/remaining';
+
+        const dropZone     = document.getElementById('demoDropZone');
+        const fileInput    = document.getElementById('demoFileInput');
+        const counter      = document.getElementById('demoCounter');
+        const spinner      = document.getElementById('demoSpinner');
+        const errorBox     = document.getElementById('demoError');
+        const result       = document.getElementById('demoResult');
+        const originalImg  = document.getElementById('demoOriginalImg');
+        const resultImg    = document.getElementById('demoResultImg');
+        const downloadBtn  = document.getElementById('demoDownloadBtn');
+        const clearBtn     = document.getElementById('demoClearBtn');
+        const rateLimitCta = document.getElementById('demoRateLimitCta');
+
+        async function fetchRemaining() {
+            try {
+                const res = await fetch(REMAINING_ENDPOINT, { headers: { 'X-Demo-Key': 'replace-with-random-string' } });
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                updateCounter(data.remaining, data.limit);
+            } catch {
+                counter.textContent = '';
+            }
+        }
+
+        function updateCounter(remaining, limit) {
+            if (remaining <= 0) {
+                counter.innerHTML = `<span class="text-red-400 font-semibold">0 of ${limit} free uses remaining</span>`;
+            } else {
+                counter.innerHTML = `<span class="font-semibold" style="color:#0072f5">${remaining} of ${limit} free uses remaining</span>`;
+            }
+        }
+
+        function showError(msg) {
+            errorBox.textContent = msg;
+            errorBox.classList.remove('hidden');
+        }
+
+        function clearError() {
+            errorBox.classList.add('hidden');
+        }
+
+        function setLoading(on) {
+            spinner.classList.toggle('hidden', !on);
+            dropZone.classList.toggle('hidden', on);
+        }
+
+        async function processFile(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                showError('Please upload a valid image file.');
+                return;
+            }
+
+            clearError();
+            result.classList.add('hidden');
+            rateLimitCta.classList.add('hidden');
+            setLoading(true);
+
+            const originalUrl = URL.createObjectURL(file);
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const res = await fetch(DEMO_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'X-Demo-Key': 'replace-with-random-string' },
+                    body: formData
+                });
+
+                if (res.status === 429) {
+                    const data = await res.json().catch(() => ({}));
+                    setLoading(false);
+                    rateLimitCta.classList.remove('hidden');
+                    updateCounter(0, data.limit || 10);
+                    return;
+                }
+
+                if (!res.ok) {
+                    setLoading(false);
+                    showError('Something went wrong. Please try again.');
+                    return;
+                }
+
+                const blob = await res.blob();
+                const resultUrl = URL.createObjectURL(blob);
+                setLoading(false);
+                originalImg.src = originalUrl;
+                resultImg.src = resultUrl;
+                downloadBtn.href = resultUrl;
+                result.classList.remove('hidden');
+                fetchRemaining();
+
+            } catch {
+                setLoading(false);
+                showError('Network error. Please check your connection and try again.');
+            }
+        }
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0072f5'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = '#27272a'; });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#27272a';
+            if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', () => { if (fileInput.files[0]) processFile(fileInput.files[0]); });
+        clearBtn.addEventListener('click', () => {
+            result.classList.add('hidden');
+            rateLimitCta.classList.add('hidden');
+            clearError();
+            fileInput.value = '';
+            dropZone.classList.remove('hidden');
+            fetchRemaining();
+        });
+
+        fetchRemaining();
+        // ── End Demo Section Logic ────────────────────────────────────────
+
+        // ── API Tab Switcher ──────────────────────────────────────────────
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.api-tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.querySelectorAll('.api-tab').forEach(b => {
+                b.classList.remove('bg-primary', 'text-white');
+                b.classList.add('bg-dark-card', 'border', 'border-dark-border', 'text-gray-400');
+            });
+            btn.classList.add('bg-primary', 'text-white');
+            btn.classList.remove('bg-dark-card', 'border', 'border-dark-border', 'text-gray-400');
+        }
+
         // Smooth scroll (existing)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
