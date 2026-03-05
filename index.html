@@ -131,17 +131,17 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center fade-in">
                 <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                    Make <span class="gradient-text">Beautiful</span><br>
-                    Websites with <span class="gradient-text">AI</span>
+                    Remove <span class="gradient-text">Backgrounds</span><br>
+                    Instantly with <span class="gradient-text">AI</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto">
-                    Powerful AI-driven tools to build, optimize, and enhance your web presence.
-                    From instant background removal to intelligent website building.
+                    Remove image backgrounds with AI precision in seconds. Perfect for e-commerce,
+                    marketing materials, and professional photography.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#services"
+                    <a href="#demo"
                         class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect">
-                        Explore Services
+                        Try It Free
                     </a>
                     <a href="#features"
                         class="px-8 py-4 bg-dark-card border border-dark-border rounded-full text-lg font-semibold hover:border-primary transition">
@@ -172,6 +172,82 @@
                         <p class="text-gray-400">Optimized for speed and performance</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4">
+                    Try It <span class="gradient-text">Free</span>
+                </h2>
+                <p class="text-xl text-gray-400">Remove your first backgrounds for free — no sign up required</p>
+            </div>
+
+            <!-- Upload Zone -->
+            <div id="demoDropZone"
+                class="bg-dark-card border-2 border-dashed border-dark-border rounded-3xl p-12 text-center cursor-pointer transition mb-6"
+                style="border-color: #27272a;">
+                <input id="demoFileInput" type="file" accept="image/*" class="hidden" />
+                <i class="fas fa-cloud-upload-alt text-5xl text-primary mb-4 block"></i>
+                <p class="text-xl font-semibold mb-2">Drag & drop an image here</p>
+                <p class="text-gray-400 mb-4">or click to browse</p>
+                <span class="px-6 py-2 gradient-bg rounded-full text-sm font-semibold">Choose Image</span>
+            </div>
+
+            <!-- Counter -->
+            <div id="demoCounter" class="text-center mb-6 text-gray-400 text-sm">
+                Checking free uses remaining…
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="demoSpinner" class="hidden text-center py-10">
+                <div class="inline-block w-12 h-12 border-4 rounded-full animate-spin"
+                    style="border-color: #0072f5 transparent #7828c8 transparent;"></div>
+                <p class="text-gray-400 mt-4">Removing background…</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="demoError" class="hidden bg-dark-card border border-red-500/50 rounded-2xl p-4 mb-6 text-red-400 text-sm text-center"></div>
+
+            <!-- Result -->
+            <div id="demoResult" class="hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-dark-card border border-dark-border rounded-2xl p-4">
+                        <p class="text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wider">Original</p>
+                        <img id="demoOriginalImg" src="" alt="Original"
+                            class="w-full rounded-xl object-contain max-h-72" />
+                    </div>
+                    <div class="bg-dark-card border border-dark-border rounded-2xl p-4"
+                        style="background-image: repeating-conic-gradient(#27272a 0% 25%, #18181b 0% 50%) 0 0 / 20px 20px;">
+                        <p class="text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wider">Result</p>
+                        <img id="demoResultImg" src="" alt="Result"
+                            class="w-full rounded-xl object-contain max-h-72" />
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a id="demoDownloadBtn" href="#" download="removed-bg.png"
+                        class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
+                        <i class="fas fa-download mr-2"></i>Download PNG
+                    </a>
+                    <button id="demoClearBtn"
+                        class="ml-4 px-8 py-4 bg-dark-card border border-dark-border rounded-full font-semibold hover:border-primary transition">
+                        Try Another
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rate Limit CTA -->
+            <div id="demoRateLimitCta" class="hidden bg-dark-card border border-dark-border rounded-3xl p-8 text-center">
+                <i class="fas fa-lock text-4xl text-primary mb-4 block"></i>
+                <h3 class="text-2xl font-bold mb-2">Free limit reached</h3>
+                <p class="text-gray-400 mb-6">You've used all your free removals for today. Upgrade for unlimited access.</p>
+                <a href="https://rembg.webeazzy.com/pricing"
+                    class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
+                    View Pricing <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -476,36 +552,11 @@
                 body: `
                     <div class="space-y-6">
                         <div class="border-b border-dark-border pb-6">
-                            <span class="text-sm text-primary mb-2 block">March 15, 2025</span>
-                            <h4 class="text-xl font-bold mb-2">Introducing Intelligent Website Builder</h4>
-                            <p class="text-gray-400 mb-4">We are thrilled to announce our upcoming feature that will revolutionize how you build websites...</p>
-                            <button onclick="openModal('blog_post_1')" class="text-primary text-sm font-semibold hover:underline">Read Full Story &rarr;</button>
-                        </div>
-                        <div class="border-b border-dark-border pb-6">
                             <span class="text-sm text-primary mb-2 block">February 28, 2025</span>
                             <h4 class="text-xl font-bold mb-2">Background Removal API v2.0</h4>
                             <p class="text-gray-400 mb-4">Our latest update brings 2x faster processing speeds and improved edge detection for hair and fur.</p>
                             <button onclick="openModal('blog_post_2')" class="text-primary text-sm font-semibold hover:underline">Read Full Story &rarr;</button>
                         </div>
-                    </div>
-                `
-            },
-            blog_post_1: {
-                title: "Intelligent Website Builder",
-                body: `
-                    <button onclick="openModal('blog')" class="mb-6 text-sm text-gray-400 hover:text-white flex items-center gap-2 transition">
-                        <i class="fas fa-arrow-left"></i> Back to Updates
-                    </button>
-                    <div class="prose prose-invert max-w-none">
-                        <p class="text-lg text-gray-300 mb-4">We are thrilled to announce our upcoming feature that will revolutionize how you build websites: The Intelligent Website Builder.</p>
-                        <p class="mb-4">Gone are the days of dragging and dropping specific elements or fighting with CSS. With our new AI-driven engine, you simply describe the website you want in plain English, and Webeazzy builds it for you.</p>
-                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Key Features:</h4>
-                        <ul class="list-disc pl-5 space-y-2 mb-6">
-                            <li><strong>Prompt-to-Site:</strong> "Create a portfolio for a photographer with a dark theme."</li>
-                            <li><strong>Auto-Optimization:</strong> Images are automatically compressed and served via CDN.</li>
-                            <li><strong>SEO Built-in:</strong> Meta tags and structure are optimized from day one.</li>
-                        </ul>
-                        <p>We are rolling this out to beta testers next week. Stay tuned!</p>
                     </div>
                 `
             },
