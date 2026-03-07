@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webeazzy - AI Background Remover</title>
+    <meta name="description" content="Remove image backgrounds instantly with AI on WebEazzy.com. Free, fast, and precise background removal for ecommerce products, marketing creatives, and professional photography. No signup needed.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -83,41 +84,253 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Nav link slide-in underline */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #0072f5;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Navbar spring bounce down */
+        @keyframes springDown {
+            0% { transform: translateY(-100%); }
+            60% { transform: translateY(15px); }
+            80% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        .nav-spring {
+            animation: springDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Laser line scanning */
+        .laser-scanner {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #0072f5;
+            box-shadow: 0 0 10px #0072f5, 0 0 20px #7828c8;
+            animation: scan 2s linear infinite;
+            z-index: 10;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { top: 100%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* After Image Laser Scanner */
+        .image-laser-scanner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #0072f5, #7828c8, #0072f5, transparent);
+            box-shadow: 0 0 15px rgba(0, 114, 245, 0.8), 0 0 30px rgba(120, 40, 200, 0.8);
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scanning .image-laser-scanner {
+            animation: imageScan 6s linear forwards;
+        }
+
+        @keyframes imageScan {
+            0% { top: 0%; opacity: 0; }
+            5% { top: 5%; opacity: 1; }
+            95% { top: 95%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Scan Reveal Mask */
+        .scan-mask {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .scanning .scan-mask {
+            animation: wipeScan 6s linear forwards;
+        }
+
+        @keyframes wipeScan {
+            0% { clip-path: inset(0 0 0 0); }
+            100% { clip-path: inset(100% 0 0 0); }
+        }
+
+        /* Post-scan state to keep image hidden */
+        .scan-complete .scan-mask {
+            clip-path: inset(100% 0 0 0);
+        }
+
+        /* Antigravity Float */
+        @keyframes floatObject {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating-subject {
+            animation: floatObject 3s ease-in-out infinite;
+        }
+
+        /* Shadow beneath floating subject */
+        @keyframes floatShadow {
+            0% { box-shadow: 0 8px 16px rgba(0,0,0,0.2); transform: scale(1); opacity: 0.5; }
+            50% { box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: scale(0.95); opacity: 0.2; }
+            100% { box-shadow: 0 8px 16px rgba(0,0,0,0.2); transform: scale(1); opacity: 0.5; }
+        }
+        
+        .floating-shadow::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 20px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .floating-shadow.active::after {
+            opacity: 1;
+            animation: floatShadow 3s ease-in-out infinite;
+        }
+
+        /* Checkmark Badge */
+        .scan-complete-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 200, 83, 0.9);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 30;
+        }
+        
+        .scan-complete-badge.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Upload zone drag glow */
+        .glow-active {
+            box-shadow: 0 0 30px rgba(120, 40, 200, 0.5), inset 0 0 20px rgba(0, 114, 245, 0.4) !important;
+            border-color: #7828c8 !important;
+            transform: scale(1.02);
+            transition: all 0.3s ease !important;
+        }
+        
+        /* AI Scanner Loader */
+        .ai-scanner-box {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            /* Remove solid dark background since we have the blurred image backing it now */
+            background: rgba(0,0,0,0.3);
+        }
+
+        .loader-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(10px) brightness(0.6);
+            z-index: -1;
+        }
+
+        .ai-scanner-line {
+            width: 100%;
+            height: 3px;
+            background: #0072f5;
+            box-shadow: 0 0 10px #0072f5, 0 0 20px #7828c8;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scannerPulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes scannerPulse {
+            0% { top: -5%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 105%; opacity: 0; }
+        }
+
+        .ai-scanner-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 114, 245, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 114, 245, 0.2) 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.5;
         }
     </style>
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-black text-white relative">
+    <!-- Background Canvas for Particles & Orbs -->
+    <canvas id="bgCanvas" class="fixed inset-0 z-[-1] pointer-events-none"></canvas>
+    
+    <!-- Custom Cursor Ring -->
+    <div id="cursor-ring" class="fixed pointer-events-none z-[9999] rounded-full border border-primary/60 w-8 h-8 -ml-4 -mt-4 mix-blend-screen hidden md:block backdrop-blur-[1px]" style="left: -100px; top: -100px;"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-dark-border">
+    <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-dark-border nav-spring">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center font-bold">
-                        W
-                    </div>
+                    <!-- Modern W Logo (Custom SVG) -->
+                    <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="min-width: 40px;">
+                        <path d="M 10 20 L 26 20 L 38 56 L 50 20 L 66 20 L 46 80 L 30 80 Z" fill="#356BFF"/>
+                        <path d="M 34 20 L 50 20 L 62 56 L 74 20 L 90 20 L 70 80 L 54 80 Z" fill="#993BFF"/>
+                    </svg>
                     <span class="text-2xl font-bold">Webeazzy</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#services" class="hover:text-primary transition">Services</a>
-                    <a href="#features" class="hover:text-primary transition">Features</a>
-                    <a href="#about" class="hover:text-primary transition">About</a>
+                    <a href="#" class="nav-link hover:text-primary transition">API</a>
+                    <a href="#pricing" class="nav-link hover:text-primary transition">Pricing</a>
                     <a href="https://begon.webeazzy.com/login"
-                        class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition">
-                        Sign In
+                        class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition text-gray-300">
+                        Login
                     </a>
-                    <a href="https://begon.webeazzy.com/login"
-                        class="px-6 py-2 gradient-bg rounded-full hover:opacity-90 transition">
-                        Try BG Remover
+                    <a href="https://begon.webeazzy.com/signup"
+                        class="px-6 py-2 gradient-bg rounded-full hover:opacity-90 transition font-medium">
+                        Sign up
                     </a>
                 </div>
                 <button class="md:hidden">
@@ -130,211 +343,166 @@
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 px-6 hero-gradient overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center fade-in">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                    Remove <span class="gradient-text">Backgrounds</span><br>
-                    Instantly with <span class="gradient-text">AI</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto">
-                    Remove image backgrounds with AI precision in seconds. Perfect for e-commerce,
-                    marketing materials, and professional photography.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#demo"
-                        class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect">
-                        Try It Free
-                    </a>
-                    <a href="#features"
-                        class="px-8 py-4 bg-dark-card border border-dark-border rounded-full text-lg font-semibold hover:border-primary transition">
-                        Learn More
-                    </a>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="text-left fade-in">
+                    <!-- H1 Headline -->
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Remove Image<br/>
+                        Backgrounds<br/>
+                        <span class="gradient-text">Instantly</span> with AI
+                    </h1>
+
+                    <!-- Subheadline / Description -->
+                    <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-lg">
+                        Upload your image and remove backgrounds instantly with AI precision.<br/>
+                        Perfect for ecommerce products, marketing creatives, and professional photography.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <button onclick="document.getElementById('demoFileInput').click()"
+                            class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect flex items-center justify-center gap-2">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                    </div>
+
+                    <div class="text-sm text-gray-500 flex flex-wrap items-center gap-x-4 gap-y-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary"></i> Free to try
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary"></i> No signup required
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary"></i> HD downloads
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Before/After & Upload) -->
+                <div id="demo" class="relative fade-in" style="animation-delay: 0.2s;">
+                    <div class="absolute -inset-4 gradient-bg rounded-[2.5rem] opacity-20 blur-xl"></div>
+                    <div class="relative bg-dark-card border border-dark-border rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col gap-6">
+                        
+                        <!-- Visual Preview Showcase -->
+                        <div id="demoPreviewShowcase" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-2 text-center">Before Image</p>
+                                    <div class="aspect-square rounded-xl overflow-hidden bg-white border border-dark-border">
+                                        <img id="demoOriginalImg" src="demo-before.jpg" alt="Original Product" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400 mb-2 text-center">After Image</p>
+                                    <div id="demoAfterContainer" class="aspect-square rounded-xl overflow-hidden bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyEQcNwAkABm2gMg5I6G8AAAAABJRU5ErkJggg==')] border border-dark-border relative">
+                                        <!-- Wrapper for floating effect -->
+                                        <div id="demoFloatWrapper" class="absolute inset-0 w-full h-full floating-shadow z-0">
+                                            <img id="demoResultImg" src="demo-after.png" alt="Result Product" class="w-full h-full object-cover opacity-90 transition-all duration-300 mx-auto relative">
+                                        </div>
+
+                                        <!-- Original image background that gets revealed away -->
+                                        <img id="demoSolidBg" src="demo-before.jpg" class="absolute inset-0 w-full h-full object-cover z-10 scan-mask">
+                                        
+                                        <!-- The Laser Scanner Line -->
+                                        <div class="image-laser-scanner" style="z-index: 20"></div>
+
+                                        <!-- Success checkmark -->
+                                        <div id="demoSuccessBadge" class="scan-complete-badge">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        
+                                        <!-- Loading Overlay matching user design -->
+                                        <div id="demoResultLoader" class="hidden absolute inset-0 z-[40] transition-opacity">
+                                            <!-- Blurred Background -->
+                                            <img id="demoLoaderBg" src="" class="loader-bg-image">
+                                            
+                                            <!-- Scanner Box Over It -->
+                                            <div class="ai-scanner-box flex flex-col items-center justify-center">
+                                                <div class="ai-scanner-grid"></div>
+                                                <div class="ai-scanner-line"></div>
+                                                <div class="text-white text-sm font-bold tracking-widest uppercase animate-pulse relative z-10 bg-black/60 px-4 py-2 rounded-lg backdrop-blur-md">Extracting Subject...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="demoActionButtons" class="hidden flex gap-4 pt-2">
+                                <a id="demoDownloadBtn" href="" download="webeazzy-bg-removed.png" class="flex-1 gradient-bg py-3 rounded-xl font-bold hover:opacity-90 transition text-center">
+                                    Download HD
+                                </a>
+                                <button id="demoClearBtn" class="px-6 py-3 bg-dark-bg border border-dark-border rounded-xl font-semibold hover:border-gray-500 transition">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Upload Dropzone -->
+                        <div id="demoDropZone" class="relative overflow-hidden border-2 border-dashed border-dark-border rounded-2xl p-8 text-center cursor-pointer hover:border-primary transition group flex flex-col items-center justify-center bg-black/40">
+                            <input type="file" id="demoFileInput" class="hidden" accept="image/*">
+                            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition duration-300 relative z-10">
+                                <i class="fas fa-cloud-upload-alt text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-1 relative z-10">Drag & Drop Your Image Here</h3>
+                            <p class="text-sm text-gray-400 relative z-10">or click to upload</p>
+                        </div>
+
+                        <!-- Old Spinner removed, using demoResultLoader instead -->
+                        <!-- Error Message -->
+                        <div id="demoError" class="hidden mt-2 p-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-lg text-center text-sm">
+                        </div>
+
+                        <!-- Demo Counter & Limits -->
+                        <div class="flex justify-between items-center px-1">
+                            <div id="demoCounter" class="text-xs"></div>
+                            <a id="demoRateLimitCta" href="https://begon.webeazzy.com/login" class="hidden text-xs text-primary hover:underline font-semibold">
+                                Get unlimited access &rarr;
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Floating Elements -->
-            <div class="mt-20 relative">
+            <!-- Social Proof Section -->
+            <div class="mt-24 border-t border-dark-border pt-12 text-center fade-in" style="animation-delay: 0.4s;">
+                <p class="text-gray-400 mb-8 font-medium">Used by creators, ecommerce brands, and developers worldwide</p>
+                <div class="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+                    <div class="flex items-center gap-2 text-2xl font-bold"><i class="fab fa-figma text-3xl"></i> Design Agencies</div>
+                    <div class="flex items-center gap-2 text-2xl font-bold"><i class="fas fa-shopping-bag text-3xl"></i> Ecommerce Brands</div>
+                    <div class="flex items-center gap-2 text-2xl font-bold"><i class="fas fa-code text-3xl"></i> Developers</div>
+                    <div class="flex items-center gap-2 text-2xl font-bold"><i class="fas fa-camera text-3xl"></i> Content Creators</div>
+                </div>
+            </div>
+
+            <!-- floating elements / features -->
+            <div class="mt-32 relative">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                     <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
                         style="animation-delay: 0s;">
                         <i class="fas fa-wand-magic-sparkles text-4xl text-primary mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">AI Background Removal</h3>
-                        <p class="text-gray-400">Remove backgrounds instantly with precision</p>
+                        <p class="text-gray-400">Remove backgrounds automatically with powerful AI detection.</p>
                     </div>
                     <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
                         style="animation-delay: 0.2s;">
                         <i class="fas fa-layer-group text-4xl text-secondary mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Bulk Processing</h3>
-                        <p class="text-gray-400">Process hundreds of images at once</p>
+                        <h3 class="text-xl font-semibold mb-2">Bulk Image Processing</h3>
+                        <p class="text-gray-400">Process hundreds of images at once for faster workflows.</p>
                     </div>
                     <div class="floating bg-dark-card border border-dark-border rounded-2xl p-6"
                         style="animation-delay: 0.4s;">
-                        <i class="fas fa-rocket text-4xl gradient-text mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
-                        <p class="text-gray-400">Optimized for speed and performance</p>
+                        <i class="fas fa-bolt text-4xl gradient-text mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Lightning Fast Processing</h3>
+                        <p class="text-gray-400">Get background-free images in seconds with optimized AI.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section id="demo" class="py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-5xl md:text-6xl font-bold mb-4">
-                    Try It <span class="gradient-text">Free</span>
-                </h2>
-                <p class="text-xl text-gray-400">Remove your first backgrounds for free — no sign up required</p>
-            </div>
 
-            <!-- Upload Zone -->
-            <div id="demoDropZone"
-                class="bg-dark-card border-2 border-dashed border-dark-border rounded-3xl p-12 text-center cursor-pointer transition mb-6"
-                style="border-color: #27272a;">
-                <input id="demoFileInput" type="file" accept="image/*" class="hidden" />
-                <i class="fas fa-cloud-upload-alt text-5xl text-primary mb-4 block"></i>
-                <p class="text-xl font-semibold mb-2">Drag & drop an image here</p>
-                <p class="text-gray-400 mb-4">or click to browse</p>
-                <span class="px-6 py-2 gradient-bg rounded-full text-sm font-semibold">Choose Image</span>
-            </div>
 
-            <!-- Counter -->
-            <div id="demoCounter" class="text-center mb-6 text-gray-400 text-sm">
-                Checking free uses remaining…
-            </div>
-
-            <!-- Loading Spinner -->
-            <div id="demoSpinner" class="hidden text-center py-10">
-                <div class="inline-block w-12 h-12 border-4 rounded-full animate-spin"
-                    style="border-color: #0072f5 transparent #7828c8 transparent;"></div>
-                <p class="text-gray-400 mt-4">Removing background…</p>
-            </div>
-
-            <!-- Error Message -->
-            <div id="demoError" class="hidden bg-dark-card border border-red-500/50 rounded-2xl p-4 mb-6 text-red-400 text-sm text-center"></div>
-
-            <!-- Result -->
-            <div id="demoResult" class="hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-dark-card border border-dark-border rounded-2xl p-4">
-                        <p class="text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wider">Original</p>
-                        <img id="demoOriginalImg" src="" alt="Original"
-                            class="w-full rounded-xl object-contain max-h-72" />
-                    </div>
-                    <div class="bg-dark-card border border-dark-border rounded-2xl p-4"
-                        style="background-image: repeating-conic-gradient(#27272a 0% 25%, #18181b 0% 50%) 0 0 / 20px 20px;">
-                        <p class="text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wider">Result</p>
-                        <img id="demoResultImg" src="" alt="Result"
-                            class="w-full rounded-xl object-contain max-h-72" />
-                    </div>
-                </div>
-                <div class="text-center">
-                    <a id="demoDownloadBtn" href="#" download="removed-bg.png"
-                        class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
-                        <i class="fas fa-download mr-2"></i>Download PNG
-                    </a>
-                    <button id="demoClearBtn"
-                        class="ml-4 px-8 py-4 bg-dark-card border border-dark-border rounded-full font-semibold hover:border-primary transition">
-                        Try Another
-                    </button>
-                </div>
-            </div>
-
-            <!-- Rate Limit CTA -->
-            <div id="demoRateLimitCta" class="hidden bg-dark-card border border-dark-border rounded-3xl p-8 text-center">
-                <i class="fas fa-lock text-4xl text-primary mb-4 block"></i>
-                <h3 class="text-2xl font-bold mb-2">Free limit reached</h3>
-                <p class="text-gray-400 mb-6">You've used all your free removals for today. Upgrade for unlimited access.</p>
-                <a href="https://rembg.webeazzy.com/pricing"
-                    class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
-                    View Pricing <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-6 bg-dark-bg">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl md:text-6xl font-bold mb-4">
-                    Our <span class="gradient-text">Services</span>
-                </h2>
-                <p class="text-xl text-gray-400">AI-powered tools for modern web creators</p>
-            </div>
-
-            <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
-                <!-- BG Remover Service -->
-                <div class="bg-dark-card border border-dark-border rounded-3xl p-8 card-hover">
-                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-scissors text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">AI Background Remover</h3>
-                    <p class="text-gray-400 mb-6 text-lg leading-relaxed">
-                        Remove image backgrounds with AI precision in seconds. Perfect for e-commerce,
-                        marketing materials, and professional photography. Starting at just $0.02 per image.
-                    </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-primary mr-3"></i>
-                            99.9% accuracy with AI
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-primary mr-3"></i>
-                            Bulk processing available
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-primary mr-3"></i>
-                            API integration ready
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-primary mr-3"></i>
-                            High-resolution output
-                        </li>
-                    </ul>
-                    <a href="https://begon.webeazzy.com/login"
-                        class="inline-block px-8 py-4 gradient-bg rounded-full font-semibold hover:opacity-90 transition">
-                        Try Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Website Builder Service (hidden) -->
-                <div class="hidden bg-dark-card border border-dark-border rounded-3xl p-8 card-hover">
-                    <div
-                        class="w-16 h-16 bg-gradient-to-br from-secondary to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-globe text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4">AI Website Builder</h3>
-                    <p class="text-gray-400 mb-6 text-lg leading-relaxed">
-                        Build professional websites with AI assistance. No coding required.
-                        Choose from hundreds of templates or let AI design for you.
-                    </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-secondary mr-3"></i>
-                            AI-powered design suggestions
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-secondary mr-3"></i>
-                            Mobile-responsive templates
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-secondary mr-3"></i>
-                            SEO optimized
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-secondary mr-3"></i>
-                            One-click deployment
-                        </li>
-                    </ul>
-                    <button
-                        class="px-8 py-4 bg-secondary/20 border border-secondary rounded-full font-semibold hover:bg-secondary/30 transition">
-                        Coming Soon <i class="fas fa-sparkles ml-2"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Features Section -->
     <section id="features" class="py-20 px-6">
@@ -343,100 +511,190 @@
                 <h2 class="text-5xl md:text-6xl font-bold mb-4">
                     Why Choose <span class="gradient-text">Webeazzy</span>
                 </h2>
-                <p class="text-xl text-gray-400">Built with cutting-edge technology for the best results</p>
+                <p class="text-xl text-gray-400">The fastest, most accurate AI background remover — built for creators, developers, and businesses.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 0s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-bolt text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Lightning Fast</h3>
-                    <p class="text-gray-400">Process images in under 3 seconds with our optimized AI engine</p>
+                    <p class="text-gray-400">Remove image backgrounds in under 1.2 seconds with our optimized AI engine — 2x faster than the industry average.</p>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-shield-halved text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Secure & Private</h3>
-                    <p class="text-gray-400">Your images are processed securely and never stored on our servers</p>
+                    <p class="text-gray-400">Your images are processed in memory and permanently deleted immediately after processing. We never store, sell, or share your data.</p>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-code text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Developer Friendly</h3>
-                    <p class="text-gray-400">Easy-to-use API with comprehensive documentation</p>
+                    <p class="text-gray-400">Integrate our background removal API in minutes. Full REST API access with comprehensive docs, code samples, and SDKs for all major languages.</p>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 0.6s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-layer-group text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Batch Processing</h3>
-                    <p class="text-gray-400">Process hundreds of images at once with bulk packages</p>
+                    <p class="text-gray-400">Process hundreds of images simultaneously with our bulk API — perfect for ecommerce catalogs, photography studios, and marketing teams.</p>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 0.8s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-paintbrush text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">High Quality</h3>
-                    <p class="text-gray-400">Preserve image quality with edge detection and anti-aliasing</p>
+                    <h3 class="text-2xl font-bold mb-4">High Quality Results</h3>
+                    <p class="text-gray-400">Preserve full image resolution with advanced edge detection, anti-aliasing, and hair and fur refinement — delivering pixel-perfect transparent PNGs every time.</p>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="bg-dark-card border border-dark-border rounded-2xl p-8 text-center fade-in floating card-hover group" style="animation-delay: 1.0s;">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition duration-300">
                         <i class="fas fa-headset text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">24/7 Support</h3>
-                    <p class="text-gray-400">Get help whenever you need it with our dedicated support team</p>
+                    <p class="text-gray-400">Get help whenever you need it via live chat and email. Our dedicated support team responds within 24 hours — for every plan, including free.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1">
-                <h2 class="text-5xl font-bold mb-6">
-                    About <span class="gradient-text">Webeazzy</span>
-                </h2>
-                <p class="text-xl text-gray-400 leading-relaxed mb-6">
-                    Webeazzy is dedicated to simplifying web creation through the power of Artificial Intelligence.
-                    Our mission is to provide accessible, high-performance tools that help creators and businesses
-                    build stunning digital experiences without technical barriers.
-                </p>
-                <p class="text-xl text-gray-400 leading-relaxed">
-                    Started in 2025, we are a team of passionate developers and designers working to bridge the gap
-                    between complex machine learning models and everyday web utility.
-                </p>
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Pricing</h2>
+                <p class="text-gray-400 mb-2">Start with a 7-day free trial - No payment required!</p>
             </div>
-            <div class="flex-1 relative">
-                <div class="absolute -inset-4 gradient-bg rounded-3xl opacity-20 blur-xl"></div>
-                <div class="relative bg-dark-card border border-dark-border p-8 rounded-3xl">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center p-4">
-                            <h4 class="text-4xl font-bold gradient-text mb-2">99%</h4>
-                            <p class="text-gray-400">Uptime</p>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4 class="text-4xl font-bold gradient-text mb-2">50k+</h4>
-                            <p class="text-gray-400">Images Processed</p>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4 class="text-4xl font-bold gradient-text mb-2">24/7</h4>
-                            <p class="text-gray-400">Support</p>
-                        </div>
-                        <div class="text-center p-4">
-                            <h4 class="text-4xl font-bold gradient-text mb-2">100%</h4>
-                            <p class="text-gray-400">Secure</p>
-                        </div>
+
+
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
+                
+                <!-- Basic Plan -->
+                <div class="bg-[#121622] border border-[#1E2538] rounded-2xl p-8 flex flex-col hover:border-primary transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-[#1E2538] text-white px-4 py-1 rounded-bl-xl text-xs font-semibold">
+                        <i class="fas fa-bolt text-yellow-500 mr-1"></i> Basic
                     </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center mt-2">Basic</h3>
+                    <p class="text-sm text-primary text-center mb-4">For individuals & small projects</p>
+                    <div class="text-center mb-1">
+                        <span class="text-4xl font-bold">$4.99</span><span class="text-gray-400"> / 3 months</span>
+                    </div>
+                    <p class="text-sm text-gray-500 text-center mb-8">≈ $1.66/month &bull; 250 tokens</p>
+                    
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> 250 tokens total
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> $0.018/token overage
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> 90 days validity
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Priority support
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> API access
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Standard processing speed
+                        </li>
+                    </ul>
+                    <a href="https://begon.webeazzy.com/login" class="block w-full text-center py-3 bg-[#1E2538] hover:bg-[#2A344A] rounded-xl font-semibold transition">
+                        Subscribe Now
+                    </a>
                 </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-[#121622] border border-[#1E2538] rounded-2xl p-8 flex flex-col hover:border-primary transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-[#1E2538] text-white px-4 py-1 rounded-bl-xl text-xs font-semibold">
+                        <i class="fas fa-arrow-trend-up text-blue-400 mr-1"></i> Pro
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center mt-2">Pro</h3>
+                    <p class="text-sm text-primary text-center mb-4">For growing businesses</p>
+                    <div class="text-center mb-1">
+                        <span class="text-4xl font-bold">$24.99</span><span class="text-gray-400"> / 3 months</span>
+                    </div>
+                    <p class="text-sm text-gray-500 text-center mb-8">≈ $8.33/month &bull; 1,250 tokens</p>
+                    
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> 1,250 tokens total
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> $0.017/token overage
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> 90 days validity
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Priority support
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> API access
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Faster processing speed
+                        </li>
+                    </ul>
+                    <a href="https://begon.webeazzy.com/login" class="block w-full text-center py-3 bg-[#1E2538] hover:bg-[#2A344A] rounded-xl font-semibold transition">
+                        Subscribe Now
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-[#121622] border border-[#9933FF] rounded-2xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_15px_rgba(153,51,255,0.1)]">
+                    <div class="absolute top-0 right-0 bg-gradient-to-r from-[#2B54E5] to-[#9933FF] text-white px-4 py-1 rounded-bl-xl text-xs font-semibold">
+                        <i class="fas fa-microchip mr-1"></i> Enterprise
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center mt-2">Enterprise</h3>
+                    <p class="text-sm text-primary text-center mb-4">For teams & high-volume usage</p>
+                    <div class="text-center mb-1">
+                        <span class="text-3xl font-bold whitespace-nowrap">Custom Pricing</span>
+                    </div>
+                    <p class="text-sm text-[#121622] text-center mb-8">&nbsp;</p>
+                    
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Custom token allocation
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Tailored pricing
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Dedicated support
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Priority processing
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Access to ultra precision models
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <i class="fas fa-check text-[#00C853] mr-3"></i> Access to faster models
+                        </li>
+                    </ul>
+                    <button onclick="openModal('contact')" class="block w-full text-center py-3 bg-[#1E2538] hover:bg-[#2A344A] rounded-xl font-semibold transition">
+                        Contact Sales
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Footer Note -->
+            <div class="text-center mt-6 text-sm text-gray-500 flex items-center justify-center gap-2">
+                <i class="fas fa-gift"></i> 7-day free trial • 100 tokens included • No credit card required
             </div>
         </div>
     </section>
@@ -446,15 +704,25 @@
         <div class="max-w-5xl mx-auto text-center">
             <div class="gradient-bg rounded-3xl p-12 md:p-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    Ready to Transform Your Images?
+                    Ready to Remove Backgrounds Instantly?
                 </h2>
                 <p class="text-xl mb-8 opacity-90">
-                    Join thousands of creators who trust Webeazzy for their image processing needs.
+                    Join thousands of designers, developers, and ecommerce sellers<br/>
+                    who trust Webeazzy for their image processing needs.
                 </p>
-                <a href="https://begon.webeazzy.com/login"
-                    class="inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition">
-                    Get Started Free
-                </a>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                    <a href="https://begon.webeazzy.com/login"
+                        class="inline-block px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition whitespace-nowrap">
+                        Get Started Free <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="#pricing"
+                        class="inline-block px-10 py-4 bg-transparent border-2 border-white/30 text-white rounded-full text-lg font-semibold hover:bg-white/10 hover:border-white transition whitespace-nowrap">
+                        View Pricing
+                    </a>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-sm text-white/80">
+                    <i class="fas fa-gift text-white"></i> 100 free tokens &middot; No credit card required &middot; Cancel anytime
+                </div>
             </div>
         </div>
     </section>
@@ -462,64 +730,53 @@
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-dark-border">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div class="md:col-span-2">
+            <div class="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-24 mb-12">
+                <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center font-bold">
-                            W
-                        </div>
-                        <span class="text-2xl font-bold">Webeazzy</span>
+                        <!-- Modern W Logo (Custom SVG) -->
+                        <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="min-width: 40px;">
+                            <path d="M 10 20 L 26 20 L 38 56 L 50 20 L 66 20 L 46 80 L 30 80 Z" fill="#356BFF"/>
+                            <path d="M 34 20 L 50 20 L 62 56 L 74 20 L 90 20 L 70 80 L 54 80 Z" fill="#993BFF"/>
+                        </svg>
+                        <span class="text-2xl font-bold">WebEazzy</span>
                     </div>
-                    <p class="text-gray-400 max-w-sm">Making the web easier, one tool at a time. Powerful AI solutions
-                        for modern creators.</p>
+                    <p class="text-gray-400 max-w-sm leading-relaxed">Making the web easier, one tool at a time.<br/>
+                    Powerful AI solutions for modern creators.<br/><br/>
+                    Free to use. No signup required.</p>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4">Products</h4>
+                    <h4 class="font-semibold mb-4 text-white">Products</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://begon.webeazzy.com/login" class="hover:text-primary transition">BG Remover</a>
-                        </li>
-                        <!-- <li><a href="#" class="hover:text-primary transition">Website Builder</a></li> -->
+                        <li><a href="https://begon.webeazzy.com/login" class="hover:text-primary transition">BG Remover</a></li>
+                        <li><span class="opacity-50 cursor-not-allowed">Image Resizer <span class="text-xs ml-1 opacity-75">(coming soon)</span></span></li>
+                        <li><span class="opacity-50 cursor-not-allowed">Image Converter <span class="text-xs ml-1 opacity-75">(coming soon)</span></span></li>
+                        <li><span class="opacity-50 cursor-not-allowed">AI Image Enhancer <span class="text-xs ml-1 opacity-75">(coming soon)</span></span></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
+                    <h4 class="font-semibold mb-4 text-white">Company</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#about" class="hover:text-primary transition">About</a></li>
-                        <li><button onclick="openModal('blog')"
-                                class="hover:text-primary transition text-left">Blog</button></li>
-                        <li><button onclick="openModal('careers')"
-                                class="hover:text-primary transition text-left">Careers</button></li>
+                        <li><button onclick="openModal('blog')" class="hover:text-primary transition text-left">Blog</button></li>
+                        <li><button onclick="openModal('careers')" class="hover:text-primary transition text-left">Careers</button></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4">Support</h4>
+                    <h4 class="font-semibold mb-4 text-white">Support</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><button onclick="openModal('contact')"
-                                class="hover:text-primary transition text-left">Contact</button></li>
-                        <li><button onclick="openModal('privacy')"
-                                class="hover:text-primary transition text-left">Privacy Policy</button></li>
-                        <li><button onclick="openModal('terms')" class="hover:text-primary transition text-left">Terms &
-                                Conditions</button></li>
+                        <li><button onclick="openModal('contact')" class="hover:text-primary transition text-left">Contact</button></li>
+                        <li><button onclick="openModal('faq')" class="hover:text-primary transition text-left">FAQ</button></li>
+                        <li><button onclick="openModal('privacy')" class="hover:text-primary transition text-left">Privacy Policy</button></li>
+                        <li><button onclick="openModal('terms')" class="hover:text-primary transition text-left">Terms & Conditions</button></li>
+                        <li><button onclick="openModal('cookie')" class="hover:text-primary transition text-left">Cookie Policy</button></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Webeazzy. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </button>
-                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
-                        <i class="fab fa-github text-xl"></i>
-                    </button>
-                    <button onclick="openModal('socials')" class="text-gray-400 hover:text-primary transition">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </button>
-                </div>
+            <div class="border-t border-dark-border pt-8 text-center">
+                <p class="text-gray-400">© 2026 WebEazzy. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -553,29 +810,47 @@
                 body: `
                     <div class="space-y-6">
                         <div class="border-b border-dark-border pb-6">
-                            <span class="text-sm text-primary mb-2 block">February 28, 2025</span>
-                            <h4 class="text-xl font-bold mb-2">Background Removal API v2.0</h4>
-                            <p class="text-gray-400 mb-4">Our latest update brings 2x faster processing speeds and improved edge detection for hair and fur.</p>
+                            <span class="text-sm text-primary mb-2 block">February 28, 2025 · WebEazzy Team</span>
+                            <h4 class="text-xl font-bold mb-2">Background Removal API v2.0 — Faster, Smarter, More Precise</h4>
+                            <p class="text-gray-400 mb-4">Our latest update to the WebEazzy Background Removal API brings significant performance improvements — delivering 2x faster processing speeds and dramatically improved edge detection for complex subjects like hair, fur, transparent glass, and dense foliage.</p>
                             <button onclick="openModal('blog_post_2')" class="text-primary text-sm font-semibold hover:underline">Read Full Story &rarr;</button>
                         </div>
                     </div>
                 `
             },
             blog_post_2: {
-                title: "API v2.0 Performance",
+                title: "What's New in API v2.0",
                 body: `
                     <button onclick="openModal('blog')" class="mb-6 text-sm text-gray-400 hover:text-white flex items-center gap-2 transition">
                         <i class="fas fa-arrow-left"></i> Back to Updates
                     </button>
-                    <div class="prose prose-invert max-w-none">
-                        <p class="text-lg text-gray-300 mb-4">Our latest update brings 2x faster processing speeds and improved edge detection for hair and fur.</p>
-                        <p class="mb-4">We've retrained our core background removal models on a dataset 5x larger than before, focusing specifically on difficult edge cases like curly hair, transparent glass, and complex foliage.</p>
-                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Benchmarks:</h4>
-                        <ul class="list-disc pl-5 space-y-2 mb-6">
-                            <li><strong>Speed:</strong> Average processing time dropped from 2.5s to 1.2s per image.</li>
-                            <li><strong>Accuracy:</strong> mIoU score increased by 14% on the standard validation set.</li>
+                    <div class="prose prose-invert max-w-none text-gray-300">
+                        <p class="mb-4">We've completely retrained our core background removal models on a dataset 5x larger than before. This new training data focuses specifically on the edge cases that AI background removers have traditionally struggled with — curly hair, fine fur, transparent objects, and complex natural backgrounds.</p>
+                        <p class="mb-6">The result is a model that handles real-world images with far greater accuracy and consistency.</p>
+                        
+                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Performance Benchmarks</h4>
+                        <ul class="list-none space-y-4 mb-6">
+                            <li><strong class="text-white">Speed:</strong><br/>Average processing time dropped from 2.5 seconds to 1.2 seconds per image — a 52% reduction in processing time that directly improves throughput for high-volume users.</li>
+                            <li><strong class="text-white">Accuracy:</strong><br/>Mean Intersection over Union (mIoU) score increased by 14% on our standard validation set, meaning cleaner cutouts with fewer artifacts across all image types.</li>
                         </ul>
-                        <p>This update is available immediately to all API users at no extra cost.</p>
+
+                        <h4 class="text-xl font-bold text-white mt-6 mb-3">What Problems Does This Solve</h4>
+                        <p class="mb-2">Previous versions of the API occasionally struggled with:</p>
+                        <ul class="list-disc pl-5 space-y-1 mb-4">
+                            <li>Curly or flyaway hair strands</li>
+                            <li>Semi-transparent objects like glass and netting</li>
+                            <li>Animal fur with fine texture detail</li>
+                            <li>Overlapping foliage and complex plant backgrounds</li>
+                        </ul>
+                        <p class="mb-6">API v2.0 addresses all of these through a larger, more diverse training dataset and an improved edge refinement layer built into the processing pipeline.</p>
+
+                        <h4 class="text-xl font-bold text-white mt-6 mb-3">Who Benefits Most</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-6 text-gray-400">
+                            <li><strong class="text-gray-300">Ecommerce sellers</strong> — faster bulk processing means quicker time-to-publish for product listings on Amazon, Shopify, and Etsy.</li>
+                            <li><strong class="text-gray-300">Marketing teams</strong> — cleaner cutouts for campaign creatives, ad banners, and social media graphics with less manual touch-up.</li>
+                            <li><strong class="text-gray-300">Developers</strong> — higher throughput and improved accuracy reduce the need for fallback processing or client-side corrections.</li>
+                            <li><strong class="text-gray-300">Photography studios</strong> — more reliable results on portrait sessions with complex hair and detailed backgrounds.</li>
+                        </ul>
                     </div>
                 `
             },
@@ -614,25 +889,132 @@
                     </form>
                 `
             },
+            faq: {
+                title: "Frequently Asked Questions",
+                body: `
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: What is a token on WebEazzy?</h4>
+                            <p class="text-gray-300">One token = one image processed. Tokens are consumed each time you remove a background using WebEazzy.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: What happens when I run out of tokens?</h4>
+                            <p class="text-gray-300">You are charged the overage rate per additional token — Basic $0.018, Pro $0.017, Enterprise $0.016 per token.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: Can I upgrade my plan later?</h4>
+                            <p class="text-gray-300">Yes. You can upgrade from Basic to Pro at any time and your remaining tokens will carry over automatically.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: Is there a free plan?</h4>
+                            <p class="text-gray-300">Yes. Every new user gets a 7-day free trial with 100 tokens included — no credit card required.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: Is my payment secure?</h4>
+                            <p class="text-gray-300">Yes. All payments are processed securely through Stripe. WebEazzy does not store your card details.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Q: Can I cancel my subscription?</h4>
+                            <p class="text-gray-300">Yes. You can cancel anytime from your account dashboard with no cancellation fees.</p>
+                        </div>
+                    </div>
+                `
+            },
             privacy: {
                 title: "Privacy Policy",
                 body: `
                     <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
-                    <p class="mb-4">At Webeazzy, we take your privacy seriously. This policy describes how we handle your data.</p>
+                    <p class="mb-6">At Webeazzy, we take your privacy seriously. This policy describes how we handle your data when you use our AI-powered tools at webeazzy.com.</p>
+                    
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">1. Image Data</h4>
-                    <p>Images uploaded to our service are processed in memory and are automatically deleted immediately after processing. We do not store, sell, or share your images.</p>
-                    <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Data Collection</h4>
-                    <p>We collect minimal usage data (such as API call counts) to improve our service performance. No personally identifiable information is stored without your consent.</p>
+                    <p class="mb-4">Images uploaded to our service are processed in memory and are automatically deleted immediately after processing. We do not store, sell, share, or use your images for any purpose beyond delivering your result.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Data We Collect</h4>
+                    <p class="mb-4">We collect minimal usage data (such as page visits and API call counts) to improve our service performance. No personally identifiable information is stored without your consent.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Cookies</h4>
+                    <p class="mb-4">We use essential cookies to keep our service running smoothly and analytics cookies to understand how visitors use our site. You can disable cookies at any time through your browser settings.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Third-Party Services</h4>
+                    <p class="mb-4">We use trusted third-party providers such as Google Analytics for usage insights and Stripe for payment processing. These services have their own privacy policies and handle data independently.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Account Data</h4>
+                    <p class="mb-4">If you create an account, we store your email address solely to manage your access. We do not sell or share your account information with any third party.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Your Rights</h4>
+                    <p class="mb-4">You have the right to access, correct, or delete any personal data we hold about you. To make a request, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a> and we will respond within 7 business days.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">7. Children's Privacy</h4>
+                    <p class="mb-4">Webeazzy is not intended for children under the age of 13. We do not knowingly collect data from minors.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">8. Changes to This Policy</h4>
+                    <p class="mb-4">We may update this policy from time to time. Any significant changes will be communicated via a notice on our website. Continued use of Webeazzy after changes means you accept the updated policy.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">9. Contact Us</h4>
+                    <p>If you have any questions about this Privacy Policy, reach out to us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a></p>
                 `
             },
             terms: {
                 title: "Terms & Conditions",
                 body: `
-                    <p class="mb-4">By using Webeazzy, you agree to the following terms:</p>
-                    <h4 class="text-xl font-bold text-white mt-6 mb-3">Usage License</h4>
-                    <p>We grant you a limited, non-exclusive license to use our tools for both personal and commercial projects.</p>
-                    <h4 class="text-xl font-bold text-white mt-6 mb-3">Service Availability</h4>
-                    <p>While we strive for 99.9% uptime, we do not guarantee uninterrupted access to our services. We reserve the right to modify or discontinue features at any time.</p>
+                    <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
+                    <p class="mb-6">By using Webeazzy, you agree to the following terms. Please read them carefully before using our services at webeazzy.com.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">1. Usage License</h4>
+                    <p class="mb-4">We grant you a limited, non-exclusive license to use our tools for both personal and commercial projects. You may not resell, sublicense, or redistribute our service as your own product.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Service Availability</h4>
+                    <p class="mb-4">While we strive for 99.9% uptime, we do not guarantee uninterrupted access to our services. We reserve the right to modify, pause, or discontinue any feature at any time without prior notice.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Acceptable Use</h4>
+                    <p class="mb-4">You agree not to upload images that are illegal, offensive, or infringe on the rights of others. You are solely responsible for the content you upload and the results you create using Webeazzy.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Intellectual Property</h4>
+                    <p class="mb-4">You retain full ownership of all images you upload. Webeazzy does not claim any rights over your uploaded content. All website design, branding, and code remain the intellectual property of Webeazzy.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Free and Paid Plans</h4>
+                    <p class="mb-4">Some features may require a paid plan. Pricing is subject to change with reasonable notice given to existing subscribers. Refunds are handled on a case-by-case basis.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Limitation of Liability</h4>
+                    <p class="mb-4">Webeazzy is provided as-is. We are not liable for any loss of data, business interruption, or damages arising from your use of our service. Our total liability shall not exceed the amount you paid us in the last 3 months.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">7. Termination</h4>
+                    <p class="mb-4">We reserve the right to suspend or terminate your access at any time if you violate these terms, without prior notice.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">8. Changes to These Terms</h4>
+                    <p class="mb-4">We may update these terms from time to time. Any changes will be posted on this page with an updated date. Continued use of Webeazzy after changes means you accept the updated terms.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">9. Contact Us</h4>
+                    <p>If you have any questions about these Terms & Conditions, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a></p>
+                `
+            },
+            cookie: {
+                title: "Cookie Policy",
+                body: `
+                    <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
+                    <p class="mb-6">At Webeazzy, we use cookies to ensure our service works properly and to understand how visitors use our site.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">1. What Are Cookies</h4>
+                    <p class="mb-4">Cookies are small text files stored on your device when you visit a website. They help us recognize your browser and remember certain information to improve your experience.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Cookies We Use</h4>
+                    <ul class="list-disc pl-5 space-y-4 mb-4">
+                        <li><strong>Essential Cookies:</strong> These are required for the website to function. They enable core features like page navigation and access to secure areas. The site cannot function properly without these cookies.</li>
+                        <li><strong>Analytics Cookies:</strong> We use Google Analytics to understand how visitors interact with our site, such as which pages are visited most and how long users stay. This data is anonymous and used only to improve our service.</li>
+                        <li><strong>Preference Cookies:</strong> These remember your settings and choices (such as language or display preferences) so you don't have to re-enter them on your next visit.</li>
+                    </ul>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Third-Party Cookies</h4>
+                    <p class="mb-4">Some of our third-party services such as Google Analytics and Stripe may place their own cookies on your device. These are governed by their respective privacy policies.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Managing Cookies</h4>
+                    <p class="mb-4">You can control or disable cookies through your browser settings at any time. Please note that disabling certain cookies may affect how our site functions.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Changes to This Policy</h4>
+                    <p class="mb-4">We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+                    
+                    <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Contact Us</h4>
+                    <p>If you have any questions about our use of cookies, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a>.</p>
                 `
             },
             socials: {
@@ -695,12 +1077,14 @@
         const counter      = document.getElementById('demoCounter');
         const spinner      = document.getElementById('demoSpinner');
         const errorBox     = document.getElementById('demoError');
-        const result       = document.getElementById('demoResult');
+        const actionButtons = document.getElementById('demoActionButtons');
         const originalImg  = document.getElementById('demoOriginalImg');
         const resultImg    = document.getElementById('demoResultImg');
         const downloadBtn  = document.getElementById('demoDownloadBtn');
         const clearBtn     = document.getElementById('demoClearBtn');
         const rateLimitCta = document.getElementById('demoRateLimitCta');
+        const previewShowcase = document.getElementById('demoPreviewShowcase');
+        const resultLoader = document.getElementById('demoResultLoader');
 
         async function fetchRemaining() {
             try {
@@ -730,9 +1114,70 @@
             errorBox.classList.add('hidden');
         }
 
+        const demoAfterContainer = document.getElementById('demoAfterContainer');
+        const demoSolidBg = document.getElementById('demoSolidBg');
+        const demoFloatWrapper = document.getElementById('demoFloatWrapper');
+        const demoSuccessBadge = document.getElementById('demoSuccessBadge');
+        
+        // ── Default Demo Animation Loop ────────────────────────────────
+        let demoLoopInterval;
+
+        function playDemoAnimation() {
+            // Reset
+            demoAfterContainer.classList.remove('scanning');
+            demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
+            demoSuccessBadge.classList.remove('show');
+            resultImg.style.transition = 'none';
+            
+            // Force reflow
+            void demoAfterContainer.offsetWidth;
+
+            // Start Scan
+            demoAfterContainer.classList.add('scanning');
+            demoAfterContainer.classList.remove('scan-complete');
+
+            // Finish Scan
+            setTimeout(() => {
+                demoAfterContainer.classList.remove('scanning');
+                demoAfterContainer.classList.add('scan-complete');
+                demoSuccessBadge.classList.add('show');
+                demoFloatWrapper.classList.add('floating-subject', 'floating-shadow', 'active');
+            }, 6000);
+        }
+
+        function startDemoLoop() {
+            playDemoAnimation();
+            demoLoopInterval = setInterval(playDemoAnimation, 8000); // loops every 8s
+        }
+
+        function stopDemoLoop() {
+            clearInterval(demoLoopInterval);
+        }
+        
+        // Start loop immediately on page load
+        startDemoLoop();
+
         function setLoading(on) {
-            spinner.classList.toggle('hidden', !on);
-            dropZone.classList.toggle('hidden', on);
+            stopDemoLoop(); // Stop default animation if user interacts
+            
+            dropZone.classList.add('hidden');
+            previewShowcase.classList.remove('hidden');
+            
+            // Reset Animation Classes
+            demoAfterContainer.classList.remove('scanning', 'scan-complete');
+            demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
+            demoSuccessBadge.classList.remove('show');
+            
+            if (on) {
+                resultLoader.classList.remove('hidden');
+                // Hide result image during load to let demoSolidBg (original upload) show through
+                resultImg.classList.add('hidden'); 
+                actionButtons.classList.add('hidden');
+            } else {
+                resultLoader.classList.add('hidden');
+                resultImg.classList.remove('hidden');
+                resultImg.style.opacity = '0.9';
+            }
         }
 
         async function processFile(file) {
@@ -742,11 +1187,18 @@
             }
 
             clearError();
-            result.classList.add('hidden');
             rateLimitCta.classList.add('hidden');
-            setLoading(true);
 
             const originalUrl = URL.createObjectURL(file);
+            originalImg.src = originalUrl;
+            
+            // Fix: Update the background cover immediately so it shows under the loader
+            demoSolidBg.src = originalUrl;
+            
+            // Update the loader blurred background
+            document.getElementById('demoLoaderBg').src = originalUrl;
+            
+            setLoading(true);
             const formData = new FormData();
             formData.append('file', file);
 
@@ -774,11 +1226,46 @@
                 const blob = await res.blob();
                 const resultUrl = URL.createObjectURL(blob);
                 setLoading(false);
-                originalImg.src = originalUrl;
+                
+                // Keep original file extension/name for download
+                let originalName = file.name;
+                let dotIndex = originalName.lastIndexOf('.');
+                let nameWithoutExt = dotIndex !== -1 ? originalName.substring(0, dotIndex) : originalName;
+                let ext = dotIndex !== -1 ? originalName.substring(dotIndex) : '.png';
+                let finalFileName = `${nameWithoutExt}-bg-removed${ext}`;
+                
                 resultImg.src = resultUrl;
-                downloadBtn.href = resultUrl;
-                result.classList.remove('hidden');
-                fetchRemaining();
+                
+                // Update the background reveal image to match the new upload
+                demoSolidBg.src = originalUrl;
+                
+                // 1. Start the Laser Scan Animation
+                demoAfterContainer.classList.add('scanning');
+                demoAfterContainer.classList.remove('scan-complete');
+                
+                // 3. Complete scan and trigger floating/shadow effects
+                setTimeout(() => {
+                    demoAfterContainer.classList.remove('scanning');     // Hide laser
+                    demoAfterContainer.classList.add('scan-complete');   // Lock background hidden
+                    demoSuccessBadge.classList.add('show');              // Show green checkmark
+                    
+                    // Trigger Antigravity Bobbing
+                    demoFloatWrapper.classList.add('floating-subject', 'floating-shadow', 'active');
+                    
+                    // Programmatically force the download to respect the filename
+                    downloadBtn.href = "#";
+                    downloadBtn.onclick = (e) => {
+                        e.preventDefault();
+                        const a = document.createElement('a');
+                        a.href = resultUrl;
+                        a.download = finalFileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    };
+                    actionButtons.classList.remove('hidden');
+                    fetchRemaining();
+                }, 6000); // Wait 6s for laser to hit bottom
 
             } catch {
                 setLoading(false);
@@ -787,25 +1274,192 @@
         }
 
         dropZone.addEventListener('click', () => fileInput.click());
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0072f5'; });
-        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = '#27272a'; });
+        dropZone.addEventListener('dragover', (e) => { 
+            e.preventDefault(); 
+            dropZone.classList.add('glow-active');
+            dropZone.style.borderColor = '#0072f5'; 
+        });
+        dropZone.addEventListener('dragleave', () => { 
+            dropZone.classList.remove('glow-active');
+            dropZone.style.borderColor = '#27272a'; 
+        });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
+            dropZone.classList.remove('glow-active');
             dropZone.style.borderColor = '#27272a';
             if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]);
         });
         fileInput.addEventListener('change', () => { if (fileInput.files[0]) processFile(fileInput.files[0]); });
         clearBtn.addEventListener('click', () => {
-            result.classList.add('hidden');
-            rateLimitCta.classList.add('hidden');
-            clearError();
             fileInput.value = '';
+            originalImg.src = 'demo-before.jpg';
+            resultImg.src = 'demo-after.png';
+            resultImg.style.transition = 'none';
+            demoSolidBg.src = 'demo-before.jpg';
+            demoAfterContainer.classList.remove('scanning', 'scan-complete');
+            demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
+            demoSuccessBadge.classList.remove('show');
+            actionButtons.classList.add('hidden');
+            previewShowcase.classList.add('hidden');
             dropZone.classList.remove('hidden');
+            clearError();
+            rateLimitCta.classList.add('hidden');
             fetchRemaining();
+            
+            // Restart default demo loop if resetting completely
+            startDemoLoop();
         });
 
         fetchRemaining();
         // ── End Demo Section Logic ────────────────────────────────────────
+
+        // ── Interactive UI Animations ──────────────────────────────────────
+        // 1. Background Orbs and Particles
+        const canvas = document.getElementById('bgCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            let orbs = [];
+            let mouse = { x: -1000, y: -1000 };
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.baseX = this.x;
+                    this.baseY = this.y;
+                    this.density = (Math.random() * 30) + 1;
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                update() {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = 150;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < maxDistance) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) {
+                            let dx = this.x - this.baseX;
+                            this.x -= dx / 10;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.y - this.baseY;
+                            this.y -= dy / 10;
+                        }
+                    }
+                    this.draw();
+                }
+            }
+
+            class Orb {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 150 + 50;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                }
+                draw() {
+                    let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                    gradient.addColorStop(0, 'rgba(0, 114, 245, 0.1)');
+                    gradient.addColorStop(1, 'rgba(120, 40, 200, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                    this.draw();
+                }
+            }
+
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+            for (let i = 0; i < 5; i++) orbs.push(new Orb());
+
+            function animateBg() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < orbs.length; i++) orbs[i].update();
+                for (let i = 0; i < particles.length; i++) particles[i].update();
+                requestAnimationFrame(animateBg);
+            }
+            animateBg();
+
+            // 2. Custom Cursor Ring + global mouse follower
+            const cursorRing = document.getElementById('cursor-ring');
+            let curX = 0, curY = 0;
+            let tgX = 0, tgY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                tgX = e.clientX;
+                tgY = e.clientY;
+                // Instantly move ring without transition if hidden, otherwise smooth
+                if(cursorRing && cursorRing.style.left === '-100px') {
+                   curX = tgX; curY = tgY;
+                   cursorRing.style.left = '0';
+                   cursorRing.style.top = '0';
+                }
+            });
+
+            function animateCursorRing() {
+                curX += (tgX - curX) * 0.2;
+                curY += (tgY - curY) * 0.2;
+                if (cursorRing) {
+                    cursorRing.style.transform = `translate(${curX}px, ${curY}px)`;
+                }
+                requestAnimationFrame(animateCursorRing);
+            }
+            animateCursorRing();
+        }
+
+        // 3. Magnetic Hover on Upload Zone
+        const uploadZone = document.getElementById('demoDropZone');
+        if (uploadZone) {
+            uploadZone.addEventListener('mousemove', (e) => {
+                const rect = uploadZone.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const deltaX = (x - centerX) / 10;
+                const deltaY = (y - centerY) / 10;
+                uploadZone.style.transform = `perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg) scale3d(1.02, 1.02, 1.02)`;
+                uploadZone.style.transition = 'none'; // remove transition for smooth tracking
+            });
+            uploadZone.addEventListener('mouseleave', () => {
+                uploadZone.style.transform = '';
+                uploadZone.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease'; // restore transition
+            });
+        }
+
+        // ── End Interactive UI Animations ──────────────────────────────────
 
         // ── API Tab Switcher ──────────────────────────────────────────────
         function showTab(tabId, btn) {
