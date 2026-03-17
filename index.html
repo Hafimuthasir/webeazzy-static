@@ -188,7 +188,7 @@
             50% { transform: translateY(-6px); }
             100% { transform: translateY(0); }
         }
-        
+
         .floating-subject {
             animation: floatObject 3s ease-in-out infinite;
         }
@@ -199,7 +199,7 @@
             50% { box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: scale(0.95); opacity: 0.2; }
             100% { box-shadow: 0 8px 16px rgba(0,0,0,0.2); transform: scale(1); opacity: 0.5; }
         }
-        
+
         .floating-shadow::after {
             content: '';
             position: absolute;
@@ -213,7 +213,7 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        
+
         .floating-shadow.active::after {
             opacity: 1;
             animation: floatShadow 3s ease-in-out infinite;
@@ -238,7 +238,7 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 30;
         }
-        
+
         .scan-complete-badge.show {
             opacity: 1;
             transform: scale(1);
@@ -251,14 +251,13 @@
             transform: scale(1.02);
             transition: all 0.3s ease !important;
         }
-        
+
         /* AI Scanner Loader */
         .ai-scanner-box {
             position: absolute;
             inset: 0;
             overflow: hidden;
             border-radius: 12px;
-            /* Remove solid dark background since we have the blurred image backing it now */
             background: rgba(0,0,0,0.3);
         }
 
@@ -293,7 +292,7 @@
         .ai-scanner-grid {
             position: absolute;
             inset: 0;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 114, 245, 0.2) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 114, 245, 0.2) 1px, transparent 1px);
             background-size: 10px 10px;
@@ -305,7 +304,7 @@
 <body class="bg-black text-white relative">
     <!-- Background Canvas for Particles & Orbs -->
     <canvas id="bgCanvas" class="fixed inset-0 z-[-1] pointer-events-none"></canvas>
-    
+
     <!-- Custom Cursor Ring -->
     <div id="cursor-ring" class="fixed pointer-events-none z-[9999] rounded-full border border-primary/60 w-8 h-8 -ml-4 -mt-4 mix-blend-screen hidden md:block backdrop-blur-[1px]" style="left: -100px; top: -100px;"></div>
 
@@ -324,7 +323,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="nav-link hover:text-primary transition">API</a>
                     <a href="#pricing" class="nav-link hover:text-primary transition">Pricing</a>
-                    <a href="https://.webeazzy.com/login"
+                    <a href="https://begone.webeazzy.com/login"
                         class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition text-gray-300">
                         Login
                     </a>
@@ -358,7 +357,7 @@
                         Upload your image and remove backgrounds instantly with AI precision.<br/>
                         Perfect for ecommerce products, marketing creatives, and professional photography.
                     </p>
-                    
+
                     <div class="flex flex-col sm:flex-row gap-4 mb-6">
                         <button onclick="document.getElementById('demoFileInput').click()"
                             class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect flex items-center justify-center gap-2">
@@ -383,7 +382,7 @@
                 <div id="demo" class="relative fade-in" style="animation-delay: 0.2s;">
                     <div class="absolute -inset-4 gradient-bg rounded-[2.5rem] opacity-20 blur-xl"></div>
                     <div class="relative bg-dark-card border border-dark-border rounded-3xl p-6 shadow-2xl overflow-hidden flex flex-col gap-6">
-                        
+
                         <!-- Visual Preview Showcase -->
                         <div id="demoPreviewShowcase" class="space-y-4">
                             <div class="grid grid-cols-2 gap-4">
@@ -403,7 +402,7 @@
 
                                         <!-- Original image background that gets revealed away -->
                                         <img id="demoSolidBg" src="demo-before.jpg" class="absolute inset-0 w-full h-full object-cover z-10 scan-mask">
-                                        
+
                                         <!-- The Laser Scanner Line -->
                                         <div class="image-laser-scanner" style="z-index: 20"></div>
 
@@ -411,12 +410,12 @@
                                         <div id="demoSuccessBadge" class="scan-complete-badge">
                                             <i class="fas fa-check"></i>
                                         </div>
-                                        
-                                        <!-- Loading Overlay matching user design -->
+
+                                        <!-- Loading Overlay -->
                                         <div id="demoResultLoader" class="hidden absolute inset-0 z-[40] transition-opacity">
                                             <!-- Blurred Background -->
                                             <img id="demoLoaderBg" src="" class="loader-bg-image">
-                                            
+
                                             <!-- Scanner Box Over It -->
                                             <div class="ai-scanner-box flex flex-col items-center justify-center">
                                                 <div class="ai-scanner-grid"></div>
@@ -427,7 +426,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div id="demoActionButtons" class="hidden flex gap-4 pt-2">
                                 <a id="demoDownloadBtn" href="" download="webeazzy-bg-removed.png" class="flex-1 gradient-bg py-3 rounded-xl font-bold hover:opacity-90 transition text-center">
                                     Download HD
@@ -448,7 +447,6 @@
                             <p class="text-sm text-gray-400 relative z-10">or click to upload</p>
                         </div>
 
-                        <!-- Old Spinner removed, using demoResultLoader instead -->
                         <!-- Error Message -->
                         <div id="demoError" class="hidden mt-2 p-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-lg text-center text-sm">
                         </div>
@@ -574,11 +572,9 @@
                 <p class="text-gray-400 mb-2">Start with a 7-day free trial - No payment required!</p>
             </div>
 
-
-
             <!-- Pricing Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-                
+
                 <!-- Basic Plan -->
                 <div class="bg-[#121622] border border-[#1E2538] rounded-2xl p-8 flex flex-col hover:border-primary transition relative overflow-hidden">
                     <div class="absolute top-0 right-0 bg-[#1E2538] text-white px-4 py-1 rounded-bl-xl text-xs font-semibold">
@@ -590,7 +586,7 @@
                         <span class="text-4xl font-bold">$4.99</span><span class="text-gray-400"> / 3 months</span>
                     </div>
                     <p class="text-sm text-gray-500 text-center mb-8">≈ $1.66/month &bull; 250 tokens</p>
-                    
+
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-sm text-gray-300">
                             <i class="fas fa-check text-[#00C853] mr-3"></i> 250 tokens total
@@ -627,7 +623,7 @@
                         <span class="text-4xl font-bold">$24.99</span><span class="text-gray-400"> / 3 months</span>
                     </div>
                     <p class="text-sm text-gray-500 text-center mb-8">≈ $8.33/month &bull; 1,250 tokens</p>
-                    
+
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-sm text-gray-300">
                             <i class="fas fa-check text-[#00C853] mr-3"></i> 1,250 tokens total
@@ -664,7 +660,7 @@
                         <span class="text-3xl font-bold whitespace-nowrap">Custom Pricing</span>
                     </div>
                     <p class="text-sm text-[#121622] text-center mb-8">&nbsp;</p>
-                    
+
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-sm text-gray-300">
                             <i class="fas fa-check text-[#00C853] mr-3"></i> Custom token allocation
@@ -733,7 +729,6 @@
             <div class="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-24 mb-12">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <!-- Modern W Logo (Custom SVG) -->
                         <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="min-width: 40px;">
                             <path d="M 10 20 L 26 20 L 38 56 L 50 20 L 66 20 L 46 80 L 30 80 Z" fill="#356BFF"/>
                             <path d="M 34 20 L 50 20 L 62 56 L 74 20 L 90 20 L 70 80 L 54 80 Z" fill="#993BFF"/>
@@ -827,7 +822,7 @@
                     <div class="prose prose-invert max-w-none text-gray-300">
                         <p class="mb-4">We've completely retrained our core background removal models on a dataset 5x larger than before. This new training data focuses specifically on the edge cases that AI background removers have traditionally struggled with — curly hair, fine fur, transparent objects, and complex natural backgrounds.</p>
                         <p class="mb-6">The result is a model that handles real-world images with far greater accuracy and consistency.</p>
-                        
+
                         <h4 class="text-xl font-bold text-white mt-6 mb-3">Performance Benchmarks</h4>
                         <ul class="list-none space-y-4 mb-6">
                             <li><strong class="text-white">Speed:</strong><br/>Average processing time dropped from 2.5 seconds to 1.2 seconds per image — a 52% reduction in processing time that directly improves throughput for high-volume users.</li>
@@ -925,31 +920,31 @@
                 body: `
                     <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
                     <p class="mb-6">At Webeazzy, we take your privacy seriously. This policy describes how we handle your data when you use our AI-powered tools at webeazzy.com.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">1. Image Data</h4>
                     <p class="mb-4">Images uploaded to our service are processed in memory and are automatically deleted immediately after processing. We do not store, sell, share, or use your images for any purpose beyond delivering your result.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Data We Collect</h4>
                     <p class="mb-4">We collect minimal usage data (such as page visits and API call counts) to improve our service performance. No personally identifiable information is stored without your consent.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Cookies</h4>
                     <p class="mb-4">We use essential cookies to keep our service running smoothly and analytics cookies to understand how visitors use our site. You can disable cookies at any time through your browser settings.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Third-Party Services</h4>
                     <p class="mb-4">We use trusted third-party providers such as Google Analytics for usage insights and Stripe for payment processing. These services have their own privacy policies and handle data independently.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Account Data</h4>
                     <p class="mb-4">If you create an account, we store your email address solely to manage your access. We do not sell or share your account information with any third party.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Your Rights</h4>
                     <p class="mb-4">You have the right to access, correct, or delete any personal data we hold about you. To make a request, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a> and we will respond within 7 business days.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">7. Children's Privacy</h4>
                     <p class="mb-4">Webeazzy is not intended for children under the age of 13. We do not knowingly collect data from minors.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">8. Changes to This Policy</h4>
                     <p class="mb-4">We may update this policy from time to time. Any significant changes will be communicated via a notice on our website. Continued use of Webeazzy after changes means you accept the updated policy.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">9. Contact Us</h4>
                     <p>If you have any questions about this Privacy Policy, reach out to us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a></p>
                 `
@@ -959,31 +954,31 @@
                 body: `
                     <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
                     <p class="mb-6">By using Webeazzy, you agree to the following terms. Please read them carefully before using our services at webeazzy.com.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">1. Usage License</h4>
                     <p class="mb-4">We grant you a limited, non-exclusive license to use our tools for both personal and commercial projects. You may not resell, sublicense, or redistribute our service as your own product.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Service Availability</h4>
                     <p class="mb-4">While we strive for 99.9% uptime, we do not guarantee uninterrupted access to our services. We reserve the right to modify, pause, or discontinue any feature at any time without prior notice.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Acceptable Use</h4>
                     <p class="mb-4">You agree not to upload images that are illegal, offensive, or infringe on the rights of others. You are solely responsible for the content you upload and the results you create using Webeazzy.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Intellectual Property</h4>
                     <p class="mb-4">You retain full ownership of all images you upload. Webeazzy does not claim any rights over your uploaded content. All website design, branding, and code remain the intellectual property of Webeazzy.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Free and Paid Plans</h4>
                     <p class="mb-4">Some features may require a paid plan. Pricing is subject to change with reasonable notice given to existing subscribers. Refunds are handled on a case-by-case basis.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Limitation of Liability</h4>
                     <p class="mb-4">Webeazzy is provided as-is. We are not liable for any loss of data, business interruption, or damages arising from your use of our service. Our total liability shall not exceed the amount you paid us in the last 3 months.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">7. Termination</h4>
                     <p class="mb-4">We reserve the right to suspend or terminate your access at any time if you violate these terms, without prior notice.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">8. Changes to These Terms</h4>
                     <p class="mb-4">We may update these terms from time to time. Any changes will be posted on this page with an updated date. Continued use of Webeazzy after changes means you accept the updated terms.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">9. Contact Us</h4>
                     <p>If you have any questions about these Terms & Conditions, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a></p>
                 `
@@ -993,26 +988,26 @@
                 body: `
                     <p class="mb-4"><strong>Last Updated: January 2025</strong></p>
                     <p class="mb-6">At Webeazzy, we use cookies to ensure our service works properly and to understand how visitors use our site.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">1. What Are Cookies</h4>
                     <p class="mb-4">Cookies are small text files stored on your device when you visit a website. They help us recognize your browser and remember certain information to improve your experience.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">2. Cookies We Use</h4>
                     <ul class="list-disc pl-5 space-y-4 mb-4">
                         <li><strong>Essential Cookies:</strong> These are required for the website to function. They enable core features like page navigation and access to secure areas. The site cannot function properly without these cookies.</li>
                         <li><strong>Analytics Cookies:</strong> We use Google Analytics to understand how visitors interact with our site, such as which pages are visited most and how long users stay. This data is anonymous and used only to improve our service.</li>
                         <li><strong>Preference Cookies:</strong> These remember your settings and choices (such as language or display preferences) so you don't have to re-enter them on your next visit.</li>
                     </ul>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">3. Third-Party Cookies</h4>
                     <p class="mb-4">Some of our third-party services such as Google Analytics and Stripe may place their own cookies on your device. These are governed by their respective privacy policies.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">4. Managing Cookies</h4>
                     <p class="mb-4">You can control or disable cookies through your browser settings at any time. Please note that disabling certain cookies may affect how our site functions.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">5. Changes to This Policy</h4>
                     <p class="mb-4">We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated date.</p>
-                    
+
                     <h4 class="text-xl font-bold text-white mt-6 mb-3">6. Contact Us</h4>
                     <p>If you have any questions about our use of cookies, contact us at <a href="mailto:support@webeazzy.com" class="text-primary hover:underline">support@webeazzy.com</a>.</p>
                 `
@@ -1054,7 +1049,7 @@
                 title.textContent = modalContent[key].title;
                 body.innerHTML = modalContent[key].body;
                 modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -1063,19 +1058,17 @@
             document.body.style.overflow = '';
         }
 
-        // Close on Escape key
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeModal();
         });
 
         // ── Demo Section Logic ────────────────────────────────────────────
-        const DEMO_ENDPOINT = 'https://begonee-gateway.vercel.app/api/demo/process-image';
-        const REMAINING_ENDPOINT = 'https://begonee-gateway.vercel.app/api/demo/remaining';
+        const DEMO_ENDPOINT = 'https://begone-gateway.vercel.app/api/demo/process-image';
+        const REMAINING_ENDPOINT = 'https://begone-gateway.vercel.app/api/demo/remaining';
 
         const dropZone     = document.getElementById('demoDropZone');
         const fileInput    = document.getElementById('demoFileInput');
         const counter      = document.getElementById('demoCounter');
-        const spinner      = document.getElementById('demoSpinner');
         const errorBox     = document.getElementById('demoError');
         const actionButtons = document.getElementById('demoActionButtons');
         const originalImg  = document.getElementById('demoOriginalImg');
@@ -1118,25 +1111,21 @@
         const demoSolidBg = document.getElementById('demoSolidBg');
         const demoFloatWrapper = document.getElementById('demoFloatWrapper');
         const demoSuccessBadge = document.getElementById('demoSuccessBadge');
-        
+
         // ── Default Demo Animation Loop ────────────────────────────────
         let demoLoopInterval;
 
         function playDemoAnimation() {
-            // Reset
             demoAfterContainer.classList.remove('scanning');
             demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
             demoSuccessBadge.classList.remove('show');
             resultImg.style.transition = 'none';
-            
-            // Force reflow
+
             void demoAfterContainer.offsetWidth;
 
-            // Start Scan
             demoAfterContainer.classList.add('scanning');
             demoAfterContainer.classList.remove('scan-complete');
 
-            // Finish Scan
             setTimeout(() => {
                 demoAfterContainer.classList.remove('scanning');
                 demoAfterContainer.classList.add('scan-complete');
@@ -1147,31 +1136,28 @@
 
         function startDemoLoop() {
             playDemoAnimation();
-            demoLoopInterval = setInterval(playDemoAnimation, 8000); // loops every 8s
+            demoLoopInterval = setInterval(playDemoAnimation, 8000);
         }
 
         function stopDemoLoop() {
             clearInterval(demoLoopInterval);
         }
-        
-        // Start loop immediately on page load
+
         startDemoLoop();
 
         function setLoading(on) {
-            stopDemoLoop(); // Stop default animation if user interacts
-            
+            stopDemoLoop();
+
             dropZone.classList.add('hidden');
             previewShowcase.classList.remove('hidden');
-            
-            // Reset Animation Classes
+
             demoAfterContainer.classList.remove('scanning', 'scan-complete');
             demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
             demoSuccessBadge.classList.remove('show');
-            
+
             if (on) {
                 resultLoader.classList.remove('hidden');
-                // Hide result image during load to let demoSolidBg (original upload) show through
-                resultImg.classList.add('hidden'); 
+                resultImg.classList.add('hidden');
                 actionButtons.classList.add('hidden');
             } else {
                 resultLoader.classList.add('hidden');
@@ -1191,13 +1177,9 @@
 
             const originalUrl = URL.createObjectURL(file);
             originalImg.src = originalUrl;
-            
-            // Fix: Update the background cover immediately so it shows under the loader
             demoSolidBg.src = originalUrl;
-            
-            // Update the loader blurred background
             document.getElementById('demoLoaderBg').src = originalUrl;
-            
+
             setLoading(true);
             const formData = new FormData();
             formData.append('file', file);
@@ -1226,33 +1208,25 @@
                 const blob = await res.blob();
                 const resultUrl = URL.createObjectURL(blob);
                 setLoading(false);
-                
-                // Keep original file extension/name for download
+
                 let originalName = file.name;
                 let dotIndex = originalName.lastIndexOf('.');
                 let nameWithoutExt = dotIndex !== -1 ? originalName.substring(0, dotIndex) : originalName;
                 let ext = dotIndex !== -1 ? originalName.substring(dotIndex) : '.png';
                 let finalFileName = `${nameWithoutExt}-bg-removed${ext}`;
-                
+
                 resultImg.src = resultUrl;
-                
-                // Update the background reveal image to match the new upload
                 demoSolidBg.src = originalUrl;
-                
-                // 1. Start the Laser Scan Animation
+
                 demoAfterContainer.classList.add('scanning');
                 demoAfterContainer.classList.remove('scan-complete');
-                
-                // 3. Complete scan and trigger floating/shadow effects
+
                 setTimeout(() => {
-                    demoAfterContainer.classList.remove('scanning');     // Hide laser
-                    demoAfterContainer.classList.add('scan-complete');   // Lock background hidden
-                    demoSuccessBadge.classList.add('show');              // Show green checkmark
-                    
-                    // Trigger Antigravity Bobbing
+                    demoAfterContainer.classList.remove('scanning');
+                    demoAfterContainer.classList.add('scan-complete');
+                    demoSuccessBadge.classList.add('show');
                     demoFloatWrapper.classList.add('floating-subject', 'floating-shadow', 'active');
-                    
-                    // Programmatically force the download to respect the filename
+
                     downloadBtn.href = "#";
                     downloadBtn.onclick = (e) => {
                         e.preventDefault();
@@ -1265,7 +1239,7 @@
                     };
                     actionButtons.classList.remove('hidden');
                     fetchRemaining();
-                }, 6000); // Wait 6s for laser to hit bottom
+                }, 6000);
 
             } catch {
                 setLoading(false);
@@ -1274,14 +1248,14 @@
         }
 
         dropZone.addEventListener('click', () => fileInput.click());
-        dropZone.addEventListener('dragover', (e) => { 
-            e.preventDefault(); 
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
             dropZone.classList.add('glow-active');
-            dropZone.style.borderColor = '#0072f5'; 
+            dropZone.style.borderColor = '#0072f5';
         });
-        dropZone.addEventListener('dragleave', () => { 
+        dropZone.addEventListener('dragleave', () => {
             dropZone.classList.remove('glow-active');
-            dropZone.style.borderColor = '#27272a'; 
+            dropZone.style.borderColor = '#27272a';
         });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
@@ -1305,8 +1279,6 @@
             clearError();
             rateLimitCta.classList.add('hidden');
             fetchRemaining();
-            
-            // Restart default demo loop if resetting completely
             startDemoLoop();
         });
 
@@ -1314,7 +1286,6 @@
         // ── End Demo Section Logic ────────────────────────────────────────
 
         // ── Interactive UI Animations ──────────────────────────────────────
-        // 1. Background Orbs and Particles
         const canvas = document.getElementById('bgCanvas');
         if (canvas) {
             const ctx = canvas.getContext('2d');
@@ -1410,7 +1381,6 @@
             }
             animateBg();
 
-            // 2. Custom Cursor Ring + global mouse follower
             const cursorRing = document.getElementById('cursor-ring');
             let curX = 0, curY = 0;
             let tgX = 0, tgY = 0;
@@ -1420,7 +1390,6 @@
                 mouse.y = e.clientY;
                 tgX = e.clientX;
                 tgY = e.clientY;
-                // Instantly move ring without transition if hidden, otherwise smooth
                 if(cursorRing && cursorRing.style.left === '-100px') {
                    curX = tgX; curY = tgY;
                    cursorRing.style.left = '0';
@@ -1439,7 +1408,7 @@
             animateCursorRing();
         }
 
-        // 3. Magnetic Hover on Upload Zone
+        // Magnetic Hover on Upload Zone
         const uploadZone = document.getElementById('demoDropZone');
         if (uploadZone) {
             uploadZone.addEventListener('mousemove', (e) => {
@@ -1451,29 +1420,15 @@
                 const deltaX = (x - centerX) / 10;
                 const deltaY = (y - centerY) / 10;
                 uploadZone.style.transform = `perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg) scale3d(1.02, 1.02, 1.02)`;
-                uploadZone.style.transition = 'none'; // remove transition for smooth tracking
+                uploadZone.style.transition = 'none';
             });
             uploadZone.addEventListener('mouseleave', () => {
                 uploadZone.style.transform = '';
-                uploadZone.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease'; // restore transition
+                uploadZone.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease';
             });
         }
 
-        // ── End Interactive UI Animations ──────────────────────────────────
-
-        // ── API Tab Switcher ──────────────────────────────────────────────
-        function showTab(tabId, btn) {
-            document.querySelectorAll('.api-tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            document.querySelectorAll('.api-tab').forEach(b => {
-                b.classList.remove('bg-primary', 'text-white');
-                b.classList.add('bg-dark-card', 'border', 'border-dark-border', 'text-gray-400');
-            });
-            btn.classList.add('bg-primary', 'text-white');
-            btn.classList.remove('bg-dark-card', 'border', 'border-dark-border', 'text-gray-400');
-        }
-
-        // Smooth scroll (existing)
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
