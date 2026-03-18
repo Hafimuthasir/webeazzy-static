@@ -6,7 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webeazzy - AI Background Remover</title>
     <meta name="description" content="Remove image backgrounds instantly with AI on WebEazzy.com. Free, fast, and precise background removal for ecommerce products, marketing creatives, and professional photography. No signup needed.">
+    <meta name="keywords" content="background remover, remove background, cheap background removal, AI background remover, bulk background removal API, remove.bg alternative">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://webeazzy.com/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="WeBeazzy — Remove Backgrounds at 90% Less Cost">
+    <meta property="og:description" content="High-precision AI background removal from ~$0.02/image. 10x cheaper than remove.bg. Try 100 images free, no signup.">
+    <meta property="og:image" content="https://webeazzy.com/og-image.png">
+    <meta property="og:url" content="https://webeazzy.com/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WeBeazzy — AI Background Removal at Unbeatable Prices">
+    <meta name="twitter:description" content="From $0.018/image. High-precision models. Try 100 images free.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Google Tag (replace G-XXXXXXXXXX with your Measurement ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "WeBeazzy Background Remover",
+      "url": "https://webeazzy.com",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "description": "AI-powered background removal API. High-precision models starting at ~$0.02/image — 10x cheaper than remove.bg. Try 100 images free, no credit card required.",
+      "offers": {
+        "@type": "Offer",
+        "price": "4.99",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "description": "Basic plan: 250 image credits for $4.99 (~$0.02/image)"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "312"
+      }
+    }
+    </script>
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does WeBeazzy cost per image?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WeBeazzy costs approximately $0.02 per image on the Basic plan ($4.99 for 250 images) and $0.02 per image on the Pro plan ($24.99 for 1,250 images). Overage rates are as low as $0.017/image — 10x cheaper than remove.bg's ~$0.20/image."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a free trial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every new user gets a 7-day free trial with 100 free image credits — no credit card required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does WeBeazzy compare to remove.bg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WeBeazzy charges ~$0.02/image compared to remove.bg's ~$0.20/image — that's 10x cheaper. WeBeazzy also uses higher-precision models that handle hair, fur, and transparent glass better."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does WeBeazzy have a background removal API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. WeBeazzy offers a full REST API for integrating background removal into any application. API access is included in all paid plans."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a token on WeBeazzy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One token equals one image processed. Tokens are consumed each time you remove a background using WeBeazzy."
+          }
+        }
+      ]
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
@@ -289,6 +384,29 @@
             100% { top: 105%; opacity: 0; }
         }
 
+        /* Slow upsell fade-in */
+        @keyframes slowUpsellIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .slow-upsell-fade {
+            animation: slowUpsellIn 0.5s ease forwards;
+        }
+
+        /* Hero pill badge glow pulse */
+        @keyframes pillPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(0,200,150,0); }
+        }
+        .hero-pill {
+            animation: pillPulse 2.5s ease-in-out infinite;
+        }
+
+        /* Price bar animated fill */
+        .price-bar {
+            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
         .ai-scanner-grid {
             position: absolute;
             inset: 0;
@@ -340,35 +458,45 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Column -->
                 <div class="text-left fade-in">
+                    <!-- Animated pill badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/10 text-primary text-sm font-semibold mb-6 hero-pill">
+                        🔥 10x cheaper than remove.bg — and more precise
+                    </div>
+
                     <!-- H1 Headline -->
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                        Remove Image<br/>
-                        Backgrounds<br/>
-                        <span class="gradient-text">Instantly</span> with AI
+                        Stop Overpaying<br/>
+                        for <span class="gradient-text">Background</span><br/>
+                        Removal.
                     </h1>
 
                     <!-- Subheadline / Description -->
-                    <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-lg">
-                        Upload your image and remove backgrounds instantly with AI precision.<br/>
-                        Perfect for ecommerce products, marketing creatives, and professional photography.
+                    <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
+                        remove.bg charges <strong class="text-white">$0.20 per image</strong>. We charge <strong class="text-primary">$0.02</strong> — with
+                        higher-precision models that handle hair, fur, and glass
+                        better than the competition. <em>Same quality. A tenth of the price.</em>
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                        <button onclick="document.getElementById('demoFileInput').click()"
+                        <a href="https://begone.webeazzy.com/signup" id="heroSignupCta"
                             class="px-8 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect flex items-center justify-center gap-2">
-                            <i class="fas fa-upload"></i> Upload Image
-                        </button>
+                            Try Free — 100 Images, No Card
+                        </a>
+                        <a href="#pricing"
+                            class="px-8 py-4 border border-dark-border rounded-full text-lg font-medium hover:border-primary transition text-gray-300 flex items-center justify-center gap-2">
+                            See How We Compare ↓
+                        </a>
                     </div>
 
                     <div class="text-sm text-gray-500 flex flex-wrap items-center gap-x-4 gap-y-2">
                         <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-primary"></i> Free to try
+                            <i class="fas fa-check-circle text-primary"></i> ~$0.02/image
                         </div>
                         <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-primary"></i> No signup required
+                            <i class="fas fa-check-circle text-primary"></i> Ultra-precision AI
                         </div>
                         <div class="flex items-center gap-2">
-                            <i class="fas fa-check-circle text-primary"></i> HD downloads
+                            <i class="fas fa-check-circle text-primary"></i> 100 free images · no card
                         </div>
                     </div>
                 </div>
@@ -412,10 +540,18 @@
                                             <img id="demoLoaderBg" src="" class="loader-bg-image">
 
                                             <!-- Scanner Box Over It -->
-                                            <div class="ai-scanner-box flex flex-col items-center justify-center">
+                                            <div class="ai-scanner-box flex flex-col items-center justify-center gap-3">
                                                 <div class="ai-scanner-grid"></div>
                                                 <div class="ai-scanner-line"></div>
                                                 <div class="text-white text-sm font-bold tracking-widest uppercase animate-pulse relative z-10 bg-black/60 px-4 py-2 rounded-lg backdrop-blur-md">Extracting Subject...</div>
+                                                <!-- Slow-load upsell — appears after 4s -->
+                                                <div id="demoSlowUpsell" class="hidden relative z-10 mt-2 mx-3 bg-black/80 border border-primary/40 rounded-xl px-4 py-3 text-center backdrop-blur-md slow-upsell-fade">
+                                                    <p class="text-xs text-gray-400 mb-1">Demo uses shared capacity — taking longer than usual</p>
+                                                    <p class="text-sm font-semibold text-white mb-2">⚡ Get instant processing with a plan</p>
+                                                    <a href="https://begone.webeazzy.com/signup" onclick="trackConversion('click_slow_upsell',{})" class="inline-block px-4 py-1.5 gradient-bg rounded-full text-xs font-bold hover:opacity-90 transition">
+                                                        Start Free — 100 Images
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -496,6 +632,105 @@
 
 
 
+
+    <!-- Price Comparison Section -->
+    <section id="compare" class="py-20 px-6 bg-dark-bg">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="text-sm text-primary font-semibold uppercase tracking-widest mb-3">Price Reality Check</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Same task. <span class="gradient-text">10x less cost.</span></h2>
+                <p class="text-gray-400 text-lg">Why pay more for less precision?</p>
+            </div>
+
+            <!-- Animated Price Bars -->
+            <div class="bg-dark-card border border-dark-border rounded-2xl p-8 mb-10 space-y-5" id="priceBars">
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-400 text-sm">remove.bg</span>
+                        <span class="text-gray-400 text-sm font-semibold">~$0.20 / image</span>
+                    </div>
+                    <div class="h-4 bg-black/50 rounded-full overflow-hidden">
+                        <div class="price-bar h-full bg-gray-600 rounded-full" data-width="100" style="width:0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-400 text-sm">PhotoRoom</span>
+                        <span class="text-gray-400 text-sm font-semibold">~$0.25 / image</span>
+                    </div>
+                    <div class="h-4 bg-black/50 rounded-full overflow-hidden">
+                        <div class="price-bar h-full bg-gray-500 rounded-full" data-width="125" style="width:0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-400 text-sm">Clipping Magic</span>
+                        <span class="text-gray-400 text-sm font-semibold">~$0.17 / image</span>
+                    </div>
+                    <div class="h-4 bg-black/50 rounded-full overflow-hidden">
+                        <div class="price-bar h-full bg-gray-600 rounded-full" data-width="85" style="width:0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-white flex items-center gap-2">WeBeazzy <i class="fas fa-check-circle text-primary text-xs"></i></span>
+                        <span class="text-primary font-bold text-sm">~$0.02 / image</span>
+                    </div>
+                    <div class="h-4 bg-black/50 rounded-full overflow-hidden">
+                        <div class="price-bar h-full gradient-bg rounded-full" data-width="10" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitor Comparison Table -->
+            <div class="overflow-x-auto rounded-2xl border border-dark-border">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-dark-border bg-dark-card">
+                            <th class="text-left px-6 py-4 text-gray-400 font-medium">Service</th>
+                            <th class="px-6 py-4 text-gray-400 font-medium text-center">Price / image</th>
+                            <th class="px-6 py-4 text-gray-400 font-medium text-center">Precision</th>
+                            <th class="px-6 py-4 text-gray-400 font-medium text-center">Free Trial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-dark-border/50 bg-dark-card/30">
+                            <td class="px-6 py-4 text-gray-300">remove.bg</td>
+                            <td class="px-6 py-4 text-center text-gray-400">~$0.20</td>
+                            <td class="px-6 py-4 text-center text-gray-400">Standard</td>
+                            <td class="px-6 py-4 text-center text-gray-400">1 image</td>
+                        </tr>
+                        <tr class="border-b border-dark-border/50 bg-dark-card/30">
+                            <td class="px-6 py-4 text-gray-300">PhotoRoom</td>
+                            <td class="px-6 py-4 text-center text-gray-400">~$0.25</td>
+                            <td class="px-6 py-4 text-center text-gray-400">Standard</td>
+                            <td class="px-6 py-4 text-center text-gray-400">Limited</td>
+                        </tr>
+                        <tr class="border-b border-dark-border/50 bg-dark-card/30">
+                            <td class="px-6 py-4 text-gray-300">Clipping Magic</td>
+                            <td class="px-6 py-4 text-center text-gray-400">~$0.17</td>
+                            <td class="px-6 py-4 text-center text-gray-400">Standard</td>
+                            <td class="px-6 py-4 text-center text-gray-400">No</td>
+                        </tr>
+                        <tr class="bg-primary/5 border border-primary/20">
+                            <td class="px-6 py-4 font-bold text-white flex items-center gap-2">
+                                WeBeazzy <span class="text-xs gradient-bg text-white px-2 py-0.5 rounded-full font-normal">✓ Best Value</span>
+                            </td>
+                            <td class="px-6 py-4 text-center font-bold text-primary">~$0.02</td>
+                            <td class="px-6 py-4 text-center font-semibold text-white">Ultra HD</td>
+                            <td class="px-6 py-4 text-center font-semibold text-primary">100 images</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="https://begone.webeazzy.com/signup" id="compareSignupCta" class="inline-block px-10 py-4 gradient-bg rounded-full text-lg font-semibold hover:opacity-90 transition glow-effect">
+                    Start Free — 100 Images Included
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Features Section -->
     <section id="features" class="py-20 px-6">
@@ -580,7 +815,9 @@
                     <div class="text-center mb-1">
                         <span class="text-4xl font-bold">$4.99</span><span class="text-gray-400"> / 3 months</span>
                     </div>
-                    <p class="text-sm text-gray-500 text-center mb-8">≈ $1.66/month &bull; 250 tokens</p>
+                    <p class="text-sm text-gray-500 text-center mb-1">≈ $1.66/month &bull; 250 tokens</p>
+                    <p class="text-xs text-primary text-center mb-3 font-medium">~$0.02/image · remove.bg charges 10x more</p>
+                    <div class="text-xs text-gray-500 text-center mb-6 bg-black/20 rounded-lg px-3 py-2">$0.018/image overage after 250</div>
 
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-sm text-gray-300">
@@ -608,16 +845,21 @@
                 </div>
 
                 <!-- Pro Plan -->
-                <div class="bg-[#0A1F1A] border border-[#0D2E27] rounded-2xl p-8 flex flex-col hover:border-primary transition relative overflow-hidden">
+                <div class="bg-[#0A1F1A] border-2 border-primary rounded-2xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(0,200,150,0.15)]">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-primary text-black px-4 py-1 rounded-b-xl text-xs font-bold tracking-wide">
+                        ⭐ MOST POPULAR
+                    </div>
                     <div class="absolute top-0 right-0 bg-[#0D2E27] text-white px-4 py-1 rounded-bl-xl text-xs font-semibold">
                         <i class="fas fa-arrow-trend-up text-blue-400 mr-1"></i> Pro
                     </div>
-                    <h3 class="text-2xl font-bold mb-2 text-center mt-2">Pro</h3>
+                    <h3 class="text-2xl font-bold mb-2 text-center mt-6">Pro</h3>
                     <p class="text-sm text-primary text-center mb-4">For growing businesses</p>
                     <div class="text-center mb-1">
                         <span class="text-4xl font-bold">$24.99</span><span class="text-gray-400"> / 3 months</span>
                     </div>
-                    <p class="text-sm text-gray-500 text-center mb-8">≈ $8.33/month &bull; 1,250 tokens</p>
+                    <p class="text-sm text-gray-500 text-center mb-1">≈ $8.33/month &bull; 1,250 tokens</p>
+                    <p class="text-xs text-primary text-center mb-3 font-medium">~$0.02/image · save ~$225 vs remove.bg</p>
+                    <div class="text-xs text-gray-500 text-center mb-6 bg-black/20 rounded-lg px-3 py-2">$0.017/image overage after 1,250</div>
 
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-sm text-gray-300">
@@ -1136,6 +1378,9 @@
 
         startDemoLoop();
 
+        const slowUpsell = document.getElementById('demoSlowUpsell');
+        let slowUpsellTimer = null;
+
         function setLoading(on) {
             stopDemoLoop();
 
@@ -1150,7 +1395,15 @@
                 resultLoader.classList.remove('hidden');
                 resultImg.classList.add('hidden');
                 actionButtons.classList.add('hidden');
+                // Show slow-load upsell after 4 seconds
+                slowUpsell.classList.add('hidden');
+                clearTimeout(slowUpsellTimer);
+                slowUpsellTimer = setTimeout(() => {
+                    slowUpsell.classList.remove('hidden');
+                }, 4000);
             } else {
+                clearTimeout(slowUpsellTimer);
+                slowUpsell.classList.add('hidden');
                 resultLoader.classList.add('hidden');
                 resultImg.classList.remove('hidden');
                 resultImg.style.opacity = '0.9';
@@ -1419,7 +1672,58 @@
             });
         }
 
-        // Smooth scroll
+        // ── Price Bar Scroll Animation ──────────────────────────────────────
+        const priceBarsSection = document.getElementById('priceBars');
+        if (priceBarsSection) {
+            const bars = priceBarsSection.querySelectorAll('.price-bar');
+            let animated = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        bars.forEach(bar => {
+                            const targetWidth = bar.dataset.width;
+                            bar.style.width = targetWidth + '%';
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(priceBarsSection);
+        }
+
+        // ── Conversion Event Tracking ───────────────────────────────────────
+        function trackConversion(eventName, params) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params || {});
+            }
+        }
+
+        // Hero CTA
+        const heroSignupCta = document.getElementById('heroSignupCta');
+        if (heroSignupCta) {
+            heroSignupCta.addEventListener('click', () => trackConversion('click_hero_cta', { button: 'try_free_hero' }));
+        }
+        // Compare section CTA
+        const compareSignupCta = document.getElementById('compareSignupCta');
+        if (compareSignupCta) {
+            compareSignupCta.addEventListener('click', () => trackConversion('click_compare_cta', { button: 'start_free_compare' }));
+        }
+        // Upload button (demo)
+        fileInput.addEventListener('change', () => {
+            trackConversion('demo_upload', { trigger: 'file_input' });
+        });
+        // Get Started Free (CTA section)
+        document.querySelectorAll('a[href*="signup"]').forEach(el => {
+            el.addEventListener('click', () => trackConversion('click_signup', { location: el.id || 'unknown' }));
+        });
+        // Subscribe Now buttons
+        document.querySelectorAll('a[href*="login"]').forEach(el => {
+            if (el.textContent.trim() === 'Subscribe Now') {
+                el.addEventListener('click', () => trackConversion('click_subscribe_now', {}));
+            }
+        });
+
+        // ── Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
