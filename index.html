@@ -790,8 +790,8 @@
                         <a href="https://begone.webeazzy.com/signup" class="px-6 py-3 gradient-bg rounded-full font-semibold hover:opacity-90 transition text-sm">
                             Get API Key Free
                         </a>
-                        <a href="#pricing" class="px-6 py-3 border border-dark-border rounded-full text-gray-300 font-medium hover:border-primary transition text-sm">
-                            View API Pricing
+                        <a href="https://begone.webeazzy.com/docs" target="_blank" class="px-6 py-3 border border-dark-border rounded-full text-gray-300 font-medium hover:border-primary transition text-sm">
+                            View Full Docs ↗
                         </a>
                     </div>
                 </div>
@@ -817,36 +817,40 @@
                         </div>
                         <!-- Code blocks -->
                         <div class="p-5 font-mono text-sm leading-relaxed overflow-x-auto">
-                            <pre id="code-curl" class="code-block text-gray-300 whitespace-pre"><span class="text-primary">curl</span> -X POST https://api.webeazzy.com/v1/remove-bg \
-  -H <span class="text-yellow-400">"Authorization: Bearer YOUR_API_KEY"</span> \
-  -F <span class="text-yellow-400">"image=@photo.jpg"</span> \
+                            <pre id="code-curl" class="code-block text-gray-300 whitespace-pre"><span class="text-primary">curl</span> -X POST https://begone-gateway.webeazzy.com/api/process-image \
+  -H <span class="text-yellow-400">"X-API-Key: YOUR_API_KEY"</span> \
+  -F <span class="text-yellow-400">"file=@photo.jpg"</span> \
   --output result.png</pre>
                             <pre id="code-python" class="code-block hidden text-gray-300 whitespace-pre"><span class="text-blue-400">import</span> requests
 
 response = requests.<span class="text-primary">post</span>(
-    <span class="text-yellow-400">"https://api.webeazzy.com/v1/remove-bg"</span>,
-    headers={<span class="text-yellow-400">"Authorization"</span>: <span class="text-yellow-400">"Bearer YOUR_API_KEY"</span>},
-    files={<span class="text-yellow-400">"image"</span>: open(<span class="text-yellow-400">"photo.jpg"</span>, <span class="text-yellow-400">"rb"</span>)}
+    <span class="text-yellow-400">"https://begone-gateway.webeazzy.com/api/process-image"</span>,
+    headers={<span class="text-yellow-400">"X-API-Key"</span>: <span class="text-yellow-400">"YOUR_API_KEY"</span>},
+    files={<span class="text-yellow-400">"file"</span>: open(<span class="text-yellow-400">"photo.jpg"</span>, <span class="text-yellow-400">"rb"</span>)}
 )
 
+<span class="text-gray-500"># response.headers["X-Tokens-Remaining"] → tokens left</span>
 <span class="text-blue-400">with</span> open(<span class="text-yellow-400">"result.png"</span>, <span class="text-yellow-400">"wb"</span>) <span class="text-blue-400">as</span> f:
     f.write(response.content)</pre>
                             <pre id="code-node" class="code-block hidden text-gray-300 whitespace-pre"><span class="text-blue-400">const</span> form = <span class="text-blue-400">new</span> FormData();
-form.append(<span class="text-yellow-400">"image"</span>, fs.createReadStream(<span class="text-yellow-400">"photo.jpg"</span>));
+form.append(<span class="text-yellow-400">"file"</span>, fs.createReadStream(<span class="text-yellow-400">"photo.jpg"</span>));
 
 <span class="text-blue-400">const</span> res = <span class="text-blue-400">await</span> fetch(
-    <span class="text-yellow-400">"https://api.webeazzy.com/v1/remove-bg"</span>, {
+    <span class="text-yellow-400">"https://begone-gateway.webeazzy.com/api/process-image"</span>, {
     method: <span class="text-yellow-400">"POST"</span>,
-    headers: { <span class="text-yellow-400">"Authorization"</span>: <span class="text-yellow-400">"Bearer YOUR_API_KEY"</span> },
+    headers: { <span class="text-yellow-400">"X-API-Key"</span>: <span class="text-yellow-400">"YOUR_API_KEY"</span> },
     body: form
 });
+<span class="text-gray-500">// res.headers.get("X-Tokens-Remaining") → tokens left</span>
 <span class="text-blue-400">const</span> buffer = <span class="text-blue-400">await</span> res.arrayBuffer();
 fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(buffer));</pre>
                         </div>
                         <!-- Response preview -->
-                        <div class="border-t border-dark-border bg-black/30 px-5 py-3 flex items-center gap-3">
+                        <div class="border-t border-dark-border bg-black/30 px-5 py-3 flex items-center gap-3 flex-wrap gap-y-1">
                             <span class="text-xs font-mono text-green-400 font-semibold">200 OK</span>
                             <span class="text-xs text-gray-500 font-mono">Content-Type: image/png</span>
+                            <span class="text-xs text-gray-600 font-mono">X-Tokens-Used: 1</span>
+                            <span class="text-xs text-gray-600 font-mono">X-Tokens-Remaining: 249</span>
                             <span class="text-xs text-gray-600 ml-auto font-mono">avg ~1.2s</span>
                         </div>
                     </div>
