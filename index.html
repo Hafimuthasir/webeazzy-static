@@ -430,6 +430,7 @@
                         API <span class="text-xs gradient-bg text-white px-2 py-0.5 rounded-full font-semibold">Docs</span>
                     </a>
                     <a href="#pricing" class="nav-link hover:text-primary transition">Pricing</a>
+                    <button onclick="openModal('contact')" class="nav-link hover:text-primary transition">Contact</button>
                     <a href="https://begone.webeazzy.com/login"
                         class="px-6 py-2 border border-dark-border rounded-full hover:border-primary transition text-gray-300">
                         Login
@@ -450,6 +451,7 @@
                 API <span class="text-xs gradient-bg text-white px-2 py-0.5 rounded-full font-semibold">Docs</span>
             </a>
             <a href="#pricing" onclick="toggleMobileMenu()" class="hover:text-primary transition py-2">Pricing</a>
+            <button onclick="toggleMobileMenu(); openModal('contact')" class="hover:text-primary transition py-2 text-left">Contact</button>
             <a href="https://begone.webeazzy.com/login" class="py-2 text-gray-300 hover:text-primary transition">Login</a>
             <a href="https://begone.webeazzy.com/signup" class="px-6 py-3 gradient-bg rounded-full text-center font-medium hover:opacity-90 transition">Sign up</a>
         </div>
@@ -1268,6 +1270,63 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                             <input type="email" id="contactEmail" class="w-full bg-black/50 border border-dark-border rounded-lg px-4 py-3 focus:border-primary focus:outline-none transition" placeholder="you@example.com" required>
                         </div>
                         <div>
+                            <label class="block text-sm text-gray-400 mb-2">Phone Number <span class="text-gray-600">(optional)</span></label>
+                            <div class="flex gap-2">
+                                <select id="contactCountryCode" class="bg-black/50 border border-dark-border rounded-lg px-3 py-3 focus:border-primary focus:outline-none transition text-sm" style="min-width:110px;max-width:130px;">
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+91">🇮🇳 +91</option>
+                                    <option value="+61">🇦🇺 +61</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+81">🇯🇵 +81</option>
+                                    <option value="+86">🇨🇳 +86</option>
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+52">🇲🇽 +52</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                    <option value="+7">🇷🇺 +7</option>
+                                    <option value="+82">🇰🇷 +82</option>
+                                    <option value="+62">🇮🇩 +62</option>
+                                    <option value="+90">🇹🇷 +90</option>
+                                    <option value="+92">🇵🇰 +92</option>
+                                    <option value="+20">🇪🇬 +20</option>
+                                    <option value="+234">🇳🇬 +234</option>
+                                    <option value="+27">🇿🇦 +27</option>
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+966">🇸🇦 +966</option>
+                                    <option value="+65">🇸🇬 +65</option>
+                                    <option value="+60">🇲🇾 +60</option>
+                                    <option value="+63">🇵🇭 +63</option>
+                                    <option value="+66">🇹🇭 +66</option>
+                                    <option value="+84">🇻🇳 +84</option>
+                                    <option value="+880">🇧🇩 +880</option>
+                                    <option value="+31">🇳🇱 +31</option>
+                                    <option value="+46">🇸🇪 +46</option>
+                                    <option value="+47">🇳🇴 +47</option>
+                                    <option value="+45">🇩🇰 +45</option>
+                                    <option value="+358">🇫🇮 +358</option>
+                                    <option value="+48">🇵🇱 +48</option>
+                                    <option value="+380">🇺🇦 +380</option>
+                                    <option value="+30">🇬🇷 +30</option>
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+32">🇧🇪 +32</option>
+                                    <option value="+41">🇨🇭 +41</option>
+                                    <option value="+43">🇦🇹 +43</option>
+                                    <option value="+64">🇳🇿 +64</option>
+                                    <option value="+54">🇦🇷 +54</option>
+                                    <option value="+56">🇨🇱 +56</option>
+                                    <option value="+57">🇨🇴 +57</option>
+                                    <option value="+51">🇵🇪 +51</option>
+                                    <option value="+98">🇮🇷 +98</option>
+                                    <option value="+964">🇮🇶 +964</option>
+                                    <option value="+972">🇮🇱 +972</option>
+                                    <option value="+1-CA">🇨🇦 +1</option>
+                                </select>
+                                <input type="tel" id="contactPhone" class="flex-1 bg-black/50 border border-dark-border rounded-lg px-4 py-3 focus:border-primary focus:outline-none transition" placeholder="123 456 7890">
+                            </div>
+                        </div>
+                        <div>
                             <label class="block text-sm text-gray-400 mb-2">Message</label>
                             <textarea id="contactMessage" class="w-full bg-black/50 border border-dark-border rounded-lg px-4 py-3 focus:border-primary focus:outline-none transition h-32" placeholder="How can we help?" required></textarea>
                         </div>
@@ -1824,11 +1883,14 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
         const CONTACT_ENDPOINT = 'https://begone-gateway.vercel.app/api/contact/submit';
 
         async function submitContact() {
-            const name    = document.getElementById('contactName').value.trim();
-            const email   = document.getElementById('contactEmail').value.trim();
-            const message = document.getElementById('contactMessage').value.trim();
-            const btn     = document.getElementById('contactSubmitBtn');
-            const errBox  = document.getElementById('contactError');
+            const name        = document.getElementById('contactName').value.trim();
+            const email       = document.getElementById('contactEmail').value.trim();
+            const message     = document.getElementById('contactMessage').value.trim();
+            const countryCode = document.getElementById('contactCountryCode').value.replace('-CA', '');
+            const phoneRaw    = document.getElementById('contactPhone').value.trim();
+            const phone       = phoneRaw ? `${countryCode} ${phoneRaw}` : '';
+            const btn         = document.getElementById('contactSubmitBtn');
+            const errBox      = document.getElementById('contactError');
 
             errBox.classList.add('hidden');
 
@@ -1842,10 +1904,12 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
             try {
+                const payload = { name, email, message, source: 'website' };
+                if (phone) payload.phone = phone;
                 const res = await fetch(CONTACT_ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, message, source: 'website' })
+                    body: JSON.stringify(payload)
                 });
 
                 if (res.ok) {
