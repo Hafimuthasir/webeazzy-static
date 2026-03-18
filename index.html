@@ -439,10 +439,19 @@
                         Sign up
                     </a>
                 </div>
-                <button class="md:hidden">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="mobileMenuBtn" class="md:hidden" onclick="toggleMobileMenu()">
+                    <i id="mobileMenuIcon" class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-dark-border bg-black/95 backdrop-blur-lg px-6 py-4 flex flex-col gap-4">
+            <a href="#api" onclick="toggleMobileMenu()" class="hover:text-primary transition py-2 flex items-center gap-2">
+                API <span class="text-xs gradient-bg text-white px-2 py-0.5 rounded-full font-semibold">Docs</span>
+            </a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="hover:text-primary transition py-2">Pricing</a>
+            <a href="https://begone.webeazzy.com/login" class="py-2 text-gray-300 hover:text-primary transition">Login</a>
+            <a href="https://begone.webeazzy.com/signup" class="px-6 py-3 gradient-bg rounded-full text-center font-medium hover:opacity-90 transition">Sign up</a>
         </div>
     </nav>
 
@@ -1782,6 +1791,14 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                 uploadZone.style.transform = '';
                 uploadZone.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease';
             });
+        }
+
+        // ── Mobile Menu ─────────────────────────────────────────────────────
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileMenuIcon');
+            const isHidden = menu.classList.toggle('hidden');
+            icon.className = isHidden ? 'fas fa-bars text-2xl' : 'fas fa-times text-2xl';
         }
 
         // ── API Code Tabs ───────────────────────────────────────────────────
