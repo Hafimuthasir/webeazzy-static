@@ -535,6 +535,10 @@
             background-size: 10px 10px;
             opacity: 0.5;
         }
+
+        /* Force font-display: swap on Font Awesome to prevent render blocking */
+        @font-face { font-family: "Font Awesome 6 Free"; font-display: swap; }
+        @font-face { font-family: "Font Awesome 6 Brands"; font-display: swap; }
     </style>
 </head>
 
@@ -655,7 +659,10 @@
                                 <div>
                                     <p class="text-sm font-medium mb-2 text-center" style="color:var(--text-muted);">Before Image</p>
                                     <div class="aspect-square rounded-xl overflow-hidden bg-white" style="border:1px solid var(--border);">
-                                        <img id="demoOriginalImg" src="demo-before.jpg" alt="Product photo before AI background removal" class="w-full h-full object-cover" loading="lazy">
+                                        <picture>
+                                            <source srcset="demo-before.webp" type="image/webp">
+                                            <img id="demoOriginalImg" src="demo-before.jpg" alt="Product photo before AI background removal" class="w-full h-full object-cover" loading="lazy" width="682" height="1024">
+                                        </picture>
                                     </div>
                                 </div>
                                 <div>
@@ -663,11 +670,17 @@
                                     <div id="demoAfterContainer" class="aspect-square rounded-xl overflow-hidden bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyEQcNwAkABm2gMg5I6G8AAAAABJRU5ErkJggg==')] relative" style="border:1px solid var(--border);">
                                         <!-- Wrapper for floating effect -->
                                         <div id="demoFloatWrapper" class="absolute inset-0 w-full h-full floating-shadow z-0">
-                                            <img id="demoResultImg" src="demo-after.png" alt="Product photo after AI background removal — transparent PNG" class="w-full h-full object-cover opacity-90 transition-all duration-300 mx-auto relative" loading="lazy">
+                                            <picture>
+                                                <source srcset="demo-after.webp" type="image/webp">
+                                                <img id="demoResultImg" src="demo-after.png" alt="Product photo after AI background removal — transparent PNG" class="w-full h-full object-cover opacity-90 transition-all duration-300 mx-auto relative" loading="lazy" width="682" height="1024">
+                                            </picture>
                                         </div>
 
                                         <!-- Original image background that gets revealed away -->
-                                        <img id="demoSolidBg" src="demo-before.jpg" class="absolute inset-0 w-full h-full object-cover z-10 scan-mask">
+                                        <picture>
+                                            <source srcset="demo-before.webp" type="image/webp">
+                                            <img id="demoSolidBg" src="demo-before.jpg" alt="" class="absolute inset-0 w-full h-full object-cover z-10 scan-mask">
+                                        </picture>
 
                                         <!-- The Laser Scanner Line -->
                                         <div class="image-laser-scanner" style="z-index: 20"></div>
@@ -680,7 +693,7 @@
                                         <!-- Loading Overlay -->
                                         <div id="demoResultLoader" class="hidden absolute inset-0 z-[40] transition-opacity">
                                             <!-- Blurred Background -->
-                                            <img id="demoLoaderBg" src="" class="loader-bg-image">
+                                            <img id="demoLoaderBg" src="" class="loader-bg-image" alt="">
 
                                             <!-- Scanner Box Over It -->
                                             <div class="ai-scanner-box flex flex-col items-center justify-center gap-3">
@@ -689,7 +702,7 @@
                                                 <div class="text-white text-sm font-bold tracking-widest uppercase animate-pulse relative z-10 bg-black/60 px-4 py-2 rounded-lg backdrop-blur-md">Extracting Subject...</div>
                                                 <!-- Slow-load upsell — appears after 4s -->
                                                 <div id="demoSlowUpsell" class="hidden relative z-10 mt-2 mx-3 bg-black/80 border border-primary/40 rounded-xl px-4 py-3 text-center backdrop-blur-md slow-upsell-fade">
-                                                    <p class="text-xs text-gray-400 mb-1">Demo uses shared capacity — taking longer than usual</p>
+                                                    <p class="text-xs text-gray-600 mb-1">Demo uses shared capacity — taking longer than usual</p>
                                                     <p class="text-sm font-semibold text-white mb-2">⚡ Get instant processing with a plan</p>
                                                     <a href="https://begone.webeazzy.com/signup" onclick="trackConversion('click_slow_upsell',{})" class="inline-block px-4 py-1.5 gradient-bg rounded-full text-xs font-bold hover:opacity-90 transition">
                                                         Start Free — 100 Images
@@ -963,7 +976,7 @@
                                 <i class="fas fa-bolt text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1" style="color:var(--text-heading);">Simple REST API</h4>
+                                <h3 class="font-semibold mb-1" style="color:var(--text-heading);">Simple REST API</h3>
                                 <p class="text-sm leading-relaxed" style="color:var(--text-body);">POST an image, receive a PNG. Works with any language — Python, Node, PHP, Ruby, Go, or plain curl.</p>
                             </div>
                         </div>
@@ -972,7 +985,7 @@
                                 <i class="fas fa-layer-group text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1" style="color:var(--text-heading);">Bulk Processing</h4>
+                                <h3 class="font-semibold mb-1" style="color:var(--text-heading);">Bulk Processing</h3>
                                 <p class="text-sm leading-relaxed" style="color:var(--text-body);">Process thousands of images in parallel. Ideal for ecommerce catalogs, SaaS pipelines, and photo studios.</p>
                             </div>
                         </div>
@@ -981,7 +994,7 @@
                                 <i class="fas fa-key text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold mb-1" style="color:var(--text-heading);">API Key in Seconds</h4>
+                                <h3 class="font-semibold mb-1" style="color:var(--text-heading);">API Key in Seconds</h3>
                                 <p class="text-sm leading-relaxed" style="color:var(--text-body);">Sign up free, grab your API key, and start processing. 100 free images included — no credit card.</p>
                             </div>
                         </div>
@@ -1009,8 +1022,8 @@
                             </div>
                             <div class="flex gap-1 ml-3" id="codeTabs">
                                 <button onclick="showCodeTab('curl')" class="code-tab active-tab px-3 py-1 rounded-md text-xs font-mono font-semibold text-white bg-primary/20 border border-primary/30 transition">curl</button>
-                                <button onclick="showCodeTab('python')" class="code-tab px-3 py-1 rounded-md text-xs font-mono text-gray-400 hover:text-white transition">Python</button>
-                                <button onclick="showCodeTab('node')" class="code-tab px-3 py-1 rounded-md text-xs font-mono text-gray-400 hover:text-white transition">Node.js</button>
+                                <button onclick="showCodeTab('python')" class="code-tab px-3 py-1 rounded-md text-xs font-mono text-gray-300 hover:text-white transition">Python</button>
+                                <button onclick="showCodeTab('node')" class="code-tab px-3 py-1 rounded-md text-xs font-mono text-gray-300 hover:text-white transition">Node.js</button>
                             </div>
                             <div class="ml-auto">
                                 <span class="text-xs text-primary font-semibold bg-primary/10 px-2 py-1 rounded-full">~$0.02 / call</span>
@@ -1342,7 +1355,7 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Products</h4>
+                    <h3 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Products</h3>
                     <ul class="space-y-2.5 text-sm" style="color:var(--text-muted);">
                         <li><a href="https://begone.webeazzy.com/login" class="hover:text-primary transition-colors">BG Remover</a></li>
                         <li><span class="opacity-40 cursor-not-allowed">Image Resizer <span class="text-xs">(coming soon)</span></span></li>
@@ -1352,7 +1365,7 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Company</h4>
+                    <h3 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Company</h3>
                     <ul class="space-y-2.5 text-sm" style="color:var(--text-muted);">
                         <li><button onclick="openModal('blog')" class="hover:text-primary transition-colors text-left" style="background:none;border:none;cursor:pointer;color:inherit;">Blog</button></li>
                         <li><button onclick="openModal('careers')" class="hover:text-primary transition-colors text-left" style="background:none;border:none;cursor:pointer;color:inherit;">Careers</button></li>
@@ -1360,7 +1373,7 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Support</h4>
+                    <h3 class="font-semibold mb-4" style="font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-heading);">Support</h3>
                     <ul class="space-y-2.5 text-sm" style="color:var(--text-muted);">
                         <li><button onclick="openModal('contact')" class="hover:text-primary transition-colors text-left" style="background:none;border:none;cursor:pointer;color:inherit;">Contact</button></li>
                         <li><button onclick="openModal('faq')" class="hover:text-primary transition-colors text-left" style="background:none;border:none;cursor:pointer;color:inherit;">FAQ</button></li>
@@ -1481,7 +1494,7 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
                             <input type="email" id="contactEmail" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-slate-900 focus:border-primary focus:outline-none transition" placeholder="you@example.com" required>
                         </div>
                         <div>
-                            <label class="block text-sm text-slate-600 mb-2">Phone Number <span class="text-slate-400">(optional)</span></label>
+                            <label class="block text-sm text-slate-600 mb-2">Phone Number <span class="text-slate-500">(optional)</span></label>
                             <div class="flex gap-2">
                                 <select id="contactCountryCode" class="bg-gray-50 border border-gray-200 rounded-lg px-3 py-3 text-slate-900 focus:border-primary focus:outline-none transition text-sm" style="min-width:110px;max-width:130px;">
                                     <option value="+1">🇺🇸 +1</option>
@@ -1928,10 +1941,10 @@ fs.writeFileSync(<span class="text-yellow-400">"result.png"</span>, Buffer.from(
         fileInput.addEventListener('change', () => { if (fileInput.files[0]) processFile(fileInput.files[0]); });
         clearBtn.addEventListener('click', () => {
             fileInput.value = '';
-            originalImg.src = 'demo-before.jpg';
-            resultImg.src = 'demo-after.png';
+            originalImg.src = 'demo-before.webp';
+            resultImg.src = 'demo-after.webp';
             resultImg.style.transition = 'none';
-            demoSolidBg.src = 'demo-before.jpg';
+            demoSolidBg.src = 'demo-before.webp';
             demoAfterContainer.classList.remove('scanning', 'scan-complete');
             demoFloatWrapper.classList.remove('floating-subject', 'floating-shadow', 'active');
             demoSuccessBadge.classList.remove('show');
