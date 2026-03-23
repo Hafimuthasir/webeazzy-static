@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.webeazzy.com" }],
-      "destination": "https://webeazzy.com/$1",
+      "has": [{ "type": "host", "value": "webeazzy.com" }],
+      "destination": "https://www.webeazzy.com/$1",
       "permanent": true
     }
   ],

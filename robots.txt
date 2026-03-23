@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://webeazzy.com/sitemap.xml
+Sitemap: https://www.webeazzy.com/sitemap.xml
