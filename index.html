@@ -1980,7 +1980,7 @@
   </div>
 
   <script>
-    const WEBIQ_LEAD_ENDPOINT = window.WEBIQ_LEAD_ENDPOINT || 'https://platform.webeazzy.com/api/webeazzy/leads';
+    const WEBIQ_LEAD_ENDPOINT = window.WEBIQ_LEAD_ENDPOINT || '/api/webeazzy/leads';
     const LEAD_STORE_KEY = 'webeazzy_leads';
     let pendingLeadClick = null;
 
@@ -2073,10 +2073,11 @@
         return;
       }
 
+      const leadAction = pendingLeadClick?.action || 'host_free';
       const payload = {
         source: 'webeazzy-static',
         slug: 'webeazzy-home',
-        action: pendingLeadClick?.action || 'contact',
+        action: leadAction === 'contact' ? 'host_free' : leadAction,
         label: pendingLeadClick?.label || 'Contact us',
         email: leadEmail.value.trim(),
         phone: `${leadCountryCode.value}${phoneDigits}`,
