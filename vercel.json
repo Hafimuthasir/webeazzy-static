@@ -2,7 +2,12 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "webeazzy.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "webeazzy.com"
+        }
+      ],
       "destination": "https://www.webeazzy.com/$1",
       "permanent": true
     }
@@ -11,10 +16,20 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }
