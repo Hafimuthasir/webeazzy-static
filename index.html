@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webeazzy — Free Business Websites, Limited Time | ₹6,999 Full Package</title>
-  <meta name="description" content="Get a professional business website built free this month. Mobile-first, SEO-ready, delivered in 7 days. Full package just ₹6,999 (was ₹30,000).">
+  <meta name="description" content="Get a professional business website built free this month. Live preview in 48 hours — pay only if you love it. Full package just ₹6,999 (was ₹30,000).">
   <meta name="keywords" content="free business website India, website builder India, affordable website design, professional website ₹6999, webeazzy">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.webeazzy.com/">
   <!-- Open Graph -->
   <meta property="og:title" content="Webeazzy — Free Business Websites, Limited Time">
-  <meta property="og:description" content="Professional websites delivered in 7 days. Free for limited businesses this month. Full package ₹6,999 (was ₹30,000).">
+  <meta property="og:description" content="Live preview in 48 hours — pay only if you love it. Free for limited businesses this month. Full package ₹6,999 (was ₹30,000).">
   <meta property="og:url" content="https://www.webeazzy.com/">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -61,7 +61,7 @@
       {
         "@type": "Question",
         "name": "How long does it take to get my website?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We deliver the initial design preview within 5 business days. After your approval, the final website goes live within 7 business days total." }
+        "acceptedAnswer": { "@type": "Answer", "text": "We build and share a live preview of your complete website within 48 hours. You pay only after you approve it — then it goes live the same day." }
       },
       {
         "@type": "Question",
@@ -369,6 +369,75 @@
       max-width: 500px;
     }
     .hero-sub strong { color: var(--gray-900); font-weight: 700; }
+    /* hero price highlight */
+    .hero-price {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 24px;
+      background: #fff;
+      border: 1px solid var(--purple-200);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-lg), 0 0 0 5px var(--purple-50);
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .hero-price-old {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gray-400);
+      position: relative;
+      white-space: nowrap;
+    }
+    .hero-price-old::after {
+      content: '';
+      position: absolute;
+      left: -4%; right: -4%; top: 50%;
+      height: 2.5px;
+      background: #F04438;
+      border-radius: 2px;
+      transform: rotate(-7deg);
+      transform-origin: center;
+      animation: strikeIn 600ms var(--ease-out) 900ms backwards;
+    }
+    @keyframes strikeIn {
+      from { transform: rotate(-7deg) scaleX(0); }
+      to { transform: rotate(-7deg) scaleX(1); }
+    }
+    .hero-price-new {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      background: linear-gradient(120deg, var(--purple-600), var(--purple-800));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+    .hero-price-cur { font-size: 26px; font-weight: 700; }
+    .hero-price-off {
+      padding: 6px 13px;
+      background: #FEF0C7;
+      border: 1px solid #FEDF89;
+      border-radius: var(--r-full);
+      font-size: 13px;
+      font-weight: 800;
+      color: #B54708;
+      letter-spacing: .3px;
+      white-space: nowrap;
+      animation: pulse-amber 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-amber {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,.4); }
+      55% { box-shadow: 0 0 0 7px rgba(245,158,11,0); }
+    }
+    @media (max-width: 560px) {
+      .hero-price { gap: 12px; padding: 12px 18px; }
+      .hero-price-old { font-size: 17px; }
+      .hero-price-new { font-size: 32px; }
+      .hero-price-off { font-size: 11px; padding: 5px 10px; }
+    }
     .hero-ctas { display: flex; align-items: center; gap: 14px; margin-bottom: 46px; flex-wrap: wrap; }
     .hero-proof { display: flex; align-items: center; gap: 14px; }
     .avatar-stack { display: flex; }
@@ -897,6 +966,23 @@
     .step-title { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
     .step-desc { font-size: 14.5px; line-height: 1.65; color: var(--gray-600); }
     @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .steps-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: fit-content;
+      margin: 52px auto 0;
+      padding: 13px 24px;
+      background: var(--success-50);
+      border: 1px solid var(--success-100);
+      border-radius: var(--r-full);
+      font-size: 14px;
+      color: var(--success-700);
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    .steps-note strong { font-weight: 700; }
 
     /* ═══ SHOWCASE ═══ */
     .showcase-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
@@ -1242,10 +1328,15 @@
           </h1>
 
           <p class="hero-sub rise rise-3">
-            Professional, mobile-first websites delivered in <strong>7 days</strong>.
-            No tech skills needed. Full package worth <strong>₹30,000</strong> — now
-            <strong>₹6,999</strong>, and free for qualified businesses this month.
+            Professional, mobile-first websites — built in <strong>48 hours</strong>,
+            and you pay <strong>only if you love it</strong>. No tech skills needed.
           </p>
+
+          <div class="hero-price rise rise-3">
+            <span class="hero-price-old">₹30,000</span>
+            <span class="hero-price-new"><span class="hero-price-cur">₹</span>6,999</span>
+            <span class="hero-price-off">77% OFF</span>
+          </div>
 
           <div class="hero-ctas rise rise-4">
             <a href="#pricing" class="btn btn-primary btn-lg">
@@ -1315,8 +1406,8 @@
           <div class="stat-label">Websites delivered</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num" data-count="7" data-suffix=" days">0</div>
-          <div class="stat-label">Average delivery time</div>
+          <div class="stat-num" data-count="48" data-suffix=" hrs">0</div>
+          <div class="stat-label">From details to live preview</div>
         </div>
         <div class="stat-cell">
           <div class="stat-num" data-count="98" data-suffix="%">0</div>
@@ -1340,8 +1431,8 @@
             <div class="feat-icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M13 2L4 13h7l-2 7 9-11h-7l2-7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3 class="feat-title">7-day delivery</h3>
-            <p class="feat-desc">Your fully functional website goes live within a week. We move fast without cutting corners.</p>
+            <h3 class="feat-title">48-hour build</h3>
+            <p class="feat-desc">See your complete website within 48 hours — and pay only after you approve it. Zero risk.</p>
           </div>
           <div class="feat-card reveal rd-1">
             <div class="feat-icon" aria-hidden="true">
@@ -1387,9 +1478,9 @@
   <section class="section section-alt" id="how-it-works" aria-labelledby="hiw-title">
     <div class="container">
       <div class="section-hd reveal">
-        <div class="section-badge">Simple process</div>
-        <h2 class="section-title" id="hiw-title">From idea to live in 3 steps</h2>
-        <p class="section-sub">No technical knowledge needed. We do the heavy lifting — you just approve.</p>
+        <div class="section-badge">Zero-risk process</div>
+        <h2 class="section-title" id="hiw-title">See your website first.<br>Pay only if you love it.</h2>
+        <p class="section-sub">No advance payment. No technical knowledge. We build your website first — you decide after seeing it live.</p>
       </div>
       <div class="steps-outer">
         <div class="steps-line" aria-hidden="true"></div>
@@ -1400,25 +1491,29 @@
               <span class="step-no">1</span>
             </div>
             <h3 class="step-title">Share your details</h3>
-            <p class="step-desc">Tell us about your business, services, and style preferences in a short form. Takes about 10 minutes.</p>
+            <p class="step-desc">Tell us about your business, services, and style preferences in a short form. Takes about 10 minutes — that's all we need.</p>
           </div>
           <div class="step-card reveal rd-2">
             <div class="step-circle" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="4" y="6" width="22" height="18" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 13l3 2.5-3 2.5M16 18.5h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="11" stroke="currentColor" stroke-width="1.8"/><path d="M15 9v6l4 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span class="step-no">2</span>
             </div>
-            <h3 class="step-title">We design &amp; build</h3>
-            <p class="step-desc">Our team crafts your custom website and sends a live preview within 5 days for your feedback.</p>
+            <h3 class="step-title">We build it in 48 hours</h3>
+            <p class="step-desc">Our team designs and builds your complete website and sends you a live preview within 48 hours — free, no advance payment.</p>
           </div>
           <div class="step-card reveal rd-4">
             <div class="step-circle" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M17 4l-9 11h7l-2 11 9-13h-7l2-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 26s-10-6.1-10-13a5.6 5.6 0 0110-3.4A5.6 5.6 0 0125 13c0 6.9-10 13-10 13z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M11 13.5l2.7 2.7 5.3-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span class="step-no">3</span>
             </div>
-            <h3 class="step-title">You go live</h3>
-            <p class="step-desc">Approve the design and we launch within 2 business days. Your business is online — done.</p>
+            <h3 class="step-title">Love it? Pay &amp; go live</h3>
+            <p class="step-desc">You pay only if you're happy with the result. Approve it, and your website goes live the same day. Don't like it? Walk away — no charge.</p>
           </div>
         </div>
+      </div>
+      <div class="steps-note reveal rd-3">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1.5l6.5 3v4.2c0 3.8-2.8 6.3-6.5 7.8-3.7-1.5-6.5-4-6.5-7.8V4.5L9 1.5z" stroke="#027A48" stroke-width="1.6" stroke-linejoin="round"/><path d="M6.3 9l1.8 1.8 3.6-3.8" stroke="#027A48" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>100% risk-free</strong>&nbsp;— no advance payment, you only pay after you see and approve your website
       </div>
     </div>
   </section>
@@ -1666,7 +1761,7 @@
             </span>
           </button>
           <div class="faq-a"><div class="faq-a-clip"><div class="faq-a-inner">
-            We deliver the initial design preview within 5 business days. After your feedback and approval, the final website goes live within 7 business days total. The process is fast because we've refined it across 500+ projects.
+            We build and send you a live preview of your complete website within 48 hours of receiving your details. Once you approve it, your website goes live the same day. The process is fast because we've refined it across 500+ projects — and you pay nothing until you approve.
           </div></div></div>
         </div>
 
