@@ -66,7 +66,7 @@
       {
         "@type": "Question",
         "name": "What's included in the ₹6,999 package?",
-        "acceptedAnswer": { "@type": "Answer", "text": "5-page custom website, premium custom design, full SEO optimisation, 1 year free hosting, SSL certificate, WhatsApp integration, Google Analytics setup, and 3 months post-launch support. Original value ₹30,000." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Premium custom design, full SEO optimisation, 1 year free hosting, SSL certificate, and 3 months post-launch support. Original value ₹30,000." }
       }
     ]
   }
@@ -1287,6 +1287,72 @@
       .footer-brand { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    /* Lead capture */
+    .lead-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(12, 17, 29, .58);
+      backdrop-filter: blur(8px);
+    }
+    .lead-modal.open { display: flex; }
+    .lead-dialog {
+      width: min(100%, 440px);
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      box-shadow: var(--shadow-2xl);
+      padding: 24px;
+      position: relative;
+    }
+    .lead-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      color: var(--gray-500);
+      background: var(--gray-50);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .lead-close:hover { background: var(--gray-100); color: var(--gray-900); }
+    .lead-title { font-size: 24px; line-height: 1.2; font-weight: 800; letter-spacing: -.2px; color: var(--gray-900); padding-right: 32px; }
+    .lead-sub { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--gray-500); }
+    .lead-form { margin-top: 20px; display: grid; gap: 14px; }
+    .lead-field { display: grid; gap: 6px; }
+    .lead-field label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
+    .lead-field input, .lead-field select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--gray-300);
+      border-radius: 10px;
+      padding: 0 13px;
+      font: inherit;
+      color: var(--gray-900);
+      background: #fff;
+      outline: none;
+    }
+    .lead-field input:focus, .lead-field select:focus {
+      border-color: var(--purple-500);
+      box-shadow: 0 0 0 4px rgba(127, 86, 217, .14);
+    }
+    .lead-phone-row { display: grid; grid-template-columns: 120px 1fr; gap: 10px; }
+    .lead-submit { width: 100%; justify-content: center; min-height: 48px; }
+    .lead-status { min-height: 18px; font-size: 12px; color: var(--gray-500); }
+    .lead-status.error { color: #B42318; }
+    .lead-status.success { color: var(--success-700); }
+    .lead-note { font-size: 11.5px; line-height: 1.5; color: var(--gray-400); }
+    @media (max-width: 430px) {
+      .lead-dialog { padding: 20px; }
+      .lead-phone-row { grid-template-columns: 100px 1fr; }
+    }
   </style>
 </head>
 
@@ -1309,8 +1375,8 @@
           <li><a href="/background-remover.html" class="nav-tool-link">BG Remover<span class="ai-chip">AI</span></a></li>
         </ul>
         <div class="nav-ctas">
-          <a href="https://platform.webeazzy.com" class="btn btn-ghost">Sign in</a>
-          <a href="#pricing" class="btn btn-primary">Get free website</a>
+          <a href="#contact" class="btn btn-ghost js-lead-trigger" data-lead-action="contact" data-lead-label="Contact us">Contact us</a>
+          <a href="#pricing" class="btn btn-primary js-lead-trigger" data-lead-action="host_free" data-lead-label="Get free website">Get free website</a>
         </div>
         <button class="nav-burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
@@ -1325,7 +1391,7 @@
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a href="/background-remover.html">BG Remover <span class="ai-chip">AI</span></a>
-    <a href="#pricing" class="btn btn-primary btn-lg">Get free website</a>
+    <a href="#pricing" class="btn btn-primary btn-lg js-lead-trigger" data-lead-action="host_free" data-lead-label="Get free website">Get free website</a>
   </div>
 
   <!-- ═══════════ HERO ═══════════ -->
@@ -1355,11 +1421,11 @@
           </div>
 
           <div class="hero-ctas rise rise-4">
-            <a href="#pricing" class="btn btn-primary btn-lg">
+            <a href="#pricing" class="btn btn-primary btn-lg js-lead-trigger" data-lead-action="host_free" data-lead-label="Claim your free website">
               Claim your free website
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a href="#showcase" class="btn btn-outline btn-lg">See our work</a>
+            <a href="#showcase" class="btn btn-outline btn-lg js-lead-trigger" data-lead-action="view" data-lead-label="See our work">See our work</a>
           </div>
 
           <div class="hero-proof rise rise-5">
@@ -1654,11 +1720,11 @@
           <ul class="price-features" aria-label="Starter website features">
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-page professional website</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mobile-responsive design</li>
-            <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Contact form &amp; WhatsApp button</li>
+            <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lead enquiry form</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 months free hosting</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SSL certificate included</li>
           </ul>
-          <a href="https://platform.webeazzy.com" class="btn btn-outline btn-lg price-cta">
+          <a href="#contact" class="btn btn-outline btn-lg price-cta js-lead-trigger" data-lead-action="host_free" data-lead-label="Claim free website">
             Claim free website
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7h9M7 2.5L11.5 7 7 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1678,15 +1744,12 @@
           </div>
           <p class="price-note">The complete website solution for businesses ready to grow online seriously.</p>
           <ul class="price-features" aria-label="Full package features">
-            <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5-page custom website</li>
             <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Premium custom design</li>
             <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full SEO optimisation</li>
             <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 year free hosting</li>
-            <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>WhatsApp &amp; Google Maps integration</li>
-            <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Google Analytics setup</li>
             <li><span class="pf-check purple" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 months post-launch support</li>
           </ul>
-          <a href="https://platform.webeazzy.com" class="btn btn-primary btn-lg price-cta">
+          <a href="#contact" class="btn btn-primary btn-lg price-cta js-lead-trigger" data-lead-action="purchase" data-lead-label="Get started for ₹6,999">
             Get started for ₹6,999
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7h9M7 2.5L11.5 7 7 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1801,7 +1864,7 @@
             </span>
           </button>
           <div class="faq-a"><div class="faq-a-clip"><div class="faq-a-inner">
-            A 5-page custom website (Home, About, Services, Gallery, Contact), premium custom design, full SEO optimisation, 1 year free hosting, SSL certificate, WhatsApp chat integration, Google Analytics setup, and 3 months of free post-launch support — everything a growing business needs, worth ₹30,000.
+            Premium custom design, full SEO optimisation, 1 year free hosting, SSL certificate, and 3 months of free post-launch support — everything a growing business needs, worth ₹30,000.
           </div></div></div>
         </div>
 
@@ -1813,7 +1876,7 @@
             </span>
           </button>
           <div class="faq-a"><div class="faq-a-clip"><div class="faq-a-inner">
-            Yes. All websites come with a simple content management panel — update text, images, and prices without any coding knowledge. For bigger structural changes, our support team is just a WhatsApp message away.
+            Yes. Send us the change request and our support team will help update text, images, and prices without you needing any coding knowledge.
           </div></div></div>
         </div>
 
@@ -1832,11 +1895,11 @@
         <h2 id="cta-title" class="reveal rd-1">Ready to take your business online?</h2>
         <p class="reveal rd-2">Join 500+ businesses that trusted Webeazzy with their online presence — free this month for qualified businesses.</p>
         <div class="cta-btns reveal rd-3">
-          <a href="https://platform.webeazzy.com" class="btn btn-white btn-xl">
+          <a href="#contact" class="btn btn-white btn-xl js-lead-trigger" data-lead-action="host_free" data-lead-label="Get your free website">
             Get your free website
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="https://wa.me/919999999999" class="btn btn-outline-white btn-xl" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+          <a href="#contact" class="btn btn-outline-white btn-xl js-lead-trigger" data-lead-action="contact" data-lead-label="Contact us">Contact us</a>
         </div>
       </div>
     </div>
@@ -1866,8 +1929,7 @@
         <div>
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
-            <li><a href="https://platform.webeazzy.com">Sign in</a></li>
-            <li><a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">Contact</a></li>
+            <li><a href="#contact" class="js-lead-trigger" data-lead-action="contact" data-lead-label="Contact">Contact us</a></li>
           </ul>
         </div>
         <div>
@@ -1886,7 +1948,164 @@
     </div>
   </footer>
 
+  <div class="lead-modal" id="leadModal" aria-hidden="true">
+    <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+      <button type="button" class="lead-close" id="leadClose" aria-label="Close contact form">&times;</button>
+      <h2 class="lead-title" id="leadTitle">Tell us where to reach you</h2>
+      <p class="lead-sub">Share your email and mobile number. We will contact you with the next step for your website.</p>
+      <form class="lead-form" id="leadForm">
+        <div class="lead-field">
+          <label for="leadEmail">Email address</label>
+          <input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="lead-field">
+          <label for="leadPhone">Mobile number with country code</label>
+          <div class="lead-phone-row">
+            <select id="leadCountryCode" name="countryCode" aria-label="Country code">
+              <option value="+91">+91 India</option>
+              <option value="+1">+1 US/CA</option>
+              <option value="+44">+44 UK</option>
+              <option value="+971">+971 UAE</option>
+              <option value="+61">+61 AU</option>
+              <option value="+65">+65 SG</option>
+            </select>
+            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary lead-submit" id="leadSubmit">Submit details</button>
+        <div class="lead-status" id="leadStatus" role="status"></div>
+        <p class="lead-note">Your details are saved for Webeazzy follow-up. No sign in is required.</p>
+      </form>
+    </div>
+  </div>
+
   <script>
+    const WEBIQ_LEAD_ENDPOINT = window.WEBIQ_LEAD_ENDPOINT || 'https://platform.webeazzy.com/api/webeazzy/leads';
+    const LEAD_STORE_KEY = 'webeazzy_leads';
+    let pendingLeadClick = null;
+
+    const leadModal = document.getElementById('leadModal');
+    const leadForm = document.getElementById('leadForm');
+    const leadClose = document.getElementById('leadClose');
+    const leadStatus = document.getElementById('leadStatus');
+    const leadSubmit = document.getElementById('leadSubmit');
+    const leadEmail = document.getElementById('leadEmail');
+    const leadCountryCode = document.getElementById('leadCountryCode');
+    const leadPhone = document.getElementById('leadPhone');
+
+    function getStoredLeads() {
+      try { return JSON.parse(localStorage.getItem(LEAD_STORE_KEY) || '[]'); }
+      catch { return []; }
+    }
+
+    function storeLead(payload) {
+      const leads = getStoredLeads();
+      leads.unshift(payload);
+      localStorage.setItem(LEAD_STORE_KEY, JSON.stringify(leads.slice(0, 100)));
+    }
+
+    function openLeadModal(ctx) {
+      pendingLeadClick = ctx;
+      leadStatus.textContent = '';
+      leadStatus.className = 'lead-status';
+      leadModal.classList.add('open');
+      leadModal.setAttribute('aria-hidden', 'false');
+      setTimeout(() => leadEmail.focus(), 40);
+    }
+
+    function closeLeadModal() {
+      leadModal.classList.remove('open');
+      leadModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function continueAfterLead() {
+      const href = pendingLeadClick?.href;
+      pendingLeadClick = null;
+      closeLeadModal();
+      if (!href || href === '#' || href === '#contact') return;
+      if (href.startsWith('#')) {
+        document.querySelector(href)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        return;
+      }
+      location.href = href;
+    }
+
+    async function sendLead(payload) {
+      const res = await fetch(WEBIQ_LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'cors',
+      });
+      if (!res.ok) throw new Error('Lead API rejected the request');
+    }
+
+    document.addEventListener('click', (event) => {
+      const ignore = event.target.closest('#leadModal, #burger, .faq-q');
+      if (ignore) return;
+
+      const target = event.target.closest('a, .showcase-card, .wi-btn, .cg-btn-p, button');
+      if (!target) return;
+
+      const href = target.getAttribute('href') || '';
+      if (href === '/' || href.startsWith('#features') || href.startsWith('#how-it-works') || href.startsWith('#faq')) return;
+
+      event.preventDefault();
+      const label = target.dataset.leadLabel || target.textContent.trim().replace(/\s+/g, ' ').slice(0, 80) || 'Website click';
+      const action = target.dataset.leadAction || (label.toLowerCase().includes('contact') ? 'contact' : 'view');
+      openLeadModal({ action, label, href });
+    });
+
+    leadClose.addEventListener('click', closeLeadModal);
+    leadModal.addEventListener('click', (event) => {
+      if (event.target === leadModal) closeLeadModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && leadModal.classList.contains('open')) closeLeadModal();
+    });
+
+    leadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const phoneDigits = leadPhone.value.replace(/[^\d]/g, '');
+      if (phoneDigits.length < 7) {
+        leadStatus.textContent = 'Please enter a valid mobile number.';
+        leadStatus.className = 'lead-status error';
+        return;
+      }
+
+      const payload = {
+        source: 'webeazzy-static',
+        slug: 'webeazzy-home',
+        action: pendingLeadClick?.action || 'contact',
+        label: pendingLeadClick?.label || 'Contact us',
+        email: leadEmail.value.trim(),
+        phone: `${leadCountryCode.value}${phoneDigits}`,
+        page: location.href,
+        userAgent: navigator.userAgent,
+        createdAt: new Date().toISOString(),
+      };
+
+      leadSubmit.disabled = true;
+      leadSubmit.textContent = 'Saving...';
+      leadStatus.textContent = '';
+      leadStatus.className = 'lead-status';
+
+      storeLead(payload);
+      try {
+        await sendLead(payload);
+        leadStatus.textContent = 'Saved. We will contact you shortly.';
+        leadStatus.className = 'lead-status success';
+      } catch (error) {
+        leadStatus.textContent = 'Saved on this browser. Admin sync will work when the API is connected.';
+        leadStatus.className = 'lead-status success';
+      } finally {
+        leadSubmit.disabled = false;
+        leadSubmit.textContent = 'Submit details';
+        leadForm.reset();
+        setTimeout(continueAfterLead, 650);
+      }
+    });
+
     // Navbar scroll shadow
     const navbar = document.getElementById('navbar');
     addEventListener('scroll', () => {

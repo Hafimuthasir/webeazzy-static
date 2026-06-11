@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/api/webeazzy/leads",
+      "destination": "https://platform.webeazzy.com/api/webeazzy/leads"
+    }
+  ],
   "redirects": [
     {
       "source": "/(.*)",
