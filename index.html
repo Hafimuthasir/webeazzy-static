@@ -2284,25 +2284,26 @@
       <div class="cg-row">${av('linear-gradient(135deg,#34D399,#059669)','LS')}<span><span class="cg-row-name" style="display:block">Lana Steiner</span><span class="cg-row-sub">@lana</span></span></div>
     </div>`;
     const reviewCard = (quote) => `<div class="cg-card cg-pad"><div class="cg-stars">★★★★★</div><p class="cg-quote">${quote}</p></div>`;
-    const formCard = `<div class="cg-card cg-pad"><div class="cg-input">Enter your name…</div><div class="cg-input">Phone number…</div><div class="cg-btn-p">Book appointment</div></div>`;
+    const launchCard = `<div class="cg-card cg-pad" style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;background:#ECFDF3;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5 6.5-7" stroke="#027A48" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><span style="font-size:12px;font-weight:700;display:block">Your website is live 🎉</span><span style="font-size:11px;color:#667085">webeazzy.com/yourbusiness</span></span></div>`;
+    const seoCard = `<div class="cg-card cg-pad"><div class="cg-stat-label">Google ranking</div><div class="cg-stat-val" style="font-size:32px">#1</div><div class="cg-stat-delta">"salon near me" · Mumbai</div></div>`;
 
     const colA = [
       img('photo-1567188040759-fb8a883dc6d8'),
-      statCard('Total visitors', '8,492', '↑ 24% this month', [35,55,40,70,52,85,65,95]),
+      statCard('Page views', '8,492', '↑ 24% this month', [35,55,40,70,52,85,65,95]),
       siteCard('#7F56D9', '#53389E'),
       reviewCard('"Best decision for our restaurant — bookings doubled."'),
     ];
     const colB = [
       siteCard('#C8832A', '#7A4A0E'),
       img('photo-1746723378067-83a345ff3160'),
-      usersCard,
+      launchCard,
       img('photo-1559136555-9303baea8ebd', 110),
-      formCard,
+      seoCard,
     ];
     const colC = [
       reviewCard('"Professional, fast, and exactly what we imagined."'),
       img('photo-1626383137804-ff908d2753a2'),
-      statCard('New inquiries', '142', '↑ 3× since launch', [25,45,38,60,48,75,90,80]),
+      statCard('New enquiries', '142', '↑ 3× since launch', [25,45,38,60,48,75,90,80]),
       siteCard('#2E7D32', '#14532D'),
     ];
     const collage = document.getElementById('collage');
@@ -2319,44 +2320,42 @@
     const userItem = (bg, init, name, sub) => `<div class="wi wi-user">${av(bg, init)}<span><span class="wi-user-name" style="display:block">${name}</span><span class="wi-user-sub">${sub}</span></span></div>`;
     const wallCols = [
       [
-        `<div class="wi wi-btn purple">Book appointment</div>`,
-        userItem('linear-gradient(135deg,#F472B6,#DB2777)', 'OR', 'Olivia Rhye', 'New inquiry · 2m ago'),
-        chips(['green','+ Open now'], ['yellow','Popular']),
+        `<div class="wi wi-btn purple">Get free website →</div>`,
+        userItem('linear-gradient(135deg,#F472B6,#DB2777)', 'AK', 'Anita Krishnan', 'Website live · Bangalore'),
+        chips(['green','Mobile-first'], ['yellow','Fast']),
         `<div class="wi"><div class="wi-stat-label">Page views</div><div class="wi-stat-val">12.4k</div><div class="wi-stat-delta">↑ 32% vs last month</div></div>`,
-        `<div class="wi wi-chat"><span class="cg-av" style="background:linear-gradient(135deg,#9E77ED,#6941C6)">W</span><span class="wi-chat-bubble">Hi! 👋 How can we help your business today?</span></div>`,
-        `<div class="wi wi-btn dark">View menu</div>`,
+        `<div class="wi wi-chat"><span class="cg-av" style="background:linear-gradient(135deg,#9E77ED,#6941C6)">W</span><span class="wi-chat-bubble">Your website preview is ready! 🎉</span></div>`,
+        `<div class="wi wi-btn dark">View your site →</div>`,
       ],
       [
-        chips(['purple','Design'], ['blue','SEO'], ['green','Hosting']),
-        `<div class="wi"><span class="wi-stat-label">Conversion rate</span><div class="wi-progress-track"><div class="wi-progress-fill"></div></div></div>`,
-        `<div class="wi wi-btn red">Delete draft</div>`,
-        userItem('linear-gradient(135deg,#60A5FA,#2563EB)', 'PB', 'Phoenix Baker', 'Booked a table · 5m ago'),
-        `<div class="wi wi-toggle"><span>Online booking</span><span class="wi-switch"></span></div>`,
-        `<div class="wi"><div class="wi-stat-label">Avg. session</div><div class="wi-stat-val">2:24</div><div class="wi-stat-delta">↑ 8% vs last week</div></div>`,
+        chips(['purple','Custom design'], ['blue','SEO-ready'], ['green','Hosted']),
+        `<div class="wi"><span class="wi-stat-label">Load speed</span><div class="wi-progress-track"><div class="wi-progress-fill"></div></div></div>`,
+        `<div class="wi"><div class="wi-stat-label">Google ranking</div><div class="wi-stat-val">#1</div><div class="wi-stat-delta">"salon near me" · Chennai</div></div>`,
+        userItem('linear-gradient(135deg,#60A5FA,#2563EB)', 'MR', 'Mohammed Rafi', 'Site launched · 3 days ago'),
+        chips(['green','SSL secured'], ['blue','Responsive']),
+        `<div class="wi"><div class="wi-stat-label">Avg. visit duration</div><div class="wi-stat-val">2:24</div><div class="wi-stat-delta">↑ 8% vs last week</div></div>`,
       ],
       [
-        `<div class="wi wi-btn purple">Publish now</div>`,
+        `<div class="wi wi-btn purple">See live preview →</div>`,
         `<div class="wi wi-rating"><span class="wi-stars">★★★★★</span><b>4.9</b></div>`,
-        `<div class="wi"><span class="wi-stat-label">Select team members</span><div class="wi-input-mock">Search people…</div></div>`,
-        userItem('linear-gradient(135deg,#34D399,#059669)', 'LS', 'Lana Steiner', 'Left a 5-star review'),
-        chips(['red','Sale -77%'], ['purple','Featured']),
-        `<div class="wi"><div class="wi-stat-label">Total sessions</div><div class="wi-stat-val">526</div><div class="wi-stat-delta">↑ 4% vs last month</div></div>`,
+        userItem('linear-gradient(135deg,#34D399,#059669)', 'SP', 'Dr. Sneha Patel', 'Left a 5-star review'),
+        chips(['purple','Premium'], ['green','Live'], ['blue','SEO']),
+        `<div class="wi"><div class="wi-stat-label">Visitors this month</div><div class="wi-stat-val">3,840</div><div class="wi-stat-delta">↑ 18% vs last month</div></div>`,
       ],
       [
-        userItem('linear-gradient(135deg,#FBBF24,#D97706)', 'DW', 'Demi Wilkinson', 'Sent an enquiry · 9m ago'),
-        `<div class="wi wi-btn dark">Get directions</div>`,
+        userItem('linear-gradient(135deg,#FBBF24,#D97706)', 'RK', 'Rajesh Kumar', 'Site delivered in 48h'),
+        `<div class="wi wi-btn dark">Visit live site →</div>`,
         `<div class="wi wi-chat"><span class="cg-av" style="background:linear-gradient(135deg,#34D399,#059669)">✓</span><span class="wi-chat-bubble">Your website is live! 🎉</span></div>`,
-        chips(['blue','Mobile-first'], ['green','Fast']),
-        `<div class="wi"><span class="wi-stat-label">WhatsApp leads</span><div class="wi-stat-val">38</div><div class="wi-stat-delta">↑ this week</div></div>`,
+        chips(['blue','Mobile-first'], ['green','1yr hosting']),
+        `<div class="wi"><div class="wi-stat-label">New enquiries</div><div class="wi-stat-val">38</div><div class="wi-stat-delta">↑ since launch</div></div>`,
         `<div class="wi wi-btn purple">Claim free site</div>`,
       ],
       [
         `<div class="wi"><div class="wi-stat-label">Google ranking</div><div class="wi-stat-val">#1</div><div class="wi-stat-delta">"bakery near me"</div></div>`,
-        chips(['yellow','New'], ['purple','Premium'], ['green','Live']),
-        userItem('linear-gradient(135deg,#9E77ED,#6941C6)', 'CW', 'Candice Wu', 'Subscribed · just now'),
-        `<div class="wi wi-toggle"><span>WhatsApp chat</span><span class="wi-switch"></span></div>`,
-        `<div class="wi wi-btn red">Cancel</div>`,
+        chips(['yellow','48h delivery'], ['purple','Free'], ['green','Live']),
+        userItem('linear-gradient(135deg,#9E77ED,#6941C6)', 'PV', 'Priya Venkat', 'Website approved · just now'),
         `<div class="wi wi-rating"><span class="wi-stars">★★★★★</span><b>500+</b></div>`,
+        chips(['green','Zero risk'], ['blue','SSL included']),
       ],
     ];
     const wallSpeeds = [-0.12, 0.08, -0.06, 0.1, -0.09];
