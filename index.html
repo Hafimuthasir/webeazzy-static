@@ -287,7 +287,10 @@
 
     /* ═══ HERO ═══ */
     .hero {
-      padding: 150px 0 100px;
+      padding: 0;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
       background:
@@ -295,6 +298,7 @@
         radial-gradient(ellipse 45% 40% at 8% 95%, rgba(127,86,217,.06), transparent),
         #fff;
     }
+    .hero > .container { width: 100%; padding-top: 120px; padding-bottom: 80px; }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
@@ -310,6 +314,7 @@
       grid-template-columns: 1.05fr 1fr;
       gap: 72px;
       align-items: center;
+      min-height: calc(100svh - 200px);
     }
 
     /* entrance animation */
@@ -469,11 +474,12 @@
     /* ── Hero visual: tilted drifting collage (Untitled UI style) ── */
     .hero-visual {
       position: relative;
-      height: 620px;
+      align-self: stretch;
+      min-height: 620px;
       opacity: 0;
       animation: collageIn 1100ms var(--ease-out) 250ms forwards;
-      -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 55%, transparent 97%);
-      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 55%, transparent 97%);
+      -webkit-mask-image: radial-gradient(ellipse 100% 105% at 50% 50%, black 45%, transparent 95%);
+      mask-image: radial-gradient(ellipse 100% 105% at 50% 50%, black 45%, transparent 95%);
     }
     @keyframes collageIn {
       from { opacity: 0; transform: translateY(36px) scale(.97); }
@@ -481,7 +487,7 @@
     }
     .collage {
       position: absolute;
-      inset: -150px -70px;
+      inset: -100px -70px;
       display: flex;
       gap: 18px;
       transform: rotate(-8deg);
@@ -609,14 +615,15 @@
       .hero-inner { gap: 44px; }
     }
     @media (max-width: 920px) {
-      .hero { padding: 120px 0 72px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 56px; }
-      .hero-visual { height: 440px; max-width: 540px; margin: 0 auto; width: 100%; }
+      .hero { min-height: unset; }
+      .hero > .container { padding-top: 100px; padding-bottom: 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 56px; min-height: unset; }
+      .hero-visual { height: 440px; align-self: auto; max-width: 540px; margin: 0 auto; width: 100%; }
       .notif-card { left: 0; top: 140px; }
       .stat-chip { right: 0; top: 280px; }
     }
     @media (max-width: 560px) {
-      .hero-visual { height: 360px; }
+      .hero-visual { height: 360px; align-self: auto; }
       .collage { inset: -120px -40px; gap: 12px; }
       .collage-col { gap: 12px; }
       .notif-card { display: none; }
