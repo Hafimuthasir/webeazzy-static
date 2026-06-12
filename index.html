@@ -2466,19 +2466,12 @@
     }
 
     document.addEventListener('click', (event) => {
-      const ignore = event.target.closest('#leadModal, #burger, .faq-q');
-      if (ignore) return;
-
-      const target = event.target.closest('a, .showcase-card, .wi-btn, .cg-btn-p, button');
+      const target = event.target.closest('.js-lead-trigger');
       if (!target) return;
-
-      const href = target.getAttribute('href') || '';
-      if (href === '/' || href.startsWith('#features') || href.startsWith('#how-it-works') || href.startsWith('#faq')) return;
-
       event.preventDefault();
       const label = target.dataset.leadLabel || target.textContent.trim().replace(/\s+/g, ' ').slice(0, 80) || 'Website click';
       const action = target.dataset.leadAction || (label.toLowerCase().includes('contact') ? 'contact' : 'view');
-      openLeadModal({ action, label, href });
+      openLeadModal({ action, label, href: target.getAttribute('href') || '' });
     });
 
     leadClose.addEventListener('click', closeLeadModal);
