@@ -56,7 +56,7 @@
       {
         "@type": "Question",
         "name": "Is the free website really free?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free for qualified businesses. We select a limited number of businesses each month and build their website at no cost. After 3 months, if you'd like to continue hosting and support, there's a small hosting fee." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free for qualified businesses. Free websites are published under webeazzy.com with a small Webeazzy watermark. You can upgrade later if you want your own domain, hosting, and watermark removal." }
       },
       {
         "@type": "Question",
@@ -1328,7 +1328,7 @@
     .lead-form { margin-top: 20px; display: grid; gap: 14px; }
     .lead-field { display: grid; gap: 6px; }
     .lead-field label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
-    .lead-field input, .lead-field select {
+    .lead-field input {
       width: 100%;
       min-height: 46px;
       border: 1px solid var(--gray-300);
@@ -1339,11 +1339,23 @@
       background: #fff;
       outline: none;
     }
-    .lead-field input:focus, .lead-field select:focus {
+    .lead-field input:focus {
       border-color: var(--purple-500);
       box-shadow: 0 0 0 4px rgba(127, 86, 217, .14);
     }
-    .lead-phone-row { display: grid; grid-template-columns: 120px 1fr; gap: 10px; }
+    .lead-phone-row { display: grid; grid-template-columns: 108px 1fr; gap: 10px; }
+    .lead-code-wrap { position: relative; }
+    .lead-code-wrap::before {
+      content: '+';
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-500);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .lead-code-input { padding-left: 27px !important; font-weight: 700; letter-spacing: .2px; }
     .lead-submit { width: 100%; justify-content: center; min-height: 48px; }
     .lead-status { min-height: 18px; font-size: 12px; color: var(--gray-500); }
     .lead-status.error { color: #B42318; }
@@ -1351,7 +1363,7 @@
     .lead-note { font-size: 11.5px; line-height: 1.5; color: var(--gray-400); }
     @media (max-width: 430px) {
       .lead-dialog { padding: 20px; }
-      .lead-phone-row { grid-template-columns: 100px 1fr; }
+      .lead-phone-row { grid-template-columns: 96px 1fr; }
     }
   </style>
 </head>
@@ -1721,6 +1733,7 @@
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-page professional website</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mobile-responsive design</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lead enquiry form</li>
+            <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Hosted under webeazzy.com with watermark</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 months free hosting</li>
             <li><span class="pf-check green" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M9 3L4.5 8 2 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SSL certificate included</li>
           </ul>
@@ -1828,7 +1841,7 @@
             </span>
           </button>
           <div class="faq-a"><div class="faq-a-clip"><div class="faq-a-inner">
-            Yes — completely free for qualified businesses. We select a limited number of businesses each month and build their website at no cost. After 3 months, if you'd like to continue hosting and support, there's a small hosting fee. No hidden charges during the free period.
+            Yes — completely free for qualified businesses. Free websites are published under webeazzy.com with a small Webeazzy watermark. You can upgrade later if you want your own domain, hosting, and watermark removal.
           </div></div></div>
         </div>
 
@@ -1952,7 +1965,7 @@
     <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
       <button type="button" class="lead-close" id="leadClose" aria-label="Close contact form">&times;</button>
       <h2 class="lead-title" id="leadTitle">Tell us where to reach you</h2>
-      <p class="lead-sub">Share your email and mobile number. We will contact you with the next step for your website.</p>
+      <p class="lead-sub">Share your email and mobile number. We will get back to you soon.</p>
       <form class="lead-form" id="leadForm">
         <div class="lead-field">
           <label for="leadEmail">Email address</label>
@@ -1961,20 +1974,15 @@
         <div class="lead-field">
           <label for="leadPhone">Mobile number with country code</label>
           <div class="lead-phone-row">
-            <select id="leadCountryCode" name="countryCode" aria-label="Country code">
-              <option value="+91">+91 India</option>
-              <option value="+1">+1 US/CA</option>
-              <option value="+44">+44 UK</option>
-              <option value="+971">+971 UAE</option>
-              <option value="+61">+61 AU</option>
-              <option value="+65">+65 SG</option>
-            </select>
+            <div class="lead-code-wrap">
+              <input id="leadCountryCode" class="lead-code-input" name="countryCode" type="tel" inputmode="numeric" autocomplete="tel-country-code" value="91" aria-label="Country code" pattern="[0-9]{1,4}" maxlength="4" required>
+            </div>
             <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210" required>
           </div>
         </div>
         <button type="submit" class="btn btn-primary lead-submit" id="leadSubmit">Submit details</button>
         <div class="lead-status" id="leadStatus" role="status"></div>
-        <p class="lead-note">Your details are saved for Webeazzy follow-up. No sign in is required.</p>
+        <p class="lead-note">Free websites are hosted under webeazzy.com with a small Webeazzy watermark. No sign in is required.</p>
       </form>
     </div>
   </div>
@@ -2066,7 +2074,13 @@
 
     leadForm.addEventListener('submit', async (event) => {
       event.preventDefault();
+      const countryCode = leadCountryCode.value.replace(/[^\d]/g, '');
       const phoneDigits = leadPhone.value.replace(/[^\d]/g, '');
+      if (!countryCode) {
+        leadStatus.textContent = 'Please enter a valid country code.';
+        leadStatus.className = 'lead-status error';
+        return;
+      }
       if (phoneDigits.length < 7) {
         leadStatus.textContent = 'Please enter a valid mobile number.';
         leadStatus.className = 'lead-status error';
@@ -2080,7 +2094,7 @@
         action: leadAction === 'contact' ? 'host_free' : leadAction,
         label: pendingLeadClick?.label || 'Contact us',
         email: leadEmail.value.trim(),
-        phone: `${leadCountryCode.value}${phoneDigits}`,
+        phone: `+${countryCode}${phoneDigits}`,
         page: location.href,
         userAgent: navigator.userAgent,
         createdAt: new Date().toISOString(),
@@ -2094,16 +2108,16 @@
       storeLead(payload);
       try {
         await sendLead(payload);
-        leadStatus.textContent = 'Saved. We will contact you shortly.';
+        leadStatus.textContent = 'Thank you. We will get back to you soon.';
         leadStatus.className = 'lead-status success';
       } catch (error) {
-        leadStatus.textContent = 'Saved on this browser. Admin sync will work when the API is connected.';
+        leadStatus.textContent = 'Thank you. We will get back to you soon.';
         leadStatus.className = 'lead-status success';
       } finally {
         leadSubmit.disabled = false;
         leadSubmit.textContent = 'Submit details';
         leadForm.reset();
-        setTimeout(continueAfterLead, 650);
+        leadCountryCode.value = '91';
       }
     });
 
