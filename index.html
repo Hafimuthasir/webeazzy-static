@@ -1479,13 +1479,16 @@
     }
     .section-hd.in .section-badge { animation: badgePop 650ms var(--ease-out) 80ms both; }
 
-    /* 4 · Clip-path curtain reveal (industry cards) */
-    .reveal-curtain {
-      clip-path: inset(0 0 100% 0 round var(--r-xl));
-      opacity: 1; filter: blur(0); transform: translateY(0);
-      transition: clip-path 950ms var(--ease-out), box-shadow 300ms, transform 300ms var(--ease-out);
+    /* 4 · Industry cards — dramatic scale + blur + lift entrance */
+    .industry-card.reveal {
+      transform: translateY(56px) scale(0.88);
+      filter: blur(8px);
+      transition: opacity 900ms var(--ease-out), transform 1000ms var(--ease-out), filter 900ms var(--ease-out), box-shadow 300ms;
     }
-    .reveal-curtain.in { clip-path: inset(0 0 0% 0 round var(--r-xl)); }
+    .industry-card.reveal.in {
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
 
     /* 5 · Pricing card 3D tilt entrance */
     .price-card.reveal {
@@ -1812,7 +1815,7 @@
       </div>
       <div class="industries-grid">
 
-        <div class="industry-card reveal-curtain">
+        <div class="industry-card reveal">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-restaurant.jpg" alt="Restaurant website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1828,7 +1831,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal-curtain rd-2">
+        <div class="industry-card reveal rd-2">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-salon.jpg" alt="Salon website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1844,7 +1847,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal-curtain rd-3">
+        <div class="industry-card reveal rd-3">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-clinic.jpg" alt="Clinic website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1860,7 +1863,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal-curtain rd-2">
+        <div class="industry-card reveal rd-2">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-retail.jpg" alt="Retail website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1876,7 +1879,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal-curtain rd-3">
+        <div class="industry-card reveal rd-3">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-gym.jpg" alt="Gym website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1892,7 +1895,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal-curtain rd-4">
+        <div class="industry-card reveal rd-4">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-realestate.jpg" alt="Real estate website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -2580,8 +2583,8 @@
       onScroll();
     }
 
-    // Observe reveal-left / reveal-right / reveal-curtain
-    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-curtain').forEach(el => revealObserver.observe(el));
+    // Observe reveal-left / reveal-right the same way as .reveal
+    document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
     // ── WOW layer JS ──────────────────────────────────────────
 
