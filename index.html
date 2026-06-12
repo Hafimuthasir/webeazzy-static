@@ -1066,14 +1066,73 @@
     @media (max-width: 900px) { .showcase-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 580px) { .showcase-grid { grid-template-columns: 1fr; } }
 
+    /* ═══ INDUSTRIES ═══ */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .industry-card {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 300ms var(--ease-out), transform 300ms var(--ease-out);
+    }
+    .industry-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-5px); }
+    .industry-img-wrap {
+      height: 190px;
+      overflow: hidden;
+      position: relative;
+    }
+    .industry-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 600ms var(--ease-out);
+    }
+    .industry-card:hover .industry-img-wrap img { transform: scale(1.07); }
+    .industry-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(16,24,40,.62));
+      display: flex; align-items: flex-end;
+      padding: 14px 16px;
+    }
+    .industry-overlay-label {
+      color: #fff;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .industry-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 18px 20px 20px;
+    }
+    .industry-icon {
+      width: 38px; height: 38px;
+      background: var(--purple-50);
+      border: 1px solid var(--purple-100);
+      border-radius: var(--r-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--purple-600);
+      flex-shrink: 0;
+      transition: all 250ms var(--ease-out);
+    }
+    .industry-card:hover .industry-icon { background: var(--purple-600); color: #fff; border-color: var(--purple-600); }
+    .industry-name { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 5px; }
+    .industry-desc { font-size: 13.5px; color: var(--gray-500); line-height: 1.6; }
+    @media (max-width: 900px) { .industries-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .industries-grid { grid-template-columns: 1fr; } }
+
     /* ═══ PRICING ═══ */
     .pricing-grid {
       display: grid;
-      grid-template-columns: 1fr 1.08fr;
+      grid-template-columns: 1fr 1fr;
       gap: 26px;
       max-width: 880px;
       margin: 0 auto;
-      align-items: start;
+      align-items: center;
     }
     .price-card {
       background: #fff;
@@ -1634,78 +1693,111 @@
     </div>
   </section>
 
-  <!-- ═══════════ SHOWCASE ═══════════ -->
-  <section class="section" id="showcase" aria-labelledby="showcase-title">
+  <!-- ═══════════ INDUSTRIES ═══════════ -->
+  <section class="section" id="industries" aria-labelledby="industries-title">
     <div class="container">
       <div class="section-hd reveal">
-        <div class="section-badge">Our work</div>
-        <h2 class="section-title" id="showcase-title">Websites we've built</h2>
-        <p class="section-sub">Every website is unique — crafted to match each business's brand and audience.</p>
+        <div class="section-badge">Who we build for</div>
+        <h2 class="section-title" id="industries-title">Built for every kind of business</h2>
+        <p class="section-sub">Whether you run a restaurant, clinic, or boutique — we craft websites that fit your industry perfectly.</p>
       </div>
-      <div class="showcase-grid">
+      <div class="industries-grid">
 
-        <article class="showcase-card reveal" tabindex="0">
-          <div class="sc-bar" aria-hidden="true">
-            <span class="scd" style="background:#FF5F57"></span><span class="scd" style="background:#FEBC2E"></span><span class="scd" style="background:#28C840"></span>
-          </div>
-          <div class="sc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=700&auto=format&fit=crop" alt="Restaurant website preview — The Golden Spoon" loading="lazy" width="700" height="467">
-            <div class="sc-overlay"><span>View live site
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 10L10 3M10 3H4.5M10 3v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span></div>
-          </div>
-          <div class="sc-footer">
-            <div>
-              <div class="sc-tag">Restaurant</div>
-              <div class="sc-name">The Golden Spoon</div>
+        <div class="industry-card reveal">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-restaurant.jpg" alt="Restaurant website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Restaurants &amp; Cafés</span>
             </div>
-            <span class="sc-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M7 2.5L11.5 7 7 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
           </div>
-        </article>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div>
+            <div>
+              <div class="industry-name">Restaurants &amp; Cafés</div>
+              <div class="industry-desc">Menus, reservations, and mouth-watering photo galleries that bring diners in.</div>
+            </div>
+          </div>
+        </div>
 
-        <article class="showcase-card reveal rd-2" tabindex="0">
-          <div class="sc-bar" aria-hidden="true">
-            <span class="scd" style="background:#FF5F57"></span><span class="scd" style="background:#FEBC2E"></span><span class="scd" style="background:#28C840"></span>
-          </div>
-          <div class="sc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1746723378067-83a345ff3160?q=80&w=700&auto=format&fit=crop" alt="Salon website preview — Luxe Beauty Studio" loading="lazy" width="700" height="467">
-            <div class="sc-overlay"><span>View live site
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 10L10 3M10 3H4.5M10 3v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span></div>
-          </div>
-          <div class="sc-footer">
-            <div>
-              <div class="sc-tag">Salon &amp; Spa</div>
-              <div class="sc-name">Luxe Beauty Studio</div>
+        <div class="industry-card reveal rd-2">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-salon.jpg" alt="Salon website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Salons &amp; Spas</span>
             </div>
-            <span class="sc-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M7 2.5L11.5 7 7 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
           </div>
-        </article>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 18H6V2l2 2 2-2 1.5 5L19 4l-5 6 4 8H8"/></svg></div>
+            <div>
+              <div class="industry-name">Salons &amp; Spas</div>
+              <div class="industry-desc">Service menus, booking forms, and before/after galleries that grow your clientele.</div>
+            </div>
+          </div>
+        </div>
 
-        <article class="showcase-card reveal rd-4" tabindex="0">
-          <div class="sc-bar" aria-hidden="true">
-            <span class="scd" style="background:#FF5F57"></span><span class="scd" style="background:#FEBC2E"></span><span class="scd" style="background:#28C840"></span>
-          </div>
-          <div class="sc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=700&auto=format&fit=crop" alt="Startup website preview — NexGen Solutions" loading="lazy" width="700" height="467">
-            <div class="sc-overlay"><span>View live site
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 10L10 3M10 3H4.5M10 3v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span></div>
-          </div>
-          <div class="sc-footer">
-            <div>
-              <div class="sc-tag">Tech Startup</div>
-              <div class="sc-name">NexGen Solutions</div>
+        <div class="industry-card reveal rd-3">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-clinic.jpg" alt="Clinic website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Clinics &amp; Healthcare</span>
             </div>
-            <span class="sc-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M7 2.5L11.5 7 7 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
           </div>
-        </article>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div>
+              <div class="industry-name">Clinics &amp; Healthcare</div>
+              <div class="industry-desc">Trust-building designs with doctor profiles, services, and easy appointment booking.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-card reveal rd-2">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-retail.jpg" alt="Retail website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Retail &amp; Boutiques</span>
+            </div>
+          </div>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+            <div>
+              <div class="industry-name">Retail &amp; Boutiques</div>
+              <div class="industry-desc">Product showcases and lookbooks that convert browsers into buyers.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-card reveal rd-3">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-gym.jpg" alt="Gym website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Gyms &amp; Fitness</span>
+            </div>
+          </div>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+            <div>
+              <div class="industry-name">Gyms &amp; Fitness</div>
+              <div class="industry-desc">Class schedules, trainer profiles, and membership pages that sign up new members.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-card reveal rd-4">
+          <div class="industry-img-wrap">
+            <img src="assets/images/ind-realestate.jpg" alt="Real estate website" loading="lazy" width="700" height="467">
+            <div class="industry-overlay">
+              <span class="industry-overlay-label">Real Estate</span>
+            </div>
+          </div>
+          <div class="industry-body">
+            <div class="industry-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div>
+              <div class="industry-name">Real Estate</div>
+              <div class="industry-desc">Property listings, virtual tours, and lead capture forms that close deals faster.</div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
