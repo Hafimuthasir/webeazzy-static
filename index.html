@@ -847,15 +847,47 @@
     /* scroll reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+      transform: translateY(44px) scale(0.97);
+      filter: blur(3px);
+      transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out), filter 750ms var(--ease-out);
     }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-    .rd-1 { transition-delay: 90ms; }
-    .rd-2 { transition-delay: 180ms; }
-    .rd-3 { transition-delay: 270ms; }
-    .rd-4 { transition-delay: 360ms; }
-    .rd-5 { transition-delay: 450ms; }
+    .reveal.in { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-52px) scale(0.97);
+      filter: blur(3px);
+      transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out), filter 750ms var(--ease-out);
+    }
+    .reveal-left.in { opacity: 1; transform: translateX(0) scale(1); filter: blur(0px); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(52px) scale(0.97);
+      filter: blur(3px);
+      transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out), filter 750ms var(--ease-out);
+    }
+    .reveal-right.in { opacity: 1; transform: translateX(0) scale(1); filter: blur(0px); }
+    .rd-1 { transition-delay: 80ms; }
+    .rd-2 { transition-delay: 160ms; }
+    .rd-3 { transition-delay: 240ms; }
+    .rd-4 { transition-delay: 320ms; }
+    .rd-5 { transition-delay: 400ms; }
+
+    /* scroll progress bar */
+    .scroll-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2.5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--purple-600), var(--purple-400));
+      z-index: 200;
+      pointer-events: none;
+      transition: width 80ms linear;
+    }
+
+    /* 3D tilt — disable CSS transform during JS tilt */
+    .feat-card.tilting, .price-card.tilting, .industry-card.tilting {
+      transition: box-shadow 250ms, border-color 250ms !important;
+    }
 
     /* ═══ STATS BAND ═══ */
     .stats-band {
@@ -1416,6 +1448,92 @@
       .lead-dialog { padding: 20px; }
       .lead-phone-row { grid-template-columns: 96px 1fr; }
     }
+    /* ═══════════════════════════
+       WOW LAYER — visual polish
+    ═══════════════════════════ */
+
+    /* 1 · Mouse spotlight on hero */
+    .hero { --mx: 50%; --my: 42%; }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(900px circle at var(--mx) var(--my), rgba(127,86,217,.16), transparent 62%);
+      pointer-events: none;
+    }
+
+    /* 2 · Word-split reveal for section titles */
+    .word-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; }
+    .word {
+      display: inline-block;
+      transform: translateY(112%);
+      transition: transform 950ms var(--ease-out);
+      will-change: transform;
+    }
+    .split-in .word { transform: translateY(0); }
+
+    /* 3 · Section badge spring-pop when parent reveals */
+    @keyframes badgePop {
+      0%   { transform: scale(0.5) translateY(8px); opacity: 0; }
+      60%  { transform: scale(1.12); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .section-hd.in .section-badge { animation: badgePop 650ms var(--ease-out) 80ms both; }
+
+    /* 4 · Clip-path curtain reveal (industry cards) */
+    .reveal-curtain {
+      clip-path: inset(0 0 100% 0 round var(--r-xl));
+      opacity: 1; filter: blur(0); transform: translateY(0);
+      transition: clip-path 950ms var(--ease-out), box-shadow 300ms, transform 300ms var(--ease-out);
+    }
+    .reveal-curtain.in { clip-path: inset(0 0 0% 0 round var(--r-xl)); }
+
+    /* 5 · Pricing card 3D tilt entrance */
+    .price-card.reveal {
+      transform: translateY(60px) perspective(1000px) rotateX(12deg) scale(0.95);
+      transition: opacity 850ms var(--ease-out), transform 950ms var(--ease-out), filter 850ms var(--ease-out), box-shadow 250ms;
+    }
+    .price-card.reveal.in { transform: translateY(0) perspective(1000px) rotateX(0deg) scale(1); }
+
+    /* 6 · Featured pricing card shimmer sweep */
+    .price-card.featured { overflow: hidden; }
+    .price-card.featured::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(108deg, transparent 36%, rgba(255,255,255,.3) 50%, transparent 64%);
+      transform: translateX(-100%); pointer-events: none; transition: none;
+    }
+    .price-card.featured:hover::after { transform: translateX(160%); transition: transform 800ms ease; }
+
+    /* 7 · Step circle spring-pop */
+    @keyframes circlePop {
+      0%   { transform: scale(0); opacity: 0; }
+      65%  { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .step-card.in .step-circle,
+    .step-card.reveal-left.in .step-circle,
+    .step-card.reveal-right.in .step-circle { animation: circlePop 700ms var(--ease-out) 280ms both; }
+
+    /* 8 · Stats band stronger entrance */
+    .stats-band.reveal {
+      transform: translateY(56px) scale(0.95);
+      transition: opacity 900ms var(--ease-out), transform 1000ms var(--ease-out), filter 900ms var(--ease-out), box-shadow 250ms;
+    }
+
+    /* 9 · Feat-card left/right — longer duration for drama */
+    .feat-card.reveal-left, .feat-card.reveal-right {
+      transition-duration: 950ms;
+    }
+
+    /* 10 · Testi-card left/right */
+    .testi-card.reveal-left, .testi-card.reveal-right {
+      transition-duration: 950ms;
+    }
+
+    /* Disable CSS transform transitions while JS tilt is active */
+    .feat-card.tilting, .price-card.tilting, .industry-card.tilting {
+      transition: box-shadow 200ms, border-color 200ms, clip-path 0ms !important;
+    }
+
   </style>
 </head>
 
@@ -1571,7 +1689,7 @@
           <p class="section-sub">From design to launch — we handle it all, so you can focus on running your business.</p>
         </div>
         <div class="features-grid">
-          <div class="feat-card reveal">
+          <div class="feat-card reveal-left">
             <div class="feat-icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M13 2L4 13h7l-2 7 9-11h-7l2-7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -1606,7 +1724,7 @@
             <h3 class="feat-title">Free hosting included</h3>
             <p class="feat-desc">No monthly hosting fees for the first year. Your site stays fast, secure, and always online.</p>
           </div>
-          <div class="feat-card reveal rd-5">
+          <div class="feat-card reveal-right rd-5">
             <div class="feat-icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2l8 3.5V11c0 4.5-3.5 7.4-8 9-4.5-1.6-8-4.5-8-9V5.5L11 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 11l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -1629,7 +1747,7 @@
       <div class="steps-outer">
         <div class="steps-line" aria-hidden="true"></div>
         <div class="steps-grid">
-          <div class="step-card reveal">
+          <div class="step-card reveal-left">
             <div class="step-circle" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="5" y="4" width="20" height="22" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 10.5h10M10 15h10M10 19.5h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               <span class="step-no">1</span>
@@ -1645,7 +1763,7 @@
             <h3 class="step-title">We build it in 48 hours</h3>
             <p class="step-desc">Our team designs and builds your complete website and sends you a live preview within 48 hours — free, no advance payment.</p>
           </div>
-          <div class="step-card reveal rd-4">
+          <div class="step-card reveal-right rd-4">
             <div class="step-circle" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 26s-10-6.1-10-13a5.6 5.6 0 0110-3.4A5.6 5.6 0 0125 13c0 6.9-10 13-10 13z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M11 13.5l2.7 2.7 5.3-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span class="step-no">3</span>
@@ -1694,7 +1812,7 @@
       </div>
       <div class="industries-grid">
 
-        <div class="industry-card reveal">
+        <div class="industry-card reveal-curtain">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-restaurant.jpg" alt="Restaurant website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1710,7 +1828,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal rd-2">
+        <div class="industry-card reveal-curtain rd-2">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-salon.jpg" alt="Salon website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1726,7 +1844,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal rd-3">
+        <div class="industry-card reveal-curtain rd-3">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-clinic.jpg" alt="Clinic website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1742,7 +1860,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal rd-2">
+        <div class="industry-card reveal-curtain rd-2">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-retail.jpg" alt="Retail website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1758,7 +1876,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal rd-3">
+        <div class="industry-card reveal-curtain rd-3">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-gym.jpg" alt="Gym website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1774,7 +1892,7 @@
           </div>
         </div>
 
-        <div class="industry-card reveal rd-4">
+        <div class="industry-card reveal-curtain rd-4">
           <div class="industry-img-wrap">
             <img src="assets/images/ind-realestate.jpg" alt="Real estate website" loading="lazy" width="700" height="467">
             <div class="industry-overlay">
@@ -1866,7 +1984,7 @@
       </div>
       <div class="testi-grid">
 
-        <div class="testi-card reveal">
+        <div class="testi-card reveal-left">
           <div class="testi-stars" aria-label="Rated 5 stars">★★★★★</div>
           <p class="testi-quote">"We got 3× more inquiries within the first month. The team understood exactly what we needed and delivered faster than expected."</p>
           <div class="testi-author">
@@ -1890,7 +2008,7 @@
           </div>
         </div>
 
-        <div class="testi-card reveal rd-4">
+        <div class="testi-card reveal-right rd-4">
           <div class="testi-stars" aria-label="Rated 5 stars">★★★★★</div>
           <p class="testi-quote">"As a physiotherapy clinic we needed something professional and trustworthy. Webeazzy delivered — patient bookings doubled in 2 months."</p>
           <div class="testi-author">
@@ -2392,6 +2510,128 @@
       }, { passive: true });
       updateWall();
     }
+
+    // ── Enhanced animations (scroll-linked + interactions) ──
+    if (!reduceMotion) {
+
+      // Scroll progress bar
+      const scrollBar = document.createElement('div');
+      scrollBar.className = 'scroll-bar';
+      document.body.prepend(scrollBar);
+
+      // Hero parallax
+      const heroInner = document.querySelector('.hero-inner');
+      const heroVisual = document.querySelector('.hero-visual');
+      const notifCard = document.querySelector('.notif-card');
+      const statChip = document.querySelector('.stat-chip');
+
+      // Industry image internal parallax
+      const industryImgs = document.querySelectorAll('.industry-img-wrap img');
+
+      // Pricing & feature card 3D tilt
+      const tiltCards = document.querySelectorAll('.price-card, .feat-card, .industry-card');
+      tiltCards.forEach(card => {
+        card.addEventListener('mouseenter', () => card.classList.add('tilting'));
+        card.addEventListener('mouseleave', () => {
+          card.classList.remove('tilting');
+          card.style.transform = '';
+        });
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const dx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          const dy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          const lift = card.classList.contains('featured') ? '-6px' : '-4px';
+          card.style.transform = `perspective(900px) rotateY(${dx * 6}deg) rotateX(${-dy * 6}deg) translateY(${lift}) scale(1.01)`;
+        });
+      });
+
+      // Unified scroll handler
+      let scrollTick = false;
+      const onScroll = () => {
+        if (scrollTick) return;
+        scrollTick = true;
+        requestAnimationFrame(() => {
+          scrollTick = false;
+          const sy = scrollY;
+
+          // Scroll progress
+          const maxScroll = document.documentElement.scrollHeight - innerHeight;
+          scrollBar.style.width = `${(sy / maxScroll) * 100}%`;
+
+          // Hero parallax layers at different speeds
+          if (sy < innerHeight * 1.2) {
+            if (heroInner) heroInner.style.transform = `translateY(${sy * 0.14}px)`;
+            if (heroVisual) heroVisual.style.transform = `translateY(${sy * 0.07}px)`;
+            if (notifCard) notifCard.style.transform = `translateY(${sy * -0.05}px)`;
+            if (statChip) statChip.style.transform = `translateY(${sy * -0.08}px)`;
+          }
+
+          // Industry card image internal parallax
+          industryImgs.forEach(img => {
+            const r = img.closest('.industry-card').getBoundingClientRect();
+            if (r.bottom < 0 || r.top > innerHeight) return;
+            const p = (innerHeight - r.top) / (innerHeight + r.height);
+            img.style.transform = `scale(1.12) translateY(${(p - 0.5) * 22}px)`;
+          });
+        });
+      };
+
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // Observe reveal-left / reveal-right / reveal-curtain
+    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-curtain').forEach(el => revealObserver.observe(el));
+
+    // ── WOW layer JS ──────────────────────────────────────────
+
+    // Word-split animation on section titles
+    const splitObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('split-in'); splitObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.section-title').forEach(el => {
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words.map((w, i) =>
+        `<span class="word-wrap"><span class="word" style="transition-delay:${i * 72}ms">${w}</span></span>`
+      ).join(' ');
+      splitObserver.observe(el);
+    });
+
+    if (!reduceMotion) {
+      // Mouse spotlight — lerped for buttery smoothness
+      const heroEl = document.querySelector('.hero');
+      if (heroEl) {
+        let mx = 50, my = 42, tmx = 50, tmy = 42;
+        heroEl.addEventListener('mousemove', e => {
+          const r = heroEl.getBoundingClientRect();
+          tmx = (e.clientX - r.left) / r.width * 100;
+          tmy = (e.clientY - r.top) / r.height * 100;
+        });
+        heroEl.addEventListener('mouseleave', () => { tmx = 50; tmy = 42; });
+        (function animateSpot() {
+          mx += (tmx - mx) * 0.07;
+          my += (tmy - my) * 0.07;
+          heroEl.style.setProperty('--mx', `${mx.toFixed(2)}%`);
+          heroEl.style.setProperty('--my', `${my.toFixed(2)}%`);
+          requestAnimationFrame(animateSpot);
+        })();
+      }
+
+      // Magnetic CTA buttons — pull toward cursor
+      document.querySelectorAll('.btn-primary:not(.price-cta):not(.lead-submit), .btn-xl, .btn-white').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
 
     // FAQ accordion (one open at a time)
     document.querySelectorAll('.faq-q').forEach(btn => {
