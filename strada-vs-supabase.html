@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strada vs Supabase: Two Postgres Backends, Compared — Webeazzy</title>
+  <meta name="description" content="Strada vs Supabase: two Postgres backends. Compare access rules, direct SQL, sign-in, realtime, pricing and costs for growing tables, and when each one fits.">
+  <meta name="keywords" content="Strada vs Supabase, Supabase alternative, Postgres backend as a service, cheap Postgres database, low-cost Postgres, row level security, serverless backend, Strada, Webeazzy">
+  <meta name="author" content="Webeazzy">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#7F56D9">
+  <link rel="canonical" href="https://www.webeazzy.com/strada-vs-supabase">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Strada vs Supabase: two Postgres backends, compared">
+  <meta property="og:description" content="Both run on Postgres. Compare access rules, sign-in, direct SQL, realtime, pricing and costs for tables that keep growing, and when each one fits.">
+  <meta property="og:url" content="https://www.webeazzy.com/strada-vs-supabase">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Webeazzy">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://www.webeazzy.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webeazzy — One cloud for everything you build: Strada, Begone and Device Cloud">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Strada vs Supabase: two Postgres backends, compared">
+  <meta name="twitter:description" content="Both run on Postgres. Compare access rules, sign-in, direct SQL, realtime, pricing and costs for tables that keep growing, and when each one fits.">
+  <meta name="twitter:image" content="https://www.webeazzy.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/legal.css">
+  <link rel="stylesheet" href="/landing.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJZ92DEWT7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-SJZ92DEWT7');
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.webeazzy.com/strada-vs-supabase#webpage",
+  "url": "https://www.webeazzy.com/strada-vs-supabase",
+  "name": "Strada vs Supabase: Two Postgres Backends, Compared",
+  "description": "Strada vs Supabase: two Postgres backends. Compare access rules, direct SQL, sign-in, realtime, pricing and costs for growing tables, and when each one fits.",
+  "dateModified": "2026-10-16",
+  "about": [
+    {
+      "@id": "https://www.webeazzy.com/strada#software"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Supabase",
+      "url": "https://supabase.com"
+    }
+  ],
+  "isPartOf": {
+    "@id": "https://www.webeazzy.com/#website"
+  },
+  "publisher": {
+    "@id": "https://www.webeazzy.com/#organization"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Webeazzy",
+      "item": "https://www.webeazzy.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Strada",
+      "item": "https://www.webeazzy.com/strada"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Strada vs Supabase",
+      "item": "https://www.webeazzy.com/strada-vs-supabase"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Strada a good Supabase alternative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strada is a good fit if you want a Postgres backend where access rules are picked in plain language rather than written as SQL policies, and where tables that keep growing move their settled rows to low-cost storage automatically. If you need a direct Postgres connection, realtime, file storage, edge functions or self-hosting, Supabase covers more of that today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Both use Postgres. What is the difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Supabase gives you the Postgres database itself: you can connect with a connection string, write any SQL and use extensions. Strada keeps Postgres behind its API: you get tables, relations, indexes, plain-language access rules and a read-only SQL editor, and Strada manages the row-level security policies and the move of settled rows to low-cost storage for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I connect to Strada's Postgres database directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You work with Strada through the dashboard, the REST API, the JavaScript/TypeScript SDK, a read-only SQL editor and the MCP server. If your app needs a direct database connection, Supabase offers one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I move from Supabase to Strada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Recreate your tables in Strada, export each table to CSV (for example with psql's \\copy) and import it, replace your row-level security policies with Strada's table rules, then swap supabase-js calls for the Strada SDK or REST API. Email support@webeazzy.com if you have existing user accounts to bring over."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo" aria-label="Webeazzy home">
+          <svg height="22" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#101828"/></svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#products">Products</a></li>
+          <li><a href="/strada">Strada</a></li>
+          <li><a href="/background-remover">Begone</a></li>
+          <li><a href="/device-cloud">Device Cloud</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://strada.webeazzy.com" class="btn btn-primary">Start free trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <header class="lp-hero">
+      <div class="container">
+        <div class="lp-hero-grid single">
+          <div>
+            <nav aria-label="Breadcrumb">
+              <ol class="crumbs">
+                <li><a href="/">Webeazzy</a></li>
+                <li><a href="/strada">Strada</a></li>
+                <li aria-current="page">Strada vs Supabase</li>
+              </ol>
+            </nav>
+            <div class="section-badge">Comparison</div>
+            <h1>Strada vs Supabase</h1>
+            <p class="lp-lead">Both are backends built on Postgres, with sign-in and an API your app calls directly. <strong>Supabase</strong> hands you the database itself plus a wide, open-source toolkit; <strong>Strada</strong> keeps Postgres behind a simpler API, writes the security policies for you and moves settled rows to low-cost storage. Here is how they compare.</p>
+            <div class="lp-note">
+              <span>Last reviewed <time datetime="2026-10-16">16 October 2026</time></span>
+              <span>Supabase details link to Supabase's own docs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ SHORT ANSWER ═══ -->
+    <section class="section" aria-labelledby="verdict-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">The short answer</div>
+          <h2 class="section-title" id="verdict-title">Which one should you pick?</h2>
+        </div>
+        <div class="verdicts">
+          <div class="verdict ours">
+            <h3>Choose Strada if you want…</h3>
+            <ul class="check-list">
+              <li>Postgres <strong>without writing row-level security policies</strong> in SQL — pick a rule per table instead</li>
+              <li>Tables that grow forever, with settled rows in <strong>low-cost object storage</strong> that one query still reads</li>
+              <li>Reports across live and archived rows <strong>without downloading them</strong></li>
+              <li>A focused backend — database, sign-in and API — with a <strong>free trial</strong></li>
+              <li>To let Claude Code, Cursor or Copilot build the backend through a <strong>hosted MCP server</strong></li>
+            </ul>
+          </div>
+          <div class="verdict">
+            <h3>Choose Supabase if you need…</h3>
+            <ul class="check-list">
+              <li>A <strong>direct Postgres connection</strong>, any SQL and extensions such as pgvector</li>
+              <li><strong>Realtime</strong>, <strong>file storage</strong> or <strong>edge functions</strong> on the same platform</li>
+              <li>Magic links, phone or enterprise SAML sign-in</li>
+              <li>An <strong>open-source</strong> stack you can <strong>self-host</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TABLE ═══ -->
+    <section class="section section-alt" aria-labelledby="table-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Side by side</div>
+          <h2 class="section-title" id="table-title">Strada and Supabase, feature by feature</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="compare">
+            <caption class="sr-only">Comparison of Strada and Supabase</caption>
+            <colgroup><col class="c-topic"><col><col></colgroup>
+            <thead>
+              <tr><th scope="col">Topic</th><th scope="col" class="ours">Strada</th><th scope="col">Supabase</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Database</th>
+                <td class="ours" data-label="Strada">PostgreSQL tables with typed columns, relations, unique rules and indexes, managed through the dashboard, API, SDK and MCP. Read-only SQL editor; no direct connection.</td>
+                <td data-label="Supabase">Every project gets a full Postgres database, reachable with a standard connection string, with extensions such as pgvector.</td>
+              </tr>
+              <tr>
+                <th scope="row">API</th>
+                <td class="ours" data-label="Strada">REST query API and a dependency-free JavaScript/TypeScript SDK.</td>
+                <td data-label="Supabase">REST API generated from your schema (PostgREST), with client libraries.</td>
+              </tr>
+              <tr>
+                <th scope="row">Access control</th>
+                <td class="ours" data-label="Strada">Tables are private by default. Pick a rule per table — public read, signed-in users, own rows only, or more access for a role — and Strada creates the API checks and the Postgres row-level security policy.</td>
+                <td data-label="Supabase">Postgres Row Level Security policies you write in SQL; the docs advise enabling RLS on every table in an exposed schema.</td>
+              </tr>
+              <tr>
+                <th scope="row">User sign-in</th>
+                <td class="ours" data-label="Strada">Email and password, Google and GitHub, with roles for staff or admins.</td>
+                <td data-label="Supabase">Password, magic link, email one-time codes, phone, many OAuth providers and SAML single sign-on.</td>
+              </tr>
+              <tr>
+                <th scope="row">Data that keeps growing</th>
+                <td class="ours" data-label="Strada">Tiered tables: settled rows move to low-cost object storage automatically and stay queryable through the same API.</td>
+                <td data-label="Supabase">Rows live in your project's Postgres database, and database size counts toward plan limits (the Free plan includes 500 MB per project).</td>
+              </tr>
+              <tr>
+                <th scope="row">Reports</th>
+                <td class="ours" data-label="Strada">Count, sum, average, minimum and maximum, grouped by day, week, month or year, across live and archived rows.</td>
+                <td data-label="Supabase">Any SQL aggregate, through the SQL editor, a direct connection or database functions.</td>
+              </tr>
+              <tr>
+                <th scope="row">Realtime, files and functions</th>
+                <td class="ours" data-label="Strada">Not offered today.</td>
+                <td data-label="Supabase">Realtime (database changes, presence and broadcast), Storage for files and Edge Functions.</td>
+              </tr>
+              <tr>
+                <th scope="row">Hosting model</th>
+                <td class="ours" data-label="Strada">Hosted service.</td>
+                <td data-label="Supabase">Hosted service; its core tools are open source and can be self-hosted.</td>
+              </tr>
+              <tr>
+                <th scope="row">AI coding assistants</th>
+                <td class="ours" data-label="Strada">Hosted MCP server; agent keys can be read-only. Ready-made setup for Claude Code, Cursor, GitHub Copilot and others.</td>
+                <td data-label="Supabase">Hosted MCP server for Claude Code, Cursor, VS Code, GitHub Copilot and others.</td>
+              </tr>
+              <tr>
+                <th scope="row">Pricing</th>
+                <td class="ours" data-label="Strada">Free trial; pricing built to stay low as data grows.</td>
+                <td data-label="Supabase">Free, Pro, Team and Enterprise plans. Free projects pause after one week of inactivity.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-note">Supabase details are taken from Supabase's public documentation and pricing page, linked under Sources below. Features change; check the linked pages for the latest.</p>
+      </div>
+    </section>
+
+    <!-- ═══ DIFFERENCES ═══ -->
+    <section class="section" aria-labelledby="diff-title">
+      <div class="container">
+        <div class="prose">
+          <div class="section-badge">In depth</div>
+          <h2 id="diff-title">Where Strada and Supabase differ most</h2>
+
+          <h3>The same database, a different amount of SQL</h3>
+          <p>Supabase gives you the Postgres database itself: connect with any Postgres client, write functions and triggers, add extensions. That is a lot of power, and a lot to look after. Strada keeps Postgres behind its API: you get typed tables, relations, indexes and a read-only SQL editor, but not a direct connection. Less flexibility, less to manage.</p>
+
+          <h3>Security policies you write, or rules you pick</h3>
+          <p>In Supabase, Row Level Security is how you protect data your app reads directly, and you write each policy in SQL. In Strada, every table starts private and you pick a rule — public read, any signed-in user, only each user's own rows. Strada turns it into checks in the API and a row-level security policy in Postgres, and fills in the owner column itself so a client cannot claim someone else's row.</p>
+
+          <h3>What growing data costs</h3>
+          <p>In both, your live data sits in Postgres. The difference is history: Strada lets you tier tables such as orders, bills, events and logs, so settled rows move to low-cost object storage on their own while one query and one report still cover everything. In Supabase, rows stay in the project database, whose size counts toward your plan — see <a href="https://supabase.com/pricing">Supabase's pricing page</a> for current limits.</p>
+
+          <h3>A focused backend, or a full toolkit</h3>
+          <p>Supabase also offers realtime, file storage, edge functions and vector search, and its core tools are open source and self-hostable. Strada deliberately covers the core backend — database, sign-in and API. If you need those extra services or want to run the stack yourself, Supabase is the more complete choice today.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MIGRATION ═══ -->
+    <section class="section section-alt" aria-labelledby="move-title">
+      <div class="container">
+        <div class="prose">
+          <div class="section-badge">Switching</div>
+          <h2 id="move-title">Moving from Supabase to Strada</h2>
+          <ol>
+            <li><strong>Recreate your tables.</strong> Add them in the Strada dashboard or ask your AI assistant to do it through Strada's MCP server. Strada gives every row a server-generated uuid <code>id</code>, so keep old ids in their own column if other data refers to them.</li>
+            <li><strong>Move the data.</strong> Export each table to CSV — for example with psql's <code>\copy</code> — and import it from the Strada dashboard.</li>
+            <li><strong>Replace policies with rules.</strong> A policy like "users can read their own rows" becomes Strada's "own rows only" rule on that table.</li>
+            <li><strong>Switch the app.</strong> Turn on sign-in, add your site to the allowed origins and swap supabase-js calls for the Strada SDK or REST API.</li>
+          </ol>
+          <p>Have existing user accounts to bring over? Email <a href="mailto:support@webeazzy.com">support@webeazzy.com</a> before you switch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Questions</div>
+          <h2 class="section-title" id="faq-title">Strada vs Supabase FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is Strada a good Supabase alternative?</summary>
+            <div class="faq-a"><p>Strada is a good fit if you want a Postgres backend where access rules are picked in plain language rather than written as SQL policies, and where tables that keep growing move their settled rows to low-cost storage automatically. If you need a direct Postgres connection, realtime, file storage, edge functions or self-hosting, Supabase covers more of that today.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Both use Postgres. What is the difference?</summary>
+            <div class="faq-a"><p>Supabase gives you the Postgres database itself: you can connect with a connection string, write any SQL and use extensions. Strada keeps Postgres behind its API: you get tables, relations, indexes, plain-language access rules and a read-only SQL editor, and Strada manages the row-level security policies and the move of settled rows to low-cost storage for you.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I connect to Strada's Postgres database directly?</summary>
+            <div class="faq-a"><p>No. You work with Strada through the dashboard, the REST API, the JavaScript/TypeScript SDK, a read-only SQL editor and the MCP server. If your app needs a direct database connection, Supabase offers one.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I move from Supabase to Strada?</summary>
+            <div class="faq-a"><p>Yes. Recreate your tables in Strada, export each table to CSV (for example with psql's <code>\copy</code>) and import it, replace your row-level security policies with Strada's table rules, then swap supabase-js calls for the Strada SDK or REST API. Email <a href="mailto:support@webeazzy.com">support@webeazzy.com</a> if you have existing user accounts to bring over.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SOURCES ═══ -->
+    <section class="section section-alt" aria-labelledby="sources-title">
+      <div class="container">
+        <div class="prose">
+          <h2 id="sources-title">Sources</h2>
+          <ul class="sources">
+            <li><a href="https://supabase.com/docs/guides/database/overview">Supabase database overview</a> — a full Postgres database per project</li>
+            <li><a href="https://supabase.com/docs/guides/database/connecting-to-postgres">Connecting to your Supabase database</a></li>
+            <li><a href="https://supabase.com/docs/guides/api">Supabase REST API</a> — generated from your schema with PostgREST</li>
+            <li><a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase Row Level Security</a></li>
+            <li><a href="https://supabase.com/docs/guides/auth">Supabase Auth</a> — sign-in methods</li>
+            <li><a href="https://supabase.com/docs/guides/ai-tools/mcp">Supabase MCP server</a></li>
+            <li><a href="https://supabase.com/docs/guides/self-hosting">Self-hosting Supabase</a></li>
+            <li><a href="https://supabase.com/pricing">Supabase pricing</a> — plans, Free plan database size and inactivity pausing</li>
+            <li><a href="https://strada.webeazzy.com/docs">Strada docs</a></li>
+          </ul>
+          <p class="disclaimer">Supabase is a trademark of Supabase, Inc. Webeazzy is not affiliated with or endorsed by Supabase. Supabase details reflect its public documentation as of 16 October 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-banner" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-inner">
+          <h2 id="cta-title">Try Strada free</h2>
+          <p>Put a Postgres database, sign-in and an API behind your app in minutes — no backend server needed.</p>
+          <div class="cta-btns">
+            <a href="https://strada.webeazzy.com" class="btn btn-white btn-xl">
+              Start your free trial
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/strada" class="btn btn-outline-white btn-xl">How Strada works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <svg height="20" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#fff"/></svg>
+          </div>
+          <p>Cloud products for builders: backends, AI and connected devices — free to start, cheap to scale.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Products</div>
+          <ul class="footer-links">
+            <li><a href="/strada">Strada</a></li>
+            <li><a href="/background-remover">Begone — AI Background Remover</a></li>
+            <li><a href="/device-cloud">Device Cloud</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Developers</div>
+          <ul class="footer-links">
+            <li><a href="https://strada.webeazzy.com/docs">Strada docs</a></li>
+            <li><a href="https://begone.webeazzy.com/docs">Begone API docs</a></li>
+            <li><a href="/strada-vs-firebase">Strada vs Firebase</a></li>
+            <li><a href="/strada-vs-supabase" aria-current="page">Strada vs Supabase</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="mailto:support@webeazzy.com">Contact us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Webeazzy. All rights reserved.</span>
+        <a href="mailto:support@webeazzy.com">support@webeazzy.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

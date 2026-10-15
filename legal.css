@@ -1,5 +1,6 @@
-/* Shared styles for privacy.html and terms.html.
-   Same tokens, buttons, navbar and footer as the <style> block in index.html. */
+/* Shared styles for privacy.html and terms.html, and the base layer under landing.css
+   for the product landing pages. Same tokens, buttons, navbar and footer as the
+   <style> block in index.html. */
 :root {
   --gray-25: #FCFCFD;
   --gray-50: #F9FAFB;

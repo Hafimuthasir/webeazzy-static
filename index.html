@@ -90,7 +90,7 @@
         "name": "Strada",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web",
-        "url": "https://strada.webeazzy.com",
+        "url": "https://www.webeazzy.com/strada",
         "description": "Backend as a service with no backend server: a Postgres database, user sign-in, REST API and SDK, low-cost storage for data that keeps growing, and MCP for AI coding agents.",
         "offers": {
           "@type": "Offer",
@@ -126,7 +126,7 @@
         "name": "Webeazzy Device Cloud",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web",
-        "url": "https://www.webeazzy.com/#device-cloud",
+        "url": "https://www.webeazzy.com/device-cloud",
         "description": "Connected device management: provisioning, telemetry, remote commands and firmware updates."
       }
     }
@@ -1899,6 +1899,10 @@
     .spotlight-copy .section-sub { margin-bottom: 30px; }
     .spotlight-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
     .spotlight-note { margin-top: 16px; font-size: 14px; color: var(--gray-500); }
+    .spotlight-note a, .faq-a-inner a { color: var(--purple-700); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--purple-300); }
+    .spotlight-note a:hover, .faq-a-inner a:hover { text-decoration-color: var(--purple-700); }
+    .product-name a { transition: color 150ms; }
+    .product-name a:hover { color: var(--purple-700); }
     .spotlight-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .spot-card {
       background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-xl);
@@ -1935,9 +1939,9 @@
         </a>
         <ul class="nav-links">
           <li><a href="#products">Products</a></li>
-          <li><a href="https://strada.webeazzy.com" class="nav-tool-link">Strada</a></li>
+          <li><a href="/strada" class="nav-tool-link">Strada</a></li>
           <li><a href="/background-remover" class="nav-tool-link">Begone<span class="ai-chip">AI</span></a></li>
-          <li><a href="#device-cloud">Device Cloud</a></li>
+          <li><a href="/device-cloud">Device Cloud</a></li>
           <li><a href="#platform">Why Webeazzy</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -1953,9 +1957,9 @@
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#products">Products</a>
-    <a href="https://strada.webeazzy.com">Strada</a>
+    <a href="/strada">Strada</a>
     <a href="/background-remover">Begone <span class="ai-chip">AI</span></a>
-    <a href="#device-cloud">Device Cloud</a>
+    <a href="/device-cloud">Device Cloud</a>
     <a href="#platform">Why Webeazzy</a>
     <a href="#faq">FAQ</a>
     <a href="#contact" class="btn btn-primary btn-lg js-lead-trigger" data-lead-label="Talk to us">Talk to us</a>
@@ -2060,7 +2064,7 @@
             </div>
             <span class="product-status live"><span class="dot"></span>Live</span>
           </div>
-          <h3 class="product-name" id="strada-title">Strada</h3>
+          <h3 class="product-name" id="strada-title"><a href="/strada">Strada</a></h3>
           <p class="product-kind">Backend as a service</p>
           <p class="product-desc">A real Postgres database, user sign-in and a ready-made API for your web or mobile app — with no backend server to build or pay for. Records that keep growing, like orders and logs, move to low-cost storage on their own and stay searchable.</p>
           <ul class="product-points">
@@ -2073,7 +2077,7 @@
           </ul>
           <div class="product-ctas">
             <a href="https://strada.webeazzy.com" class="btn btn-primary">Start free trial</a>
-            <a href="https://strada.webeazzy.com/docs" class="btn btn-ghost">Read the docs</a>
+            <a href="/strada" class="btn btn-ghost">How Strada works</a>
           </div>
         </article>
 
@@ -2085,7 +2089,7 @@
             </div>
             <span class="product-status live"><span class="dot"></span>Live</span>
           </div>
-          <h3 class="product-name" id="begone-title">Begone <span class="ai-chip">AI</span></h3>
+          <h3 class="product-name" id="begone-title"><a href="/background-remover">Begone</a> <span class="ai-chip">AI</span></h3>
           <p class="product-kind">AI background removal</p>
           <p class="product-desc">Remove image backgrounds with one API call. Hair, fur, glass and complex edges come out clean — for product photos, profiles and catalogues at any volume.</p>
           <ul class="product-points">
@@ -2108,7 +2112,7 @@
             </div>
             <span class="product-status live"><span class="dot"></span>Live</span>
           </div>
-          <h3 class="product-name" id="device-title">Device Cloud</h3>
+          <h3 class="product-name" id="device-title"><a href="/device-cloud">Device Cloud</a></h3>
           <p class="product-kind">Connected device management</p>
           <p class="product-desc">Bring your hardware online. Register devices, watch their data in real time, send commands and roll out firmware updates safely — for one product line or thousands of units.</p>
           <ul class="product-points">
@@ -2119,7 +2123,7 @@
           </ul>
           <div class="product-ctas">
             <a href="#contact" class="btn btn-primary js-lead-trigger" data-lead-label="Device Cloud: get started">Get started</a>
-            <a href="#contact" class="btn btn-ghost js-lead-trigger" data-lead-label="Device Cloud: talk to us">Talk to us</a>
+            <a href="/device-cloud" class="btn btn-ghost">Learn more</a>
           </div>
         </article>
 
@@ -2148,7 +2152,7 @@
             </a>
             <a href="https://strada.webeazzy.com/docs" class="btn btn-outline btn-lg">Read the docs</a>
           </div>
-          <p class="spotlight-note">Free trial · Works with any web or mobile app</p>
+          <p class="spotlight-note">Free trial · Works with any web or mobile app · <a href="/strada">How Strada works</a> · Compare with <a href="/strada-vs-firebase">Firebase</a> or <a href="/strada-vs-supabase">Supabase</a></p>
         </div>
         <div class="spotlight-cards">
           <div class="spot-card reveal rd-1">
@@ -2329,7 +2333,7 @@
             </span>
           </button>
           <div class="faq-a"><div class="faq-a-clip"><div class="faq-a-inner">
-            Yes. Like them, Strada gives your app a database, user sign-in and an API without running a server. Strada also keeps costs down as you grow: records that keep piling up, such as orders, bills and logs, move to low-cost object storage on their own and stay searchable, so you are not paying database prices for your history.
+            Yes. Like them, Strada gives your app a database, user sign-in and an API without running a server. Strada also keeps costs down as you grow: records that keep piling up, such as orders, bills and logs, move to low-cost object storage on their own and stay searchable, so you are not paying database prices for your history. Read <a href="/strada-vs-firebase">Strada vs Firebase</a> and <a href="/strada-vs-supabase">Strada vs Supabase</a>.
           </div></div></div>
         </div>
         <div class="faq-item reveal rd-4">
@@ -2408,9 +2412,9 @@
         <div>
           <div class="footer-col-title">Products</div>
           <ul class="footer-links">
-            <li><a href="https://strada.webeazzy.com">Strada</a></li>
+            <li><a href="/strada">Strada</a></li>
             <li><a href="/background-remover">Begone — AI Background Remover</a></li>
-            <li><a href="#device-cloud">Device Cloud</a></li>
+            <li><a href="/device-cloud">Device Cloud</a></li>
           </ul>
         </div>
         <div>
@@ -2418,6 +2422,8 @@
           <ul class="footer-links">
             <li><a href="https://strada.webeazzy.com/docs">Strada docs</a></li>
             <li><a href="https://begone.webeazzy.com/docs">Begone API docs</a></li>
+            <li><a href="/strada-vs-firebase">Strada vs Firebase</a></li>
+            <li><a href="/strada-vs-supabase">Strada vs Supabase</a></li>
           </ul>
         </div>
         <div>
