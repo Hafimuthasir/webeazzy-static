@@ -1007,6 +1007,9 @@
       transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out), filter 750ms var(--ease-out);
     }
     .reveal-right.in { opacity: 1; transform: translateX(0) scale(1); filter: blur(0px); }
+    /* Cards waiting to slide in from the right sit past the viewport edge; clip them so phones don't zoom out.
+       clip (not hidden) keeps main from becoming a scroll container. */
+    main { overflow-x: clip; }
     .rd-1 { transition-delay: 80ms; }
     .rd-2 { transition-delay: 160ms; }
     .rd-3 { transition-delay: 240ms; }
@@ -2456,9 +2459,9 @@
           <label for="leadPhone">Mobile number with country code</label>
           <div class="lead-phone-row">
             <div class="lead-code-wrap">
-              <input id="leadCountryCode" class="lead-code-input" name="countryCode" type="tel" inputmode="numeric" autocomplete="tel-country-code" value="91" aria-label="Country code" pattern="[0-9]{1,4}" maxlength="4" required>
+              <input id="leadCountryCode" class="lead-code-input" name="countryCode" type="tel" inputmode="numeric" autocomplete="tel-country-code" placeholder="1" aria-label="Country code" pattern="[0-9]{1,4}" maxlength="4" required>
             </div>
-            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98765 43210" required>
+            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Mobile number" required>
           </div>
         </div>
         <button type="submit" class="btn btn-primary lead-submit" id="leadSubmit">Submit details</button>
@@ -2602,7 +2605,6 @@
           document.querySelector('.lead-sub').style.display = '';
           document.getElementById('leadThanks').style.display = 'none';
           leadForm.reset();
-          leadCountryCode.value = '91';
           leadSubmit.disabled = false;
           leadSubmit.textContent = 'Submit details';
         }, 400);
