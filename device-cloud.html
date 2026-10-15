@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Device Management Platform with MQTT &amp; OTA — Webeazzy</title>
+  <meta name="description" content="Device Cloud is a live IoT device management platform: secure provisioning, telemetry and commands over MQTT, staged OTA updates and a workspace per customer.">
+  <meta name="keywords" content="IoT device management platform, MQTT device cloud, OTA firmware updates, IoT cloud, device provisioning, IoT telemetry, remote device commands, firmware rollout, multi-tenant IoT platform, Device Cloud, Webeazzy">
+  <meta name="author" content="Webeazzy">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#7F56D9">
+  <link rel="canonical" href="https://www.webeazzy.com/device-cloud">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Device Cloud: IoT device management over MQTT, with OTA updates">
+  <meta property="og:description" content="Provision devices securely, watch live telemetry, send remote commands and roll out firmware in stages, with a workspace for each of your customers.">
+  <meta property="og:url" content="https://www.webeazzy.com/device-cloud">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Webeazzy">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://www.webeazzy.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webeazzy — One cloud for everything you build: Strada, Begone and Device Cloud">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Device Cloud: IoT device management over MQTT, with OTA updates">
+  <meta name="twitter:description" content="Provision devices securely, watch live telemetry, send remote commands and roll out firmware in stages, with a workspace for each of your customers.">
+  <meta name="twitter:image" content="https://www.webeazzy.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/legal.css">
+  <link rel="stylesheet" href="/landing.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJZ92DEWT7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-SJZ92DEWT7');
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.webeazzy.com/device-cloud#software",
+  "name": "Webeazzy Device Cloud",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "IoT device management platform",
+  "operatingSystem": "Web",
+  "url": "https://www.webeazzy.com/device-cloud",
+  "image": "https://www.webeazzy.com/og-image.png",
+  "description": "IoT device management platform: secure device provisioning, live telemetry and remote commands over MQTT with TLS, staged OTA firmware updates and separate workspaces for each customer.",
+  "featureList": [
+    "Secure device provisioning with a unique credential per device",
+    "Credential rotation, device disable, replacement and decommissioning",
+    "Live telemetry over MQTT with TLS",
+    "Remote commands and device configuration",
+    "Staged OTA firmware updates with hardware compatibility checks and progress reporting",
+    "Device groups",
+    "Separate workspaces for each customer"
+  ],
+  "publisher": {
+    "@id": "https://www.webeazzy.com/#organization"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.webeazzy.com/device-cloud#webpage",
+  "url": "https://www.webeazzy.com/device-cloud",
+  "name": "IoT Device Management Platform with MQTT & OTA — Webeazzy",
+  "description": "Device Cloud is a live IoT device management platform: secure provisioning, telemetry and commands over MQTT, staged OTA updates and a workspace per customer.",
+  "dateModified": "2026-10-16",
+  "mainEntity": {
+    "@id": "https://www.webeazzy.com/device-cloud#software"
+  },
+  "isPartOf": {
+    "@id": "https://www.webeazzy.com/#website"
+  },
+  "publisher": {
+    "@id": "https://www.webeazzy.com/#organization"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Webeazzy",
+      "item": "https://www.webeazzy.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Device Cloud",
+      "item": "https://www.webeazzy.com/device-cloud"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an IoT device management platform?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An IoT device management platform is the cloud side of a connected product. It registers each device and its credentials, receives the data devices send, lets you change settings and send commands, and delivers firmware updates over the air. Webeazzy Device Cloud does all of this for one product line or thousands of units."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Device Cloud available today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Device Cloud is live. Choose Get started, share your email and mobile number, and our team will set up your workspace and help you connect your first devices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do devices connect to Device Cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Over MQTT with TLS. Each device verifies the server certificate, signs in with its own credential, reports its firmware version, fetches its configuration, publishes telemetry and listens for commands and firmware updates. Any device that can run an MQTT client over TLS can connect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do OTA firmware updates work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You upload a firmware release for a product model and list the hardware revisions it supports. Device Cloud checks each device's type, model and hardware revision before assigning the release, verifies the file's size and SHA-256 checksum, delivers it over MQTT and shows per-device progress. Roll out to a small group of devices first, then widen the rollout once it looks healthy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is provisioning kept secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every device gets its own random credential, issued once during authenticated factory provisioning and never shown again. There is no fleet-wide token baked into firmware. You can rotate a credential, disable a device, replace it with a new identity or decommission it, and an old credential stops working once the change is applied."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I manage devices for several customers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each customer gets a separate workspace with its own users, devices, groups and data, so one customer never sees another's devices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Device Cloud cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing depends on how many devices you run and how much data they send. Choose Get started and we will share pricing for your fleet."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo" aria-label="Webeazzy home">
+          <svg height="22" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#101828"/></svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#products">Products</a></li>
+          <li><a href="/strada">Strada</a></li>
+          <li><a href="/background-remover">Begone</a></li>
+          <li><a href="/device-cloud" aria-current="page">Device Cloud</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-primary js-lead-trigger" data-lead-label="Device Cloud: get started">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ═══ HERO ═══ -->
+    <header class="lp-hero">
+      <div class="container">
+        <div class="lp-hero-grid">
+          <div>
+            <div class="section-badge">Device Cloud <span class="status-live">Live</span></div>
+            <h1>IoT device management, <span class="grad">from first connection to firmware updates</span></h1>
+            <p class="lp-lead">Device Cloud is an <strong>MQTT device cloud for connected products</strong>. Provision devices securely, watch live telemetry, send remote commands and roll out OTA firmware updates in stages — with a separate workspace for each of your customers.</p>
+            <div class="lp-ctas">
+              <a href="#contact" class="btn btn-primary btn-lg js-lead-trigger" data-lead-label="Device Cloud: get started">
+                Get started
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#how-it-works" class="btn btn-outline btn-lg">See how it works</a>
+            </div>
+            <div class="lp-note">
+              <span>Live today</span>
+              <span>MQTT with TLS</span>
+              <span>One product line or thousands of units</span>
+            </div>
+          </div>
+
+          <div class="panel-stack" aria-hidden="true">
+            <div class="panel">
+              <div class="panel-hd"><span class="panel-title">Devices · Workspace: Acme Cold Chain</span></div>
+              <div class="panel-row"><b>Cold room sensor 12</b><span class="pill">Online</span></div>
+              <div class="panel-row"><b>Pump controller 4</b><span class="pill">Online</span></div>
+              <div class="panel-row"><b>Gate unit 3</b><span class="pill purple">Updating 64%</span></div>
+              <div class="panel-row"><b>Cold room sensor 9</b><span class="pill gray">Last seen 2h ago</span></div>
+            </div>
+            <div class="panel">
+              <div class="panel-hd"><span class="panel-title">Telemetry · temperature</span><span class="stat-sub">−18.4 °C</span></div>
+              <div class="spark"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:64%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:61%"></i><i style="height:80%"></i><i style="height:69%"></i><i style="height:57%"></i><i style="height:74%"></i><i style="height:66%"></i></div>
+            </div>
+            <div class="panel">
+              <div class="panel-hd"><span class="panel-title">Firmware 2.4.0 rollout</span><span class="pill purple">Stage 2</span></div>
+              <div class="rollout"><span class="done">1%</span><span class="now">10%</span><span>25%</span><span>100%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">What you get</div>
+          <h2 class="section-title" id="features-title">Everything your connected product needs in the cloud</h2>
+          <p class="section-sub">Bring hardware online without building and running your own IoT backend.</p>
+        </div>
+        <div class="cards two">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="6" y="10.5" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 10.5V7.5a3 3 0 016 0v3M12 14.5v2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Secure device provisioning</h3>
+            <p>Every device gets its own identity and a random credential, issued once during authenticated factory provisioning — never a fleet-wide token baked into firmware.</p>
+            <ul>
+              <li>Rotate a device's credential at any time</li>
+              <li>Disable, replace or decommission devices</li>
+              <li>Replacements get a new identity; the old device's history stays separate</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h3l2.5-6 4 12 2.5-6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Live telemetry and remote commands over MQTT</h3>
+            <p>Devices connect over MQTT with TLS, check the server certificate and sign in with their own credential. Their data reaches you as it is sent.</p>
+            <ul>
+              <li>Live sensor readings and device status</li>
+              <li>See which devices are online and when each was last active</li>
+              <li>Push configuration and send remote commands</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16.5V19a1.5 1.5 0 001.5 1.5h13A1.5 1.5 0 0020 19v-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Staged OTA firmware updates</h3>
+            <p>Upload a release for a product model and the hardware revisions it supports. Device Cloud refuses to send firmware to hardware it was not built for.</p>
+            <ul>
+              <li>Type, model and hardware revision checked per device</li>
+              <li>File size and SHA-256 checksum verified</li>
+              <li>Roll out to a small group first, then widen; per-device progress shown</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Separate workspaces per customer</h3>
+            <p>Selling devices to several businesses? Give each customer an isolated workspace with its own users, devices, groups and data.</p>
+            <ul>
+              <li>One customer never sees another's devices</li>
+              <li>Group devices for monitoring and rollouts</li>
+              <li>Manage everything from one console</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="section section-alt" id="how-it-works" aria-labelledby="hiw-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">How it works</div>
+          <h2 class="section-title" id="hiw-title">From the factory floor to the field</h2>
+          <p class="section-sub">One flow for every device you ship.</p>
+        </div>
+        <div class="steps four">
+          <div class="step">
+            <h3>Describe your product</h3>
+            <p>Define the product type, model and hardware revisions you make, so every device and firmware release is matched to the right hardware.</p>
+          </div>
+          <div class="step">
+            <h3>Provision each device</h3>
+            <p>Register a unique serial at the factory and issue its credential once, over a trusted channel.</p>
+          </div>
+          <div class="step">
+            <h3>Connect over MQTT</h3>
+            <p>On first boot the device connects over TLS, reports its firmware version, fetches its configuration and starts sending telemetry.</p>
+          </div>
+          <div class="step">
+            <h3>Monitor, command, update</h3>
+            <p>Watch live data, change settings, send commands and roll firmware out in stages — per customer workspace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ USE CASES ═══ -->
+    <section class="section" aria-labelledby="uses-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Built for hardware makers</div>
+          <h2 class="section-title" id="uses-title">For any device that speaks MQTT</h2>
+          <p class="section-sub">If your device can run an MQTT client over TLS, it can join Device Cloud — from small microcontroller boards to gateways.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Sensors and monitoring</h3>
+            <p>Cold rooms, tanks, energy meters and environmental sensors that report readings around the clock.</p>
+          </article>
+          <article class="card">
+            <h3>Controllers and machines</h3>
+            <p>Pumps, motors and industrial controllers you need to watch, configure and command remotely.</p>
+          </article>
+          <article class="card">
+            <h3>Connected products</h3>
+            <p>Gates, access units and consumer devices sold to many customers, each in their own workspace.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Questions</div>
+          <h2 class="section-title" id="faq-title">Device Cloud FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is an IoT device management platform?</summary>
+            <div class="faq-a"><p>An IoT device management platform is the cloud side of a connected product. It registers each device and its credentials, receives the data devices send, lets you change settings and send commands, and delivers firmware updates over the air. Webeazzy Device Cloud does all of this for one product line or thousands of units.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is Device Cloud available today?</summary>
+            <div class="faq-a"><p>Yes. Device Cloud is live. Choose <a href="#contact" class="js-lead-trigger" data-lead-label="Device Cloud: get started">Get started</a>, share your email and mobile number, and our team will set up your workspace and help you connect your first devices.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How do devices connect to Device Cloud?</summary>
+            <div class="faq-a"><p>Over MQTT with TLS. Each device verifies the server certificate, signs in with its own credential, reports its firmware version, fetches its configuration, publishes telemetry and listens for commands and firmware updates. Any device that can run an MQTT client over TLS can connect.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How do OTA firmware updates work?</summary>
+            <div class="faq-a"><p>You upload a firmware release for a product model and list the hardware revisions it supports. Device Cloud checks each device's type, model and hardware revision before assigning the release, verifies the file's size and SHA-256 checksum, delivers it over MQTT and shows per-device progress. Roll out to a small group of devices first, then widen the rollout once it looks healthy.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How is provisioning kept secure?</summary>
+            <div class="faq-a"><p>Every device gets its own random credential, issued once during authenticated factory provisioning and never shown again. There is no fleet-wide token baked into firmware. You can rotate a credential, disable a device, replace it with a new identity or decommission it, and an old credential stops working once the change is applied.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I manage devices for several customers?</summary>
+            <div class="faq-a"><p>Yes. Each customer gets a separate workspace with its own users, devices, groups and data, so one customer never sees another's devices.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How much does Device Cloud cost?</summary>
+            <div class="faq-a"><p>Pricing depends on how many devices you run and how much data they send. Choose <a href="#contact" class="js-lead-trigger" data-lead-label="Device Cloud: get started">Get started</a> and we will share pricing for your fleet.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-banner" id="contact" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-inner">
+          <h2 id="cta-title">Bring your devices online</h2>
+          <p>Tell us about your hardware and we will set up your Device Cloud workspace and help you connect your first devices.</p>
+          <div class="cta-btns">
+            <a href="#contact" class="btn btn-white btn-xl js-lead-trigger" data-lead-label="Device Cloud: get started">
+              Get started
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline-white btn-xl js-lead-trigger" data-lead-label="Device Cloud: talk to us">Talk to us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <svg height="20" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#fff"/></svg>
+          </div>
+          <p>Cloud products for builders: backends, AI and connected devices — free to start, cheap to scale.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Products</div>
+          <ul class="footer-links">
+            <li><a href="/strada">Strada</a></li>
+            <li><a href="/background-remover">Begone — AI Background Remover</a></li>
+            <li><a href="/device-cloud" aria-current="page">Device Cloud</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Developers</div>
+          <ul class="footer-links">
+            <li><a href="https://strada.webeazzy.com/docs">Strada docs</a></li>
+            <li><a href="https://begone.webeazzy.com/docs">Begone API docs</a></li>
+            <li><a href="/strada-vs-firebase">Strada vs Firebase</a></li>
+            <li><a href="/strada-vs-supabase">Strada vs Supabase</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="#contact" class="js-lead-trigger" data-lead-label="Contact">Contact us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Webeazzy. All rights reserved.</span>
+        <a href="mailto:support@webeazzy.com">support@webeazzy.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lead-modal" id="leadModal" aria-hidden="true">
+    <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+      <button type="button" class="lead-close" id="leadClose" aria-label="Close contact form">&times;</button>
+      <h2 class="lead-title" id="leadTitle">Tell us where to reach you</h2>
+      <p class="lead-sub" id="leadSub">Share your email and mobile number and our team will get in touch.</p>
+      <form class="lead-form" id="leadForm">
+        <div class="lead-field">
+          <label for="leadEmail">Email address</label>
+          <input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="lead-field">
+          <label for="leadPhone">Mobile number with country code</label>
+          <div class="lead-phone-row">
+            <div class="lead-code-wrap">
+              <input id="leadCountryCode" class="lead-code-input" name="countryCode" type="tel" inputmode="numeric" autocomplete="tel-country-code" placeholder="1" aria-label="Country code" pattern="[0-9]{1,4}" maxlength="4" required>
+            </div>
+            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Mobile number" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary lead-submit" id="leadSubmit">Submit details</button>
+        <div class="lead-status" id="leadStatus" role="status"></div>
+      </form>
+      <div class="lead-thanks" id="leadThanks">
+        <div class="lead-thanks-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M5 14.5l6.5 6.5 12-13" stroke="#027A48" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <b>Thanks, we'll be in touch</b>
+          <span>Our team will contact you within one working day.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Same contact form and lead inbox as index.html (posted through the /api/webeazzy/leads rewrite).
+    const LEAD_ENDPOINT = '/api/webeazzy/leads';
+    const LEAD_STORE_KEY = 'webeazzy_leads';
+    let pendingLeadLabel = '';
+
+    const leadModal = document.getElementById('leadModal');
+    const leadForm = document.getElementById('leadForm');
+    const leadStatus = document.getElementById('leadStatus');
+    const leadSubmit = document.getElementById('leadSubmit');
+    const leadEmail = document.getElementById('leadEmail');
+    const leadCountryCode = document.getElementById('leadCountryCode');
+    const leadPhone = document.getElementById('leadPhone');
+    const leadParts = [leadForm, document.getElementById('leadTitle'), document.getElementById('leadSub')];
+    const leadThanks = document.getElementById('leadThanks');
+
+    function storeLead(payload) {
+      try {
+        const leads = JSON.parse(localStorage.getItem(LEAD_STORE_KEY) || '[]');
+        leads.unshift(payload);
+        localStorage.setItem(LEAD_STORE_KEY, JSON.stringify(leads.slice(0, 100)));
+      } catch (_) {}
+    }
+
+    function openLeadModal(label) {
+      pendingLeadLabel = label;
+      leadStatus.textContent = '';
+      leadStatus.className = 'lead-status';
+      leadModal.classList.add('open');
+      leadModal.setAttribute('aria-hidden', 'false');
+      setTimeout(() => leadEmail.focus(), 40);
+    }
+
+    function closeLeadModal() {
+      leadModal.classList.remove('open');
+      leadModal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('.js-lead-trigger');
+      if (!trigger) return;
+      event.preventDefault();
+      openLeadModal(trigger.dataset.leadLabel || 'Talk to us');
+    });
+    document.getElementById('leadClose').addEventListener('click', closeLeadModal);
+    leadModal.addEventListener('click', (event) => { if (event.target === leadModal) closeLeadModal(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && leadModal.classList.contains('open')) closeLeadModal();
+    });
+
+    leadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const countryCode = leadCountryCode.value.replace(/[^\d]/g, '');
+      const phoneDigits = leadPhone.value.replace(/[^\d]/g, '');
+      if (!countryCode) {
+        leadStatus.textContent = 'Please enter a valid country code.';
+        leadStatus.className = 'lead-status error';
+        return;
+      }
+      if (phoneDigits.length < 7) {
+        leadStatus.textContent = 'Please enter a valid mobile number.';
+        leadStatus.className = 'lead-status error';
+        return;
+      }
+
+      const payload = {
+        source: 'webeazzy-static',
+        slug: 'webeazzy-home',
+        action: 'host_free', // the value the lead inbox has always accepted for contact requests
+        label: 'Cloud: ' + (pendingLeadLabel || 'Talk to us'),
+        email: leadEmail.value.trim(),
+        phone: `+${countryCode}${phoneDigits}`,
+        page: location.href,
+        userAgent: navigator.userAgent,
+        createdAt: new Date().toISOString(),
+      };
+
+      leadSubmit.disabled = true;
+      leadSubmit.textContent = 'Saving...';
+      storeLead(payload);
+      try {
+        await fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } catch (_) {}
+
+      leadParts.forEach(el => { el.style.display = 'none'; });
+      leadThanks.style.display = 'flex';
+      setTimeout(() => {
+        closeLeadModal();
+        setTimeout(() => {
+          leadParts.forEach(el => { el.style.display = ''; });
+          leadThanks.style.display = 'none';
+          leadForm.reset();
+          leadSubmit.disabled = false;
+          leadSubmit.textContent = 'Submit details';
+        }, 400);
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
