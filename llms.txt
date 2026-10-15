@@ -1,0 +1,23 @@
+# Webeazzy
+
+> Webeazzy is a cloud platform for developers and businesses. It runs three products: Strada (backend as a service with no backend server), Begone (AI background removal API) and Device Cloud (connected device management). Strada and Begone have free trials.
+
+## Products
+
+- [Strada](https://www.webeazzy.com/strada): Backend as a service. A Postgres database, user sign-in and a REST API with a JavaScript/TypeScript SDK, so web and mobile apps need no backend server. Tables start private; per-user row security runs inside Postgres. Records that keep growing (orders, bills, logs) move to low-cost object storage automatically and stay queryable. Includes an MCP server so AI coding assistants (Claude Code, Cursor, GitHub Copilot) can create tables, set access rules and connect an app. Free trial.
+- [Strada free trial and dashboard](https://strada.webeazzy.com): Create a project and get keys.
+- [Strada docs](https://strada.webeazzy.com/docs): Getting started, SDK and API reference.
+- [Begone](https://www.webeazzy.com/background-remover): AI background removal on the web and through a REST API, with clean edges on hair, fur and glass. 100 free images, then $0.02 per image. Images are processed in memory and deleted right after processing.
+- [Begone API docs](https://begone.webeazzy.com/docs): API reference.
+- [Device Cloud](https://www.webeazzy.com/device-cloud): IoT device management platform, live today: secure provisioning with a unique credential per device, live telemetry and remote commands over MQTT with TLS, staged OTA firmware updates with hardware compatibility checks, and separate workspaces per customer. Get started through the contact form on that page.
+
+## Comparisons
+
+- [Strada vs Firebase](https://www.webeazzy.com/strada-vs-firebase): Postgres tables and plain-language access rules compared with Firestore documents and Security Rules, and when each one fits.
+- [Strada vs Supabase](https://www.webeazzy.com/strada-vs-supabase): Two Postgres backends compared: access rules, direct SQL, realtime, pricing and costs for tables that keep growing.
+
+## Company
+
+- [Privacy Policy](https://www.webeazzy.com/privacy)
+- [Terms of Service](https://www.webeazzy.com/terms)
+- Contact: support@webeazzy.com

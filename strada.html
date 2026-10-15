@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strada: Backend as a Service with Postgres &amp; Auth — Webeazzy</title>
+  <meta name="description" content="Strada is a backend as a service with no backend server: a low-cost Postgres database, user sign-in and a REST API for web and mobile apps. Start a free trial.">
+  <meta name="keywords" content="backend as a service, BaaS, serverless backend, database without backend, no backend server, cheap Postgres database, low-cost Postgres, hosted Postgres API, Firebase alternative, Supabase alternative, MCP database, Strada, Webeazzy">
+  <meta name="author" content="Webeazzy">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#7F56D9">
+  <link rel="canonical" href="https://www.webeazzy.com/strada">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Strada: backend as a service with no backend server">
+  <meta property="og:description" content="A low-cost Postgres database, user sign-in and a REST API for web and mobile apps. Your frontend calls it directly. Free trial.">
+  <meta property="og:url" content="https://www.webeazzy.com/strada">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Webeazzy">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://www.webeazzy.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webeazzy — One cloud for everything you build: Strada, Begone and Device Cloud">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Strada: backend as a service with no backend server">
+  <meta name="twitter:description" content="A low-cost Postgres database, user sign-in and a REST API for web and mobile apps. Your frontend calls it directly. Free trial.">
+  <meta name="twitter:image" content="https://www.webeazzy.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/legal.css">
+  <link rel="stylesheet" href="/landing.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJZ92DEWT7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-SJZ92DEWT7');
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.webeazzy.com/strada#software",
+  "name": "Strada",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Backend as a service",
+  "operatingSystem": "Web",
+  "url": "https://www.webeazzy.com/strada",
+  "image": "https://www.webeazzy.com/og-image.png",
+  "description": "Backend as a service with no backend server: a Postgres database, user sign-in and a REST API with a JavaScript/TypeScript SDK for web and mobile apps. Settled rows move to low-cost object storage and stay queryable. Includes an MCP server for AI coding assistants.",
+  "featureList": [
+    "Postgres tables with relations, unique rules and indexes",
+    "Email and password, Google and GitHub sign-in for your users",
+    "REST API and a dependency-free JavaScript/TypeScript SDK",
+    "Tables private by default, with per-user row security enforced inside Postgres",
+    "Tiered tables: settled rows move to low-cost object storage and stay queryable",
+    "Reports across live and archived rows",
+    "Hosted MCP server for Claude Code, Cursor and GitHub Copilot"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "name": "Free trial",
+    "price": "0",
+    "priceCurrency": "USD",
+    "url": "https://strada.webeazzy.com",
+    "description": "Free trial"
+  },
+  "publisher": {
+    "@id": "https://www.webeazzy.com/#organization"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.webeazzy.com/strada#webpage",
+  "url": "https://www.webeazzy.com/strada",
+  "name": "Strada: Backend as a Service with Postgres & Auth — Webeazzy",
+  "description": "Strada is a backend as a service with no backend server: a low-cost Postgres database, user sign-in and a REST API for web and mobile apps. Start a free trial.",
+  "dateModified": "2026-10-16",
+  "mainEntity": {
+    "@id": "https://www.webeazzy.com/strada#software"
+  },
+  "isPartOf": {
+    "@id": "https://www.webeazzy.com/#website"
+  },
+  "publisher": {
+    "@id": "https://www.webeazzy.com/#organization"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Webeazzy",
+      "item": "https://www.webeazzy.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Strada",
+      "item": "https://www.webeazzy.com/strada"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is backend as a service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Backend as a service (BaaS) gives your app the parts every backend needs, such as a database, user sign-in and an API, as a hosted service. You call it from your app instead of writing, hosting and patching a server of your own. Strada is a backend as a service built on Postgres."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a backend server to use Strada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your web or mobile app calls Strada directly with a publishable key. Access rules and per-user row security are enforced by Strada and by Postgres itself, so each user only sees the rows they are allowed to see. If you also run a server, it can use a secret key for full access."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to put the publishable key in my frontend?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The publishable key (strada_pk_) only works from the website origins you allow, and only for what each table's access rules permit. Tables are private until you open them. The secret key (strada_sk_) has full access, belongs on servers only, and the Strada SDK refuses to run with it in a browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Strada a real Postgres database?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your tables are PostgreSQL tables with typed columns, relations, unique rules and indexes, and per-user rules run as PostgreSQL row-level security. You work with them through the dashboard, the REST API, the SDK, a read-only SQL editor and the MCP server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Strada stay cheap as my data grows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tables that keep growing, such as orders, bills, events and logs, can be tiered. You set a rule, for example paid orders older than three days, and settled rows move to low-cost object storage in the background with the same ids and values. The same query reads both tiers, and reports total them without downloading every row."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Strada a Firebase or Supabase alternative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Like Firebase and Supabase, Strada gives your app a database, user sign-in and an API without a server of your own. Strada is built on Postgres and moves settled rows to low-cost storage automatically. It does not offer file storage, realtime subscriptions or serverless functions. See our Strada vs Firebase and Strada vs Supabase comparisons for details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Strada from a mobile app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The JavaScript/TypeScript SDK is a single dependency-free file, and apps on any other platform can call the same REST API over HTTPS with the publishable key and the signed-in user's access token."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI coding assistants work with Strada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strada runs a hosted MCP server. The dashboard has ready-made setup for Claude Code, Cursor, VS Code with GitHub Copilot, Codex, Claude Desktop, Windsurf and Gemini CLI. Agent keys can be read-only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Strada cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can start with a free trial. Strada's pricing is built to stay low as your data grows; email support@webeazzy.com for pricing at your volume."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo" aria-label="Webeazzy home">
+          <svg height="22" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#101828"/></svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#products">Products</a></li>
+          <li><a href="/strada" aria-current="page">Strada</a></li>
+          <li><a href="/background-remover">Begone</a></li>
+          <li><a href="/device-cloud">Device Cloud</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://strada.webeazzy.com" class="btn btn-primary">Start free trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ═══ HERO ═══ -->
+    <header class="lp-hero">
+      <div class="container">
+        <div class="lp-hero-grid">
+          <div>
+            <div class="section-badge">Strada · Backend as a service</div>
+            <h1>The backend for your app, <span class="grad">without a backend server</span></h1>
+            <p class="lp-lead">Strada gives your web or mobile app a <strong>real Postgres database, user sign-in and a ready-made REST API</strong>. Your frontend calls it directly, rows are private by default, and data that keeps piling up moves to low-cost storage — so it stays cheap as you grow.</p>
+            <div class="lp-ctas">
+              <a href="https://strada.webeazzy.com" class="btn btn-primary btn-lg">
+                Start your free trial
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="https://strada.webeazzy.com/docs" class="btn btn-outline btn-lg">Read the docs</a>
+            </div>
+            <div class="lp-note">
+              <span>Free trial</span>
+              <span>No server to run</span>
+              <span>Works with any web or mobile app</span>
+            </div>
+          </div>
+
+          <div class="panel-stack" aria-hidden="true">
+            <div class="panel">
+              <div class="panel-hd"><span class="panel-title">Tables</span><span class="pill">Live</span></div>
+              <div class="panel-row"><b>customers</b><span class="pill purple">Own rows only</span></div>
+              <div class="panel-row"><b>products</b><span class="pill gray">Public read</span></div>
+              <div class="panel-row"><b>orders</b><span class="pill amber">Tiered</span></div>
+              <div class="panel-row"><b>events</b><span class="pill amber">Tiered</span></div>
+            </div>
+            <div class="code">
+              <div class="code-hd">app.ts</div>
+<pre><span class="k">const</span> { data, error } = <span class="k">await</span> strada
+  .<span class="f">from</span>(<span class="s">"orders"</span>)
+  .<span class="f">select</span>({ tier: <span class="s">"all"</span>, limit: <span class="s">20</span> });
+<span class="c">// live + archived rows, one query</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ WHAT YOU GET ═══ -->
+    <section class="section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">What you get</div>
+          <h2 class="section-title" id="features-title">A serverless backend in one service</h2>
+          <p class="section-sub">Everything a typical app backend does — store data, sign users in, check who may see what — handled for you, behind one API.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5.5" rx="7.5" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 5.5v6.5c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V5.5M4.5 12v6.5c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V12" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>A real Postgres database</h3>
+            <p>Create tables in the dashboard with typed columns, relations, unique rules and indexes. Import and export CSV, and run read-only SQL.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c.9-3.6 3.7-5.5 7-5.5s6.1 1.9 7 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Sign-in for your users</h3>
+            <p>Email and password, Google and GitHub sign-in. Short-lived sessions with single-use refresh tokens, and roles for staff or admins.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>REST API and SDK</h3>
+            <p>Query, insert, update and delete over HTTPS, or use the JavaScript/TypeScript SDK — one dependency-free file. Calls return <code>{ data, error }</code> and never throw.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5V7.5a3.5 3.5 0 017 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Private by default</h3>
+            <p>Tables start locked. Open them with plain-language rules — public read, signed-in users, or only their own rows — enforced inside Postgres.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6l6 6 3.5-3.5L20 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 15h5v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Cheaper as data grows</h3>
+            <p>Orders, bills, events and logs that keep piling up move to low-cost object storage on their own — and stay queryable through the same API.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.7 4.7L18.4 9.4l-4.7 1.7L12 15.8l-1.7-4.7L5.6 9.4l4.7-1.7L12 3zM18 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Built for AI coding</h3>
+            <p>Claude Code, Cursor and GitHub Copilot can create tables, set access rules and connect your app through Strada's hosted MCP server.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="section section-alt" id="how-it-works" aria-labelledby="hiw-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">How it works</div>
+          <h2 class="section-title" id="hiw-title">A database without a backend — safely</h2>
+          <p class="section-sub">Your app talks to Strada straight from the browser or phone. Two keys and rules inside Postgres keep each user to their own data.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <h3>Create your tables</h3>
+            <p>Add tables in the dashboard, or let your AI assistant do it over MCP. Every table gets a server-generated <code>id</code> and starts private.</p>
+          </div>
+          <div class="step">
+            <h3>Choose who can see what</h3>
+            <p>Pick a rule per table: public read, any signed-in user, or only each user's own rows. Add your site to the allowed origins.</p>
+          </div>
+          <div class="step">
+            <h3>Call it from your app</h3>
+            <p>Use the publishable key (<code>strada_pk_</code>) in browser or app code. The secret key (<code>strada_sk_</code>) stays on servers — the SDK refuses to run with it in a browser.</p>
+          </div>
+        </div>
+        <div class="callout">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h3>Row security runs inside Postgres, not just in the API</h3>
+            <p>On an "own rows only" table, Strada fills in the owner column on insert and refuses attempts to change it. The API filters every query, and Postgres enforces it too: signed-in requests run as a restricted database role with a row-level security policy, so even an unfiltered query cannot read another user's rows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CHEAPER AS DATA GROWS ═══ -->
+    <section class="section" id="low-cost-storage" aria-labelledby="tier-title">
+      <div class="container">
+        <div class="split">
+          <div class="split-copy">
+            <div class="section-badge">Low-cost Postgres</div>
+            <h2 class="section-title" id="tier-title">Stop paying database prices for your history</h2>
+            <p class="section-sub">Most apps have a few tables that only grow: orders, bills, events, logs. Strada keeps the rows that still change in Postgres and moves settled ones to low-cost object storage — automatically, by a rule you set. That is how Strada stays a cheap Postgres database as your app grows.</p>
+            <ul class="check-list">
+              <li><strong>You set the rule.</strong> For example, "paid orders older than 3 days". A background mover handles the rest, in batches, without duplicating rows.</li>
+              <li><strong>One query reads both.</strong> <code>select({ tier: "all" })</code> merges live and archived rows into one sorted, paged result.</li>
+              <li><strong>Reports without downloads.</strong> Count, sum, average, minimum or maximum per day, week, month or year across both tiers.</li>
+              <li><strong>Same rules, same ids.</strong> Archived rows keep their ids and the table's access rules, and can be moved back if you need to edit them.</li>
+            </ul>
+          </div>
+          <div class="tiers" aria-hidden="true">
+            <div class="tier live">
+              <div class="tier-hd"><b>Postgres</b><span class="pill purple">Live rows</span></div>
+              <p>Rows that still change: open orders, users, settings, stock.</p>
+              <div class="tier-rows"><span>order #4821 · open</span><span>order #4822 · open</span><span>order #4823 · paid today</span></div>
+            </div>
+            <div class="tier-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M5 12l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Settled rows move on their own
+            </div>
+            <div class="tier">
+              <div class="tier-hd"><b>Object storage</b><span class="pill gray">Archived rows</span></div>
+              <p>Paid orders and old events, kept at low-cost storage prices.</p>
+              <div class="tier-rows"><span>order #1 … #4790 · paid</span><span>events · last year</span></div>
+            </div>
+            <div class="tier-query"><span><span class="k">await</span> strada.from(<span class="s">"orders"</span>).report({ measure: <span class="s">"sum"</span>, column: <span class="s">"total"</span> })</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MCP ═══ -->
+    <section class="section section-alt" id="mcp" aria-labelledby="mcp-title">
+      <div class="container">
+        <div class="split">
+          <div class="split-copy">
+            <div class="section-badge">MCP for AI coding assistants</div>
+            <h2 class="section-title" id="mcp-title">Let your AI assistant build the backend</h2>
+            <p class="section-sub">Strada runs a hosted MCP server. Create an agent key on your project's AI agents page — read-only if you prefer — and paste the setup into your assistant. It can then create tables, add columns, indexes and relations, set access rules and allowed origins, turn on sign-in, tier a growing table and query data, before writing your app code against it.</p>
+            <div class="chips" aria-label="Assistants with ready-made setup">
+              <span class="chip">Claude Code</span>
+              <span class="chip">Cursor</span>
+              <span class="chip">GitHub Copilot (VS Code)</span>
+              <span class="chip">Codex</span>
+              <span class="chip">Windsurf</span>
+              <span class="chip">Gemini CLI</span>
+              <span class="chip">Claude Desktop</span>
+            </div>
+          </div>
+          <div>
+            <div class="code">
+              <div class="code-hd">terminal</div>
+<pre><span class="c"># Connect Claude Code to your Strada project</span>
+claude mcp add --transport http strada \
+  https://strada.webeazzy.com/v1/mcp \
+  --header <span class="s">"Authorization: Bearer $STRADA_AGENT_KEY"</span></pre>
+            </div>
+            <p class="code-caption">Agent keys are only for the MCP connection and never go into app code. Coding agents can also read the guide at <a href="https://strada.webeazzy.com/llms.txt">strada.webeazzy.com/llms.txt</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CODE ═══ -->
+    <section class="section" id="code" aria-labelledby="code-title">
+      <div class="container">
+        <div class="split">
+          <div class="split-copy">
+            <div class="section-badge">Developer experience</div>
+            <h2 class="section-title" id="code-title">A few lines from sign-in to data</h2>
+            <p class="section-sub">Download the SDK as one file, create a client with your project ID and publishable key, and start reading and writing rows. Signed-in users automatically get only what the table's rules allow.</p>
+            <ul class="check-list">
+              <li>TypeScript and plain JavaScript versions</li>
+              <li>Filters, sorting and paging on every select</li>
+              <li>Prefer plain HTTP? Send <code>X-Strada-Key</code> to the REST API from any language.</li>
+            </ul>
+            <div class="lp-ctas">
+              <a href="https://strada.webeazzy.com/docs" class="btn btn-outline">Read the SDK docs</a>
+            </div>
+          </div>
+          <div class="code">
+            <div class="code-hd">todos.ts</div>
+<pre><span class="k">import</span> { createClient } <span class="k">from</span> <span class="s">"./lib/strada"</span>;
+
+<span class="k">const</span> strada = <span class="f">createClient</span>(
+  <span class="s">"https://strada.webeazzy.com"</span>,
+  <span class="s">"YOUR_PROJECT_ID"</span>,
+  <span class="k">import</span>.meta.env.VITE_STRADA_PUBLISHABLE_KEY,
+);
+
+<span class="c">// Sign the user in</span>
+<span class="k">await</span> strada.auth.<span class="f">signIn</span>({ email, password });
+
+<span class="c">// Only this user's rows come back</span>
+<span class="k">const</span> { data: todos, error } = <span class="k">await</span> strada
+  .<span class="f">from</span>(<span class="s">"todos"</span>)
+  .<span class="f">select</span>({
+    filters: [
+      { column: <span class="s">"done"</span>, operator: <span class="s">"eq"</span>, value: <span class="k">false</span> },
+    ],
+    sort: [{ column: <span class="s">"title"</span> }],
+    limit: <span class="s">20</span>,
+  });
+
+<span class="k">await</span> strada.<span class="f">from</span>(<span class="s">"todos"</span>).<span class="f">insert</span>([
+  { title: <span class="s">"Buy milk"</span>, done: <span class="k">false</span> },
+]);</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMPARE ═══ -->
+    <section class="section section-alt" aria-labelledby="compare-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Compare</div>
+          <h2 class="section-title" id="compare-title">Looking for a Firebase or Supabase alternative?</h2>
+          <p class="section-sub">Strada covers the same core — database, sign-in, API — on Postgres, with low-cost storage for data that keeps growing. See an honest side-by-side.</p>
+        </div>
+        <div class="cards two">
+          <a class="card" href="/strada-vs-firebase">
+            <h3>Strada vs Firebase</h3>
+            <p>Postgres tables and plain-language rules compared with Firestore's NoSQL documents and Security Rules — and when Firebase is the better pick.</p>
+            <span class="card-link">Read the comparison →</span>
+          </a>
+          <a class="card" href="/strada-vs-supabase">
+            <h3>Strada vs Supabase</h3>
+            <p>Both run on Postgres. How rules, storage costs for growing tables and the wider feature set differ — and when Supabase is the better pick.</p>
+            <span class="card-link">Read the comparison →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-hd">
+          <div class="section-badge">Questions</div>
+          <h2 class="section-title" id="faq-title">Strada FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is backend as a service?</summary>
+            <div class="faq-a"><p>Backend as a service (BaaS) gives your app the parts every backend needs, such as a database, user sign-in and an API, as a hosted service. You call it from your app instead of writing, hosting and patching a server of your own. Strada is a backend as a service built on Postgres.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need a backend server to use Strada?</summary>
+            <div class="faq-a"><p>No. Your web or mobile app calls Strada directly with a publishable key. Access rules and per-user row security are enforced by Strada and by Postgres itself, so each user only sees the rows they are allowed to see. If you also run a server, it can use a secret key for full access.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is it safe to put the publishable key in my frontend?</summary>
+            <div class="faq-a"><p>Yes. The publishable key (<code>strada_pk_</code>) only works from the website origins you allow, and only for what each table's access rules permit. Tables are private until you open them. The secret key (<code>strada_sk_</code>) has full access, belongs on servers only, and the Strada SDK refuses to run with it in a browser.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is Strada a real Postgres database?</summary>
+            <div class="faq-a"><p>Yes. Your tables are PostgreSQL tables with typed columns, relations, unique rules and indexes, and per-user rules run as PostgreSQL row-level security. You work with them through the dashboard, the REST API, the SDK, a read-only SQL editor and the MCP server.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How does Strada stay cheap as my data grows?</summary>
+            <div class="faq-a"><p>Tables that keep growing, such as orders, bills, events and logs, can be tiered. You set a rule, for example paid orders older than three days, and settled rows move to low-cost object storage in the background with the same ids and values. The same query reads both tiers, and reports total them without downloading every row.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is Strada a Firebase or Supabase alternative?</summary>
+            <div class="faq-a"><p>Yes. Like Firebase and Supabase, Strada gives your app a database, user sign-in and an API without a server of your own. Strada is built on Postgres and moves settled rows to low-cost storage automatically. It does not offer file storage, realtime subscriptions or serverless functions. See our <a href="/strada-vs-firebase">Strada vs Firebase</a> and <a href="/strada-vs-supabase">Strada vs Supabase</a> comparisons for details.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use Strada from a mobile app?</summary>
+            <div class="faq-a"><p>Yes. The JavaScript/TypeScript SDK is a single dependency-free file, and apps on any other platform can call the same REST API over HTTPS with the publishable key and the signed-in user's access token.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Which AI coding assistants work with Strada?</summary>
+            <div class="faq-a"><p>Strada runs a hosted MCP server. The dashboard has ready-made setup for Claude Code, Cursor, VS Code with GitHub Copilot, Codex, Claude Desktop, Windsurf and Gemini CLI. Agent keys can be read-only.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How much does Strada cost?</summary>
+            <div class="faq-a"><p>You can start with a free trial. Strada's pricing is built to stay low as your data grows; email <a href="mailto:support@webeazzy.com">support@webeazzy.com</a> for pricing at your volume.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-banner" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-inner">
+          <h2 id="cta-title">Give your app a backend today</h2>
+          <p>Start a free Strada trial and have a Postgres database, sign-in and an API behind your app in minutes — no backend server needed.</p>
+          <div class="cta-btns">
+            <a href="https://strada.webeazzy.com" class="btn btn-white btn-xl">
+              Start your free trial
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://strada.webeazzy.com/docs" class="btn btn-outline-white btn-xl">Read the docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <svg height="20" viewBox="0 0 647 113" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M25.7052 86.8125L0.000145891 21.4225H9.92138L29.7639 70.1268L50.8465 21.4225H63.0226L85.4581 70.014L103.948 21.4225H113.982L89.2913 86.8125H81.2867L56.9345 32.8094L33.8225 86.8125H25.7052ZM132.591 86.8125C130.111 86.8125 127.818 86.2112 125.714 85.0086C123.684 83.7309 122.031 82.0774 120.753 80.048C119.551 77.9435 118.949 75.6511 118.949 73.1708V35.0642C118.949 32.5839 119.551 30.3291 120.753 28.2997C122.031 26.1952 123.684 24.5417 125.714 23.3391C127.818 22.0614 130.111 21.4225 132.591 21.4225H171.825C174.38 21.4225 176.673 22.0614 178.702 23.3391C180.807 24.5417 182.46 26.1952 183.663 28.2997C184.941 30.3291 185.579 32.5839 185.579 35.0642V58.7399H128.194V73.1708C128.194 74.3734 128.607 75.4256 129.434 76.3276C130.336 77.1543 131.388 77.5677 132.591 77.5677H185.579V86.8125H132.591ZM128.194 49.4951H176.222V35.0642C176.222 33.8617 175.771 32.847 174.869 32.0202C174.042 31.1183 173.028 30.6673 171.825 30.6673H132.591C131.388 30.6673 130.336 31.1183 129.434 32.0202C128.607 32.847 128.194 33.8617 128.194 35.0642V49.4951ZM197.348 86.8125V0.00166901H206.592V21.4225H250.336C252.816 21.4225 255.071 22.0614 257.101 23.3391C259.205 24.5417 260.859 26.1952 262.061 28.2997C263.339 30.3291 263.978 32.5839 263.978 35.0642V73.1708C263.978 75.6511 263.339 77.9435 262.061 80.048C260.859 82.0774 259.205 83.7309 257.101 85.0086C255.071 86.2112 252.816 86.8125 250.336 86.8125H197.348ZM211.102 77.5677H250.336C251.539 77.5677 252.553 77.1543 253.38 76.3276C254.282 75.4256 254.733 74.3734 254.733 73.1708V35.0642C254.733 33.8617 254.282 32.847 253.38 32.0202C252.553 31.1183 251.539 30.6673 250.336 30.6673H211.102C209.9 30.6673 208.847 31.1183 207.945 32.0202C207.043 32.847 206.592 33.8617 206.592 35.0642V73.1708C206.592 74.3734 207.043 75.4256 207.945 76.3276C208.847 77.1543 209.9 77.5677 211.102 77.5677ZM285.849 86.8125C283.368 86.8125 281.076 86.2112 278.972 85.0086C276.942 83.7309 275.289 82.0774 274.011 80.048C272.808 77.9435 272.207 75.6511 272.207 73.1708V35.0642C272.207 32.5839 272.808 30.3291 274.011 28.2997C275.289 26.1952 276.942 24.5417 278.972 23.3391C281.076 22.0614 283.368 21.4225 285.849 21.4225H325.083C327.638 21.4225 329.931 22.0614 331.96 23.3391C334.064 24.5417 335.718 26.1952 336.921 28.2997C338.198 30.3291 338.837 32.5839 338.837 35.0642V58.7399H281.452V73.1708C281.452 74.3734 281.865 75.4256 282.692 76.3276C283.594 77.1543 284.646 77.5677 285.849 77.5677H338.837V86.8125H285.849ZM281.452 49.4951H329.48V35.0642C329.48 33.8617 329.029 32.847 328.127 32.0202C327.3 31.1183 326.285 30.6673 325.083 30.6673H285.849C284.646 30.6673 283.594 31.1183 282.692 32.0202C281.865 32.847 281.452 33.8617 281.452 35.0642V49.4951ZM364.022 86.8125C361.541 86.8125 359.249 86.2112 357.144 85.0086C355.115 83.7309 353.462 82.0774 352.184 80.048C350.981 77.9435 350.38 75.6511 350.38 73.1708V49.4951H407.653V35.0642C407.653 33.8617 407.202 32.847 406.3 32.0202C405.473 31.1183 404.458 30.6673 403.256 30.6673H350.38V21.4225H403.256C405.811 21.4225 408.104 22.0614 410.133 23.3391C412.237 24.5417 413.891 26.1952 415.093 28.2997C416.371 30.3291 417.01 32.5839 417.01 35.0642V86.8125H364.022ZM364.022 77.5677H407.653V58.7399H359.625V73.1708C359.625 74.3734 360.038 75.4256 360.865 76.3276C361.767 77.1543 362.819 77.5677 364.022 77.5677ZM426.023 86.8125V74.1855L482.507 30.6673H426.023V21.4225H492.653V34.0496L436.17 77.5677H492.653V86.8125H426.023ZM502.542 86.8125V74.1855L559.025 30.6673H502.542V21.4225H569.172V34.0496L512.689 77.5677H569.172V86.8125H502.542ZM591.973 112.743V103.385H632.786C633.988 103.385 635.003 102.935 635.83 102.033C636.731 101.206 637.182 100.191 637.182 98.9886V86.8125H593.552C591.071 86.8125 588.779 86.2112 586.674 85.0086C584.645 83.7309 582.991 82.0774 581.714 80.048C580.511 77.9435 579.91 75.6511 579.91 73.1708V21.648H589.155V73.1708C589.155 74.3734 589.568 75.4256 590.395 76.3276C591.297 77.1543 592.349 77.5677 593.552 77.5677H632.786C633.988 77.5677 635.003 77.1543 635.83 76.3276C636.731 75.4256 637.182 74.3734 637.182 73.1708V21.648H646.427V98.9886C646.427 101.544 645.826 103.836 644.623 105.866C643.421 107.97 641.767 109.624 639.663 110.826C637.633 112.104 635.341 112.743 632.786 112.743H591.973Z" fill="#fff"/></svg>
+          </div>
+          <p>Cloud products for builders: backends, AI and connected devices — free to start, cheap to scale.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Products</div>
+          <ul class="footer-links">
+            <li><a href="/strada" aria-current="page">Strada</a></li>
+            <li><a href="/background-remover">Begone — AI Background Remover</a></li>
+            <li><a href="/device-cloud">Device Cloud</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Developers</div>
+          <ul class="footer-links">
+            <li><a href="https://strada.webeazzy.com/docs">Strada docs</a></li>
+            <li><a href="https://begone.webeazzy.com/docs">Begone API docs</a></li>
+            <li><a href="/strada-vs-firebase">Strada vs Firebase</a></li>
+            <li><a href="/strada-vs-supabase">Strada vs Supabase</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="mailto:support@webeazzy.com">Contact us</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Webeazzy. All rights reserved.</span>
+        <a href="mailto:support@webeazzy.com">support@webeazzy.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
